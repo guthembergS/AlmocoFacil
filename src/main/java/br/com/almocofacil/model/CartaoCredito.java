@@ -8,10 +8,6 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
-/**
- *
- * @author guthemberg
- */
 @Entity
 @Table(name="CARTAO_CREDITO")
 public class CartaoCredito implements Serializable{
@@ -68,6 +64,8 @@ public class CartaoCredito implements Serializable{
     public String getNumero() {
         return numero;
     }
+    
+    
     
     
     
