@@ -23,10 +23,7 @@ public class Prato  implements Serializable {
     
     @Column(name = "NM_PRATO")
     protected String nmPrato;
-    
-    @Column(name = "QUANTIDADE_PESO")
-    protected Long quantidadePeso;
-
+   
     @Column(name = "VALOR")
     protected Double valor;
     
@@ -36,20 +33,12 @@ public class Prato  implements Serializable {
         this.nmPrato = nmPrato;
     }
 
-    public void setQuantidadePeso(Long quantidadePeso) {
-        this.quantidadePeso = quantidadePeso;
-    }
-
     public void setValor(Double valor) {
         this.valor = valor;
     }
 
     public String getNmPrato() {
         return nmPrato;
-    }
-
-    public Long getQuantidadePeso() {
-        return quantidadePeso;
     }
 
     public Double getValor() {

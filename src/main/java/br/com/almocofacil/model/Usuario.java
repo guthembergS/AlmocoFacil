@@ -28,5 +28,33 @@ public class Usuario implements Serializable{
     
     @Column(name = "email")
     protected String email;
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public void setNome(String nome) {
+        this.nome = nome;
+    }
+
+    public void setSenha(String senha) {
+        this.senha = senha;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public Long getIdUsuario() {
+        return idUsuario;
+    }
+
+    public String getNome() {
+        return nome;
+    }
+
+    public String getSenha() {
+        return senha;
+    }
     
 }
