@@ -8,6 +8,7 @@
     <class>br.com.almocofacil.model.Usuario</class>
     <class>br.com.almocofacil.model.Vendedor</class>
     <class>br.com.almocofacil.model.CartaoCredito</class>
+    <class>br.com.almocofacil.model.EnderecoEntrega</class>
     <properties>
       <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/almocofacil"/>
       <property name="javax.persistence.jdbc.user" value="root"/>
@@ -17,7 +18,7 @@
       <property name="eclipselink.logging.level" value="FINE"/>
       <property name="eclipselink.weaving" value="static"/>
       <property name="eclipselink.jdbc.native-sql" value="true"/>
-<!--      <property name="eclipselink.target-database" value="MySQL"/>-->
+      <property name="eclipselink.target-database" value="MySQL"/>
     </properties>
   </persistence-unit>
 </persistence>
