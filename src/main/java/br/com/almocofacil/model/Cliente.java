@@ -22,6 +22,9 @@ public class Cliente extends Usuario implements Serializable {
     
     @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL )
     protected List<EnderecoEntrega> endereco;
+    
+    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL )
+    protected List<CartaoCredito> cartaoCredito;
 
     public void setEndereco(List<EnderecoEntrega> endereco) {
         this.endereco = endereco;
@@ -31,6 +34,11 @@ public class Cliente extends Usuario implements Serializable {
         return endereco;
     }    
     
-//endereco
-    //cartao de credito
+    public void setCartaoCredito(List<CartaoCredito> cartaoCredito) {
+        this.cartaoCredito = cartaoCredito;
+    }
+
+    public List<CartaoCredito> getCartaoCredito() {
+        return cartaoCredito;
+    }
 }
