@@ -1,4 +1,4 @@
-package br.com.almocofacil.model;
+    package br.com.almocofacil.model;
 
 import br.com.almocofacil.model.Usuario;
 import javax.persistence.EntityManager;
@@ -10,7 +10,7 @@ public class TesteJPA {
         
        
     public static void main(String[] args){
-        Usuario usuario = new Usuario();
+       /* Usuario usuario = new Usuario();
         EntityManagerFactory emf = null;
         EntityManager em = null;
         EntityTransaction et = null;
@@ -33,6 +33,6 @@ public class TesteJPA {
                 em.close();       
             if (emf != null)
                 emf.close();
-        }
+        }*/
      }
 }

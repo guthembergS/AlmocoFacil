@@ -1,17 +1,27 @@
 package br.com.almocofacil.model;
 
 import java.io.Serializable;
+import javax.persistence.Access;
+import javax.persistence.AccessType;
 import javax.persistence.Column;
+import javax.persistence.DiscriminatorColumn;
+import javax.persistence.DiscriminatorType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Inheritance;
+import javax.persistence.InheritanceType;
 import javax.persistence.Table;
 
 
 @Entity
 @Table(name = "USUARIO")
-public class Usuario implements Serializable{
+@Inheritance(strategy = InheritanceType.JOINED) //Estratégia de herança.
+@DiscriminatorColumn(name = "DISC_USUARIO", //Nome da coluna que vai discriminar subclasses.
+        discriminatorType = DiscriminatorType.STRING, length = 1)
+@Access(AccessType.FIELD)
+public abstract class Usuario implements Serializable{
     @Id
     @Column(name = "ID_USUARIO")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
