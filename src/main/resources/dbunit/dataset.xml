@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<dataset>
+    <!-- TESTE DE Insercao -->
+    <USUARIO nome="gerson andrade" disc_usuario="V" email="gerson@mail.com" senha="123456"/>
+</dataset>
