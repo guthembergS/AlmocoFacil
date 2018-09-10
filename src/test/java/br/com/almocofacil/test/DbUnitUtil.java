@@ -1,6 +1,7 @@
 package br.com.almocofacil.test;
 
 import java.io.InputStream;
+import java.net.URL;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
@@ -24,14 +25,15 @@ public class DbUnitUtil {
         try {
             conn = DriverManager.getConnection(
                     "jdbc:mysql://localhost:3306/almocofacil", "root", "root");
-            db_conn = new DatabaseConnection(conn, "almocofacil_01");
+            db_conn = new DatabaseConnection(conn, "almocofacil");
             DatabaseConfig dbConfig = db_conn.getConfig();
             dbConfig.setProperty(DatabaseConfig.PROPERTY_DATATYPE_FACTORY, new MySqlDataTypeFactory());
             dbConfig.setProperty(DatabaseConfig.PROPERTY_METADATA_HANDLER, new MySqlMetadataHandler());
             FlatXmlDataSetBuilder builder = new FlatXmlDataSetBuilder();
             builder.setColumnSensing(true);
-            InputStream in = DbUnitUtil.class.getResourceAsStream(XML_FILE);
-            IDataSet dataSet = builder.build(in);
+            //InputStream in = DbUnitUtil.class.getResourceAsStream(XML_FILE);
+            final URL url = DbUnitUtil.class.getResource(XML_FILE);
+            IDataSet dataSet = builder.build(url);
             DatabaseOperation.CLEAN_INSERT.execute(db_conn, dataSet);
         } catch (Exception ex) {
             throw new RuntimeException(ex.getMessage(), ex);
