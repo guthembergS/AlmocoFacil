@@ -6,6 +6,8 @@ import javax.persistence.CascadeType;
 import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.Table;
@@ -16,29 +18,30 @@ import javax.persistence.Table;
  */
 @Entity
 @Table(name = "TB_CLIENTE")
-@DiscriminatorValue(value = "C")
 @PrimaryKeyJoinColumn(name="ID_USUARIO", referencedColumnName = "ID_USUARIO")
 public class Cliente extends Usuario implements Serializable {
     
-    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL )
-    protected List<EnderecoEntrega> endereco;
+    @ManyToOne(fetch = FetchType.EAGER, optional = false)
+    @JoinColumn(name = "ID_EMPRESA", referencedColumnName = "ID_EMPRESA", nullable = false)
+    protected Empresa empresa;
     
-    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL )
+    /*@OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL )
     protected List<CartaoCredito> cartaoCredito;
-
-    public void setEndereco(List<EnderecoEntrega> endereco) {
-        this.endereco = endereco;
+*/
+    public Empresa getEmpresa() {
+        return empresa;
     }
 
-    public List<EnderecoEntrega> getEndereco() {
-        return endereco;
-    }    
-    
+    public void setEmpresa(Empresa empresa) {
+        this.empresa = empresa;
+    }
+
+    /*
     public void setCartaoCredito(List<CartaoCredito> cartaoCredito) {
         this.cartaoCredito = cartaoCredito;
     }
 
     public List<CartaoCredito> getCartaoCredito() {
         return cartaoCredito;
-    }
+    }*/
 }

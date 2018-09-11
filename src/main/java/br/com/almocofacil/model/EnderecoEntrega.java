@@ -35,14 +35,6 @@ public class EnderecoEntrega implements Serializable {
     @Column(name = "CEP")
     protected String cep;
 
-    @Column(name = "COMPLEMENTO")
-    protected String complemento;
-
-    public Long getIdEnderecoEntrega() {
-        return idEnderecoEntrega;
-    }
-
-    
     public String getLogadouro() {
         return logadouro;
     }
@@ -82,14 +74,5 @@ public class EnderecoEntrega implements Serializable {
     public void setCep(String cep) {
         this.cep = cep;
     }
-
-    public String getComplemento() {
-        return complemento;
-    }
-
-    public void setComplemento(String complemento) {
-        this.complemento = complemento;
-    }
-
     
 }

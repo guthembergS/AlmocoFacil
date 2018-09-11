@@ -1,4 +1,35 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <dataset>
-    <PRATO NM_PRATO="torta de frango" VALOR="13.00" />
+    <!-- ID_ENDERECO 1 -->
+    <ENDERECO_ENTREGA LOGADOURO="Av. Presidente Dutra" BAIRRO="Imbiribeira" CIDADE="RECIFE" ESTADO="PE" CEP="51190515" />
+    <!-- ID_ENDERECO 2 -->
+    <ENDERECO_ENTREGA LOGADOURO="Av. Alfredo Lisboa" BAIRRO="Sao Jose" CIDADE="RECIFE" ESTADO="PE" CEP="50030150" />
+    <!-- ID_ENDERECO 3 -->
+    <ENDERECO_ENTREGA LOGADOURO="Rua Francisco Alves" BAIRRO="Paissandu" CIDADE="RECIFE" ESTADO="PE" CEP="50070490" />
+    <!-- ID_EMPRESA 1 -->
+    <EMPRESA NM_EMPRESA="MV Sistemas" CNPJ="92306257000780" telefone="8139727090" ID_ENDERECO_ENTREGA="1"/>
+    <!-- ID_EMPRESA 2 -->
+    <EMPRESA NM_EMPRESA="Accenture" CNPJ="96534094000158" telefone="8121236733" ID_ENDERECO_ENTREGA="2"/>
+    <!-- ID_EMPRESA 3 -->
+    <EMPRESA NM_EMPRESA="Edax" CNPJ="4184746000153" telefone="8130320707" ID_ENDERECO_ENTREGA="3"/>
+    <!-- ID_USUARIO 1 -->
+    <TB_CLIENTE NOME="guthemberg souza" EMAIL="guthemberg@mail.com" SENHA="guthemberg123" ID_EMPRESA="1"/>    
+    <!-- ID_USUARIO 2 -->
+    <TB_CLIENTE NOME="thiago antonio" EMAIL="thiago.a@mail.com" SENHA="thiago123" ID_EMPRESA="1"/>    
+    <!-- ID_USUARIO 3 -->
+    <TB_CLIENTE NOME="gerson brandao" EMAIL="gerson.b@mail.com" SENHA="gerson123" ID_EMPRESA="2"/>    
+    <!-- ID_USUARIO 4 -->
+    <TB_CLIENTE NOME="antonio malaquias" EMAIL="antonio.m@mail.com" SENHA="antonio123" ID_EMPRESA="2"/>    
+    <!-- ID_USUARIO 5 -->
+    <TB_CLIENTE NOME="armando silva" EMAIL="armando.s@mail.com" SENHA="armando123" ID_EMPRESA="3"/>    
+    <!-- ID_USUARIO 6 -->
+    <TB_CLIENTE NOME="jessica monteiro" EMAIL="jessica.m@mail.com" SENHA="jessica123" ID_EMPRESA="3"/>    
+    <!-- ID_USUARIO 7 -->
+    <TB_CLIENTE NOME="antonella silva" EMAIL="antonella.s@mail.com" SENHA="antonella123" ID_EMPRESA="2"/>    
+    <!-- ID_USUARIO 8 -->
+    <TB_CLIENTE NOME="diogo brito" EMAIL="diogo.b@mail.com" SENHA="diogo123" ID_EMPRESA="1"/>    
+    <!-- ID_USUARIO 9 -->
+    <TB_VENDEDOR NOME="fred almoco" EMAIL="fred.almoco@mail.com" SENHA="fred123" />
+    <!-- ID_USUARIO 10 -->
+    <TB_VENDEDOR NOME="saborear restaurante" EMAIL="saborear.restaurante@mail.com" SENHA="saborear123" />   
 </dataset>
