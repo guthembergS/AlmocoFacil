@@ -12,24 +12,40 @@
     <EMPRESA NM_EMPRESA="Accenture" CNPJ="96534094000158" telefone="8121236733" ID_ENDERECO_ENTREGA="2"/>
     <!-- ID_EMPRESA 3 -->
     <EMPRESA NM_EMPRESA="Edax" CNPJ="4184746000153" telefone="8130320707" ID_ENDERECO_ENTREGA="3"/>
+    <!-- ID_CARTAO_CREDITO = 1 -->
+    <CARTAO_CREDITO BANDEIRA="VISA" NUMERO="4073020000000002" DT_EXPIRACAO="2022-04-10"/>
+    <!-- ID_CARTAO_CREDITO = 2 -->
+    <CARTAO_CREDITO BANDEIRA="ELLO" NUMERO="1028432746382917" DT_EXPIRACAO="2020-05-11"/>
+    <!-- ID_CARTAO_CREDITO = 3 -->
+    <CARTAO_CREDITO BANDEIRA="VISA" NUMERO="1234325674675830" DT_EXPIRACAO="2022-01-12"/>
+    <!-- ID_CARTAO_CREDITO = 4 -->
+    <CARTAO_CREDITO BANDEIRA="MASTER" NUMERO="1203984900039382" DT_EXPIRACAO="2019-04-10"/>
+    <!-- ID_CARTAO_CREDITO = 5 -->
+    <CARTAO_CREDITO BANDEIRA="BRASIL" NUMERO="9897828300382002" DT_EXPIRACAO="2021-01-11"/>
+    <!-- ID_CARTAO_CREDITO = 6 -->
+    <CARTAO_CREDITO BANDEIRA="MASTER" NUMERO="3764563700339822" DT_EXPIRACAO="2024-10-04"/>
+    <!-- ID_CARTAO_CREDITO = 7 -->
+    <CARTAO_CREDITO BANDEIRA="VISA" NUMERO="3982894039022002" DT_EXPIRACAO="2020-04-10"/>
+    <!-- ID_CARTAO_CREDITO = 8 -->
+    <CARTAO_CREDITO BANDEIRA="VISA" NUMERO="1192828000000200" DT_EXPIRACAO="2020-06-11"/>
     <!-- ID_USUARIO 1 -->
-    <TB_CLIENTE NOME="guthemberg souza" EMAIL="guthemberg@mail.com" SENHA="guthemberg123" ID_EMPRESA="1"/>    
+    <TB_CLIENTE NOME="guthemberg souza" EMAIL="guthemberg@mail.com" SENHA="guthemberg123" ID_EMPRESA="1" ID_CARTAO_CREDITO="1"/>    
     <!-- ID_USUARIO 2 -->
-    <TB_CLIENTE NOME="thiago antonio" EMAIL="thiago.a@mail.com" SENHA="thiago123" ID_EMPRESA="1"/>    
+    <TB_CLIENTE NOME="thiago antonio" EMAIL="thiago.a@mail.com" SENHA="thiago123" ID_EMPRESA="1" ID_CARTAO_CREDITO="2"/>    
     <!-- ID_USUARIO 3 -->
-    <TB_CLIENTE NOME="gerson brandao" EMAIL="gerson.b@mail.com" SENHA="gerson123" ID_EMPRESA="2"/>    
+    <TB_CLIENTE NOME="gerson brandao" EMAIL="gerson.b@mail.com" SENHA="gerson123" ID_EMPRESA="2" ID_CARTAO_CREDITO="3"/>    
     <!-- ID_USUARIO 4 -->
-    <TB_CLIENTE NOME="antonio malaquias" EMAIL="antonio.m@mail.com" SENHA="antonio123" ID_EMPRESA="2"/>    
+    <TB_CLIENTE NOME="antonio malaquias" EMAIL="antonio.m@mail.com" SENHA="antonio123" ID_EMPRESA="2" ID_CARTAO_CREDITO="4"/>    
     <!-- ID_USUARIO 5 -->
-    <TB_CLIENTE NOME="armando silva" EMAIL="armando.s@mail.com" SENHA="armando123" ID_EMPRESA="3"/>    
+    <TB_CLIENTE NOME="armando silva" EMAIL="armando.s@mail.com" SENHA="armando123" ID_EMPRESA="3" ID_CARTAO_CREDITO="5"/>    
     <!-- ID_USUARIO 6 -->
-    <TB_CLIENTE NOME="jessica monteiro" EMAIL="jessica.m@mail.com" SENHA="jessica123" ID_EMPRESA="3"/>    
+    <TB_CLIENTE NOME="jessica monteiro" EMAIL="jessica.m@mail.com" SENHA="jessica123" ID_EMPRESA="3" ID_CARTAO_CREDITO="6"/>    
     <!-- ID_USUARIO 7 -->
-    <TB_CLIENTE NOME="antonella silva" EMAIL="antonella.s@mail.com" SENHA="antonella123" ID_EMPRESA="2"/>    
+    <TB_CLIENTE NOME="antonella silva" EMAIL="antonella.s@mail.com" SENHA="antonella123" ID_EMPRESA="2" ID_CARTAO_CREDITO="7"/>    
     <!-- ID_USUARIO 8 -->
-    <TB_CLIENTE NOME="diogo brito" EMAIL="diogo.b@mail.com" SENHA="diogo123" ID_EMPRESA="1"/>    
+    <TB_CLIENTE NOME="diogo brito" EMAIL="diogo.b@mail.com" SENHA="diogo123" ID_EMPRESA="1" ID_CARTAO_CREDITO="8"/>    
     <!-- ID_USUARIO 9 -->
     <TB_VENDEDOR NOME="fred almoco" EMAIL="fred.almoco@mail.com" SENHA="fred123" />
     <!-- ID_USUARIO 10 -->
-    <TB_VENDEDOR NOME="saborear restaurante" EMAIL="saborear.restaurante@mail.com" SENHA="saborear123" />   
+    <TB_VENDEDOR NOME="saborear restaurante" EMAIL="saborear.restaurante@mail.com" SENHA="saborear123" />       
 </dataset>

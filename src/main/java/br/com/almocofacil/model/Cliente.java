@@ -1,14 +1,12 @@
 package br.com.almocofacil.model;
 
 import java.io.Serializable;
-import java.util.List;
 import javax.persistence.CascadeType;
-import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.Table;
 
@@ -21,13 +19,14 @@ import javax.persistence.Table;
 @PrimaryKeyJoinColumn(name="ID_USUARIO", referencedColumnName = "ID_USUARIO")
 public class Cliente extends Usuario implements Serializable {
     
-    @ManyToOne(fetch = FetchType.EAGER, optional = false)
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "ID_EMPRESA", referencedColumnName = "ID_EMPRESA", nullable = false)
     protected Empresa empresa;
     
-    /*@OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL )
-    protected List<CartaoCredito> cartaoCredito;
-*/
+    @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL )
+    @JoinColumn(name = "ID_CARTAO_CREDITO", referencedColumnName = "ID_CARTAO_CREDITO", nullable = false)
+    protected CartaoCredito cartaoCredito;
+
     public Empresa getEmpresa() {
         return empresa;
     }
@@ -36,12 +35,12 @@ public class Cliente extends Usuario implements Serializable {
         this.empresa = empresa;
     }
 
-    /*
-    public void setCartaoCredito(List<CartaoCredito> cartaoCredito) {
+    
+    public void setCartaoCredito(CartaoCredito cartaoCredito) {
         this.cartaoCredito = cartaoCredito;
     }
 
-    public List<CartaoCredito> getCartaoCredito() {
+    public CartaoCredito getCartaoCredito() {
         return cartaoCredito;
-    }*/
+    }
 }
