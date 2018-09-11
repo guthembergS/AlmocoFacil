@@ -47,5 +47,8 @@
     <!-- ID_USUARIO 9 -->
     <TB_VENDEDOR NOME="fred almoco" EMAIL="fred.almoco@mail.com" SENHA="fred123" />
     <!-- ID_USUARIO 10 -->
-    <TB_VENDEDOR NOME="saborear restaurante" EMAIL="saborear.restaurante@mail.com" SENHA="saborear123" />       
+    <TB_VENDEDOR NOME="saborear restaurante" EMAIL="saborear.restaurante@mail.com" SENHA="saborear123" />
+    
+    
+           
 </dataset>

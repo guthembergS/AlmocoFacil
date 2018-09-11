@@ -2,6 +2,7 @@ package br.com.almocofacil.model;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -10,6 +11,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
@@ -35,15 +38,41 @@ public class Pedido implements Serializable {
     @Column(name = "OBSERVACAO")
     protected String observacao;
     
-    @OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.DETACH, optional = false)
-    @JoinColumn(name = "ID_ENDERECO_ENTREGA", referencedColumnName = "ID_ENDERECO_ENTREGA")
-    protected EnderecoEntrega enderecoEntrega;
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @JoinColumn(name = "ID_CLIENTE", referencedColumnName = "ID_USUARIO", nullable = false)
+    protected Cliente cliente;
+
+    @OneToMany(mappedBy = "pedido",fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    protected List<Prato> pratos;
     
-    //tp_pagamento enum
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @JoinColumn(name = "ID_VENDEDOR", referencedColumnName = "ID_VENDEDOR", nullable = false)
+    protected Vendedor vendedor;
     
-    //lista de pratos
+    public void setVendedor(Vendedor vendedor) {
+        this.vendedor = vendedor;
+    }
+
+    public Vendedor getVendedor() {
+        return vendedor;
+    }
+
     
-    //endereco de entrega
+    public void setCliente(Cliente cliente) {
+        this.cliente = cliente;
+    }
+
+    public Cliente getCliente() {
+        return cliente;
+    }
+
+    public void setPratos(List<Prato> pratos) {
+        this.pratos = pratos;
+    }
+
+    public List<Prato> getPratos() {
+        return pratos;
+    }
 
     public void setDtPedido(Date dtPedido) {
         this.dtPedido = dtPedido;
@@ -56,16 +85,6 @@ public class Pedido implements Serializable {
     public void setVlTotal(Double vlTotal) {
         this.vlTotal = vlTotal;
     }
-
-    public void setEnderecoEntrega(EnderecoEntrega enderecoEntrega) {
-        this.enderecoEntrega = enderecoEntrega;
-    }
-
-    public EnderecoEntrega getEnderecoEntrega() {
-        return enderecoEntrega;
-    }
-    
-    
 
     public Date getDtPedido() {
         return dtPedido;
