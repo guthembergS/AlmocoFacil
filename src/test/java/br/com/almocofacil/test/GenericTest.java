@@ -1,5 +1,6 @@
 package br.com.almocofacil.test;
 
+import br.com.almocofacil.model.Cliente;
 import br.com.almocofacil.model.Prato;
 import br.com.almocofacil.model.Vendedor;
 import java.util.Calendar;
@@ -110,6 +111,15 @@ public class GenericTest {
                 Vendedor.class);
         query.setParameter(1, id); //Setando parâmetro posicional.
         Vendedor usu = query.getSingleResult();
+        return usu;
+    }
+     protected Cliente retornaCliente(int id){
+        TypedQuery<Cliente> query;
+        query = em.createQuery(
+                "SELECT c FROM Cliente c WHERE c.idUsuario = ?1",
+                Cliente.class);
+        query.setParameter(1, id); //Setando parâmetro posicional.
+        Cliente usu = query.getSingleResult();
         return usu;
     }
 }
