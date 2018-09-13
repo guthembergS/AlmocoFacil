@@ -46,8 +46,10 @@ public class CartaoCreditoCrudTest extends GenericTest {
     public void atualizarCartaoCredito() {
         logger.info("Executando atualizarCartaoCredito()");
         CartaoCredito cartaocredito = retornaCartaoCredito("Master");
-//        Prato pratoUpdate = retornaPrato(1);
-//        assertNotNull(pratoUpdate);
+        assertNotNull(cartaocredito);
+        cartaocredito.setBandeira(bandeira);
+        cartaocredito.setDono(dono);
+        cartaocredito.setNumero(numero);
 //        pratoUpdate.setNmPrato("Lasanha Bolonhesa");
 //        em.flush();
 //        Prato pratoAtual = retornaPrato(1);
