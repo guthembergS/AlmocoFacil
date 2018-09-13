@@ -124,12 +124,12 @@ public class GenericTest {
         return usu;
     }
      
-     protected CartaoCredito retornaCartaoCredito(int id){
+     protected CartaoCredito retornaCartaoCredito(String cartao){
         TypedQuery<CartaoCredito> query;
         query = em.createQuery(
                 "SELECT c FROM CartaoCredito c WHERE c.idCartaoCredito = ?1",
                 CartaoCredito.class);
-        query.setParameter(1, id); //Setando parâmetro posicional.
+        query.setParameter(1, cartao); //Setando parâmetro posicional.
         CartaoCredito cartaocredito = query.getSingleResult();
         return cartaocredito;
     }
