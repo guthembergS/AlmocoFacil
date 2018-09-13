@@ -33,10 +33,6 @@ public class CartaoCreditoCrudTest extends GenericTest {
         
     }
     
-    
-    
-    
-
     private CartaoCredito criarCartaoCredito() {
           CartaoCredito cartaocredito = new CartaoCredito();
           cartaocredito.setBandeira("Master");
@@ -44,6 +40,44 @@ public class CartaoCreditoCrudTest extends GenericTest {
           cartaocredito.setDono(retornaCliente(3));
           cartaocredito.setNumero("2345257889548754");
         return cartaocredito;
+    }
+    
+     @Test
+    public void atualizarCartaoCredito() {
+        logger.info("Executando atualizarCartaoCredito()");
+        
+        Prato pratoUpdate = retornaPrato(1);
+        assertNotNull(pratoUpdate);
+        pratoUpdate.setNmPrato("Lasanha Bolonhesa");
+        em.flush();
+        Prato pratoAtual = retornaPrato(1);
+        assertEquals("Lasanha Bolonhesa", pratoAtual.getNmPrato());
+    }
+    
+    @Test
+    public void atualizarPratoMerge() {
+        logger.info("Executando atualizarPratoMerge()");
+        
+        TypedQuery<Prato> query = em.createQuery("SELECT c FROM Prato c WHERE c.idPrato = ?1",Prato.class);
+        query.setHint("javax.persistence.cache.retrieveMode", CacheRetrieveMode.BYPASS);
+        query.setParameter(1, 8);
+        Prato prato = query.getSingleResult();
+        assertNotNull(prato);
+        prato.setNmPrato("Lasanha Bolonhesa");
+        em.clear();        
+        em.merge(prato);
+        em.flush();
+        assertEquals("Lasanha Bolonhesa", query.getSingleResult().getNmPrato());
+        
+    }
+    
+    @Test
+    public void removerPrato() {
+        Prato pratoRemov = retornaPratoPorNome("Salada com Bacalhau");
+        assertNotNull(pratoRemov);
+        em.remove(pratoRemov);
+        em.flush();
+        assertEquals(0,retornaPratosPorNome("Salada com Bacalhau").size());
     }
     
 }

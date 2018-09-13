@@ -1,5 +1,6 @@
 package br.com.almocofacil.test;
 
+import br.com.almocofacil.model.CartaoCredito;
 import br.com.almocofacil.model.Cliente;
 import br.com.almocofacil.model.Prato;
 import br.com.almocofacil.model.Vendedor;
@@ -121,5 +122,15 @@ public class GenericTest {
         query.setParameter(1, id); //Setando parâmetro posicional.
         Cliente usu = query.getSingleResult();
         return usu;
+    }
+     
+     protected CartaoCredito retornaCartaoCredito(int id){
+        TypedQuery<CartaoCredito> query;
+        query = em.createQuery(
+                "SELECT c FROM CartaoCredito c WHERE c.idCartaoCredito = ?1",
+                CartaoCredito.class);
+        query.setParameter(1, id); //Setando parâmetro posicional.
+        CartaoCredito cartaocredito = query.getSingleResult();
+        return cartaocredito;
     }
 }
