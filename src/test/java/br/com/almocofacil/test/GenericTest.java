@@ -1,13 +1,17 @@
 package br.com.almocofacil.test;
 
+import br.com.almocofacil.model.Prato;
+import br.com.almocofacil.model.Vendedor;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.EntityTransaction;
 import javax.persistence.Persistence;
+import javax.persistence.TypedQuery;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -67,5 +71,45 @@ public class GenericTest {
         c.set(Calendar.MONTH, mes);
         c.set(Calendar.DAY_OF_MONTH, dia);
         return c.getTime();
+    }
+    
+     protected Prato retornaPratoPorNome(String nmPrato){
+        TypedQuery<Prato> query;
+        query = em.createQuery(
+                "SELECT c FROM Prato c WHERE c.nmPrato = ?1",
+                Prato.class);
+        query.setParameter(1, nmPrato); //Setando parâmetro posicional.
+        Prato prato = query.getSingleResult();
+        return prato;
+    }
+     
+    protected Prato retornaPrato(int id){
+        TypedQuery<Prato> query;
+        query = em.createQuery(
+                "SELECT c FROM Prato c WHERE c.idPrato = ?1",
+                Prato.class);
+        query.setParameter(1, id); //Setando parâmetro posicional.
+        Prato prato = query.getSingleResult();
+        return prato;
+    }
+    
+    protected List<Prato> retornaPratosPorNome(String nmPrato){
+        TypedQuery<Prato> query;
+        query = em.createQuery(
+                "SELECT c FROM Prato c WHERE c.nmPrato = ?1",
+                Prato.class);
+        query.setParameter(1, nmPrato); //Setando parâmetro posicional.
+        List<Prato> pratos = query.getResultList();
+        return pratos;
+    }
+    
+    protected Vendedor retornaVendedor(int id){
+        TypedQuery<Vendedor> query;
+        query = em.createQuery(
+                "SELECT c FROM Vendedor c WHERE c.idUsuario = ?1",
+                Vendedor.class);
+        query.setParameter(1, id); //Setando parâmetro posicional.
+        Vendedor usu = query.getSingleResult();
+        return usu;
     }
 }
