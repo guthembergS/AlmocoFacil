@@ -42,6 +42,10 @@ public class Prato  implements Serializable {
         return vendedor;
     }
 
+    public Long getIdPrato() {
+        return idPrato;
+    }
+    
     public void setNmPrato(String nmPrato) {
         this.nmPrato = nmPrato;
     }
