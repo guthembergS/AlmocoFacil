@@ -50,7 +50,7 @@ public class Pedido implements Serializable {
     protected List<Prato> pratos;
     
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name = "ID_VENDEDOR", referencedColumnName = "ID_VENDEDOR", nullable = false)
+    @JoinColumn(name = "ID_VENDEDOR", referencedColumnName = "ID_USUARIO", nullable = false)
     protected Vendedor vendedor;
     
     public void setVendedor(Vendedor vendedor) {

@@ -25,8 +25,7 @@ public class PratoCrudTest extends GenericTest {
     
     @Test
     public void atualizarPrato() {
-        logger.info("Executando atualizarPrato()");
-        
+        logger.info("Executando atualizarPrato()");       
         Prato pratoUpdate = retornaPrato(1);
         assertNotNull(pratoUpdate);
         pratoUpdate.setNmPrato("Lasanha Bolonhesa");

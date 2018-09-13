@@ -1,5 +1,7 @@
 package br.com.almocofacil.test;
 
+import br.com.almocofacil.model.Cliente;
+import br.com.almocofacil.model.Pedido;
 import br.com.almocofacil.model.Prato;
 import br.com.almocofacil.model.Vendedor;
 import java.util.Calendar;
@@ -111,5 +113,58 @@ public class GenericTest {
         query.setParameter(1, id); //Setando parâmetro posicional.
         Vendedor usu = query.getSingleResult();
         return usu;
+    }
+    
+     protected Cliente retornaCliente(int idCliente){
+        TypedQuery<Cliente> query;
+        query = em.createQuery(
+                "SELECT c FROM Cliente c WHERE c.idUsuario = ?1",
+                Cliente.class);
+        query.setParameter(1, idCliente); //Setando parâmetro posicional.
+        Cliente cliente = query.getSingleResult();
+        return cliente;
+    }
+    
+    protected List<Prato> retornaPratosVendedor(int idvendedor){
+        TypedQuery<Prato> query;
+        query = em.createQuery(
+                "SELECT p FROM Prato p WHERE p.vendedor.idUsuario = ?1",
+                Prato.class);
+        query.setParameter(1, idvendedor); //Setando parâmetro posicional.
+        List<Prato> pratos = query.getResultList();
+        return pratos;
+    }
+    
+    
+    protected Pedido retornaPedido(int idPedido){
+        TypedQuery<Pedido> query;
+        query = em.createQuery(
+                "SELECT p FROM Pedido p WHERE p.idPedido = ?1",
+                Pedido.class);
+        query.setParameter(1, idPedido); //Setando parâmetro posicional.
+        Pedido pedido = query.getSingleResult();
+        return pedido;
+        
+    }
+    
+    protected List<Pedido> retornaPedidoCliente(int idCliente){
+        TypedQuery<Pedido> query;
+        query = em.createQuery(
+                "SELECT p FROM Pedido p WHERE p.cliente.idUsuario = ?1",
+                Pedido.class);
+        query.setParameter(1, idCliente); //Setando parâmetro posicional.
+        List<Pedido> pedidos = query.getResultList();
+        return pedidos;
+        
+    }
+    
+    protected List<Pedido> retornaPedidosVendedor(int idVendedor){
+        TypedQuery<Pedido> query;
+        query = em.createQuery(
+                "SELECT p FROM Pedido p WHERE p.vendedor.idUsuario = ?1",
+                Pedido.class);
+        query.setParameter(1, idVendedor); //Setando parâmetro posicional.
+        List<Pedido> pedidos = query.getResultList();
+        return pedidos;
     }
 }
