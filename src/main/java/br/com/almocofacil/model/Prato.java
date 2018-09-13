@@ -31,20 +31,8 @@ public class Prato  implements Serializable {
     protected Double valor;
     
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name = "ID_PEDIDO", referencedColumnName = "ID_PEDIDO", nullable = false)
-    protected Pedido pedido;
-    
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "ID_VENDEDOR", referencedColumnName = "ID_USUARIO", nullable = false)
     protected Vendedor vendedor;
-
-    public void setPedido(Pedido pedido) {
-        this.pedido = pedido;
-    }
-
-    public Pedido getPedido() {
-        return pedido;
-    }
 
     public void setVendedor(Vendedor vendedor) {
         this.vendedor = vendedor;

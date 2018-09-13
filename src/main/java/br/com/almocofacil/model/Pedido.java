@@ -11,6 +11,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
@@ -35,14 +36,17 @@ public class Pedido implements Serializable {
     @Column(name="VL_TOTAL")
     protected Double vlTotal;
     
-    @Column(name = "OBSERVACAO")
-    protected String observacao;
-    
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "ID_CLIENTE", referencedColumnName = "ID_USUARIO", nullable = false)
     protected Cliente cliente;
 
-    @OneToMany(mappedBy = "pedido",fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @OneToMany(fetch = FetchType.LAZY)
+    @JoinTable(name="PEDIDO_PRATO",joinColumns = {
+        @JoinColumn(name = "ID_PEDIDO", referencedColumnName = "ID_PEDIDO", nullable = false)},
+            inverseJoinColumns = { 
+                 @JoinColumn(name = "ID_PRATO", referencedColumnName = "ID_PRATO", nullable = false)
+            }
+    )
     protected List<Prato> pratos;
     
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
@@ -78,10 +82,6 @@ public class Pedido implements Serializable {
         this.dtPedido = dtPedido;
     }
 
-    public void setObservacao(String observacao) {
-        this.observacao = observacao;
-    }
-
     public void setVlTotal(Double vlTotal) {
         this.vlTotal = vlTotal;
     }
@@ -94,14 +94,8 @@ public class Pedido implements Serializable {
         return idPedido;
     }
 
-    public String getObservacao() {
-        return observacao;
-    }
-
     public Double getVlTotal() {
         return vlTotal;
     }
-    
-    
     
 }
