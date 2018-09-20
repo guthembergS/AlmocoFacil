@@ -1,10 +1,14 @@
 package br.com.almocofacil.test;
 
+import br.com.almocofacil.model.Cliente;
 import br.com.almocofacil.model.Pedido;
 import br.com.almocofacil.model.Prato;
+import static br.com.almocofacil.test.GenericTest.logger;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import javax.persistence.CacheRetrieveMode;
+import javax.persistence.TypedQuery;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 import org.junit.Test;
@@ -55,8 +59,18 @@ public class PedidoCrudTest extends GenericTest {
 
     @Test
     public void atualizarPedidoMerge() {
-       
-        
+        logger.info("Executando atualizarPedidoMerge()");        
+        TypedQuery<Pedido> query = em.createQuery("SELECT p FROM Pedido p WHERE p.idPedido = ?1",Pedido.class);
+        query.setHint("javax.persistence.cache.retrieveMode", CacheRetrieveMode.BYPASS);
+        query.setParameter(1, 18);
+        Pedido pedido = query.getSingleResult();
+        assertNotNull(pedido);
+        Cliente clienteAlteracao = retornaCliente(2);
+        pedido.setCliente(clienteAlteracao);
+        em.clear();        
+        em.merge(clienteAlteracao);
+        em.flush();
+        assertEquals(clienteAlteracao, query.getSingleResult().getCliente());
     }
 /*
     @Test

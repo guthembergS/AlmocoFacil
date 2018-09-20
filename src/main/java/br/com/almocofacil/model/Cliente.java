@@ -22,11 +22,11 @@ import javax.persistence.Table;
 public class Cliente extends Usuario implements Serializable {
     
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name = "ID_EMPRESA", referencedColumnName = "ID_EMPRESA", nullable = false)
+    @JoinColumn(name = "ID_EMPRESA", referencedColumnName = "ID_EMPRESA")
     protected Empresa empresa;
     
     @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL )
-    @JoinColumn(name = "ID_CARTAO_CREDITO", referencedColumnName = "ID_CARTAO_CREDITO", nullable = false)
+    @JoinColumn(name = "ID_CARTAO_CREDITO", referencedColumnName = "ID_CARTAO_CREDITO")
     protected CartaoCredito cartaoCredito;
     
     @OneToMany(mappedBy = "cliente",fetch = FetchType.LAZY, cascade = CascadeType.ALL)

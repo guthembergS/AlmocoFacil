@@ -53,11 +53,11 @@ public class PratoCrudTest extends GenericTest {
     
     @Test
     public void removerPrato() {
-        Prato pratoRemov = retornaPratoPorNome("Salada com Bacalhau");
+        Prato pratoRemov = retornaPratoPorNome("Sushi");
         assertNotNull(pratoRemov);
         em.remove(pratoRemov);
         em.flush();
-        assertEquals(0,retornaPratosPorNome("Salada com Bacalhau").size());
+        assertEquals(0,retornaPratosPorNome("Sushi").size());
     }
     
 }

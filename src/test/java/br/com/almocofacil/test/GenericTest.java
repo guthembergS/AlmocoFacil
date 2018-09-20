@@ -1,6 +1,9 @@
 package br.com.almocofacil.test;
 
+import br.com.almocofacil.model.CartaoCredito;
 import br.com.almocofacil.model.Cliente;
+import br.com.almocofacil.model.Empresa;
+import br.com.almocofacil.model.EnderecoEntrega;
 import br.com.almocofacil.model.Pedido;
 import br.com.almocofacil.model.Prato;
 import br.com.almocofacil.model.Vendedor;
@@ -144,6 +147,47 @@ public class GenericTest {
         query.setParameter(1, idPedido); //Setando parâmetro posicional.
         Pedido pedido = query.getSingleResult();
         return pedido;
+        
+    }
+    
+    protected EnderecoEntrega retornaEndereco(int idEndereco){
+        TypedQuery<EnderecoEntrega> query = em.createQuery(
+                "SELECT e FROM EnderecoEntrega e WHERE e.idEnderecoEntrega = ?1",
+                EnderecoEntrega.class);
+        query.setParameter(1, idEndereco); //Setando parâmetro posicional.
+        EnderecoEntrega endereco = query.getSingleResult();
+        return endereco;
+        
+    }
+    
+    protected Empresa retornaEmpresa(int idEmpresa){
+        TypedQuery<Empresa> query = em.createQuery(
+                "SELECT e FROM Empresa e WHERE e.idEmpresa = ?1",
+                Empresa.class);
+        query.setParameter(1, idEmpresa); //Setando parâmetro posicional.
+        Empresa empresa = query.getSingleResult();
+        return empresa;
+        
+        
+    }
+    
+    protected CartaoCredito retornaCartaoCredito(int idCartaoCredito){
+         TypedQuery<CartaoCredito> query = em.createQuery(
+                "SELECT e FROM CartaoCredito e WHERE e.idCartaoCredito = ?1",
+                CartaoCredito.class);
+        query.setParameter(1, idCartaoCredito); //Setando parâmetro posicional.
+        CartaoCredito cartao = query.getSingleResult();
+        return cartao;
+    }
+    
+    
+    
+    protected List<Empresa> retornaEmpresas(){
+        TypedQuery<Empresa> query = em.createQuery(
+                "SELECT e FROM Empresa e",
+                Empresa.class);
+        List<Empresa> empresas = query.getResultList();
+        return empresas;
         
     }
     
