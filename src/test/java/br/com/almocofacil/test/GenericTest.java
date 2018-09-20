@@ -17,6 +17,7 @@ import javax.persistence.EntityManagerFactory;
 import javax.persistence.EntityTransaction;
 import javax.persistence.Persistence;
 import javax.persistence.TypedQuery;
+import static org.eclipse.persistence.sessions.remote.corba.sun.TransporterHelper.id;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -210,5 +211,15 @@ public class GenericTest {
         query.setParameter(1, idVendedor); //Setando parâmetro posicional.
         List<Pedido> pedidos = query.getResultList();
         return pedidos;
+    }
+     
+     protected CartaoCredito retornaCartaoCredito(String cartao){
+        TypedQuery<CartaoCredito> query;
+        query = em.createQuery(
+                "SELECT c FROM CartaoCredito c WHERE c.idCartaoCredito = ?1",
+                CartaoCredito.class);
+        query.setParameter(1, cartao); //Setando parâmetro posicional.
+        CartaoCredito cartaocredito = query.getSingleResult();
+        return cartaocredito;
     }
 }

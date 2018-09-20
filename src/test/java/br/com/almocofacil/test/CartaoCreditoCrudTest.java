@@ -1,28 +1,21 @@
 package br.com.almocofacil.test;
 
-import br.com.almocofacil.model.CartaoCredito;
 import javax.persistence.CacheRetrieveMode;
 import javax.persistence.TypedQuery;
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotNull;
 import org.junit.Test;
+import static org.junit.Assert.*;
+import br.com.almocofacil.model.CartaoCredito;
+import static br.com.almocofacil.model.CartaoCredito_.bandeira;
+import static br.com.almocofacil.model.CartaoCredito_.dono;
+import static br.com.almocofacil.model.CartaoCredito_.numero;
+import br.com.almocofacil.model.Prato;
 
 /**
  *
- * @author guthemberg
+ * @author gerson-brandao
  */
 public class CartaoCreditoCrudTest extends GenericTest {
-
-    @Test
-    public void persistirCartao() {
-        logger.info("Executando persistirCartao()");
-        CartaoCredito cartaocredito = criarCartaoCredito();
-        em.persist(cartaocredito);
-        em.flush();
-        assertNotNull(cartaocredito.getIdCartaoCredito());
-
-    }
-
+    
     private CartaoCredito criarCartaoCredito() {
         CartaoCredito cartaocredito = new CartaoCredito();
         cartaocredito.setBandeira("Master");
@@ -31,22 +24,6 @@ public class CartaoCreditoCrudTest extends GenericTest {
         // <CARTAO_CREDITO BANDEIRA="VISA" NUMERO="1192828000000200" DT_EXPIRACAO="2020-06-11"/> -->
         cartaocredito.setNumero("2345257889548754");
         return cartaocredito;
-    }
-
-    @Test
-    public void atualizarCartaoCredito() {
-        logger.info("Executando atualizarCartaoCredito()");
-        CartaoCredito cartaocredito = retornaCartaoCredito(8);
-        assertNotNull(cartaocredito);
-
-        String bandeira = "AmericanExpress";
-        String numero = "0987890065488763";
-        cartaocredito.setBandeira(bandeira);
-        cartaocredito.setNumero(numero);
-        em.flush();
-        cartaocredito = retornaCartaoCredito(8);
-        assertEquals(bandeira, cartaocredito.getBandeira());
-        assertEquals(numero, cartaocredito.getNumero());
     }
 
     @Test
@@ -79,5 +56,31 @@ public class CartaoCreditoCrudTest extends GenericTest {
         em.flush();
         //comparar null
     }
-
+    
+    @Test
+    public void atualizarPratoMerge() {
+        logger.info("Executando atualizarPratoMerge()");
+        
+        TypedQuery<Prato> query = em.createQuery("SELECT c FROM Prato c WHERE c.idPrato = ?1",Prato.class);
+        query.setHint("javax.persistence.cache.retrieveMode", CacheRetrieveMode.BYPASS);
+        query.setParameter(1, 8);
+        Prato prato = query.getSingleResult();
+        assertNotNull(prato);
+        prato.setNmPrato("Lasanha Bolonhesa");
+        em.clear();        
+        em.merge(prato);
+        em.flush();
+        assertEquals("Lasanha Bolonhesa", query.getSingleResult().getNmPrato());
+        
+    }
+    
+    @Test
+    public void removerPrato() {
+        Prato pratoRemov = retornaPratoPorNome("Salada com Bacalhau");
+        assertNotNull(pratoRemov);
+        em.remove(pratoRemov);
+        em.flush();
+        assertEquals(0,retornaPratosPorNome("Salada com Bacalhau").size());
+    }
+    
 }
