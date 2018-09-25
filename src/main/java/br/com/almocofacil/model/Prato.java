@@ -11,12 +11,30 @@ import javax.persistence.GenerationType;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Id;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 
 
 @Entity
 @Table(name = "PRATO")
 @Access(AccessType.FIELD)
+@NamedQueries(
+        {
+            @NamedQuery(
+                    name = "Prato.PorNome",
+                    query = "SELECT c FROM Prato c WHERE c.nmPrato = ?nome"
+            ),
+            @NamedQuery(
+                    name = "Prato.PorId",
+                    query = "SELECT c FROM Prato c WHERE c.idPrato = ?id"
+            ),
+            @NamedQuery(
+                    name = "Prato.PorIdVendedor",
+                    query = "SELECT p FROM Prato p WHERE p.vendedor.idUsuario = ?id"
+            )   
+        }
+)
 public class Prato  implements Serializable {
     
     @Id

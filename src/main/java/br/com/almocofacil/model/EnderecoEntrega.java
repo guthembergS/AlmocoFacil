@@ -6,6 +6,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 
 /**
@@ -14,6 +16,15 @@ import javax.persistence.Table;
  */
 @Entity
 @Table(name = "ENDERECO_ENTREGA")
+@NamedQueries(
+        {
+            @NamedQuery(
+                    name = "EnderecoEntrega.PorId",
+                    query = "SELECT e FROM EnderecoEntrega e WHERE e.idEnderecoEntrega = ?id"
+            )
+        }
+        
+)
 public class EnderecoEntrega implements Serializable {
     @Id
     @Column(name = "ID_ENDERECO_ENTREGA")

@@ -8,6 +8,8 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
@@ -15,6 +17,14 @@ import javax.persistence.TemporalType;
 
 @Entity
 @Table(name="CARTAO_CREDITO")
+@NamedQueries(
+        {
+            @NamedQuery(
+                    name = "CartaoCredito.PorId",
+                    query = "SELECT e FROM CartaoCredito e WHERE e.idCartaoCredito = ?id"
+            )
+        }
+)
 public class CartaoCredito implements Serializable{
     
     @Id
