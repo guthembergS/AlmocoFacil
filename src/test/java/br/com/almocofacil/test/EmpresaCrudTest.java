@@ -14,7 +14,7 @@ import org.junit.Test;
 
 public class EmpresaCrudTest extends GenericTest {
      
-    
+    /*
     @Test
     public void persistirEmpresa() {
         logger.info("Executando persistirEmpresa()");
@@ -61,5 +61,5 @@ public class EmpresaCrudTest extends GenericTest {
     }
     
     
-    
+    */
 }

@@ -9,7 +9,7 @@ import org.junit.Test;
 
 public class PratoCrudTest extends GenericTest {
     
-    
+    /*
     @Test
     public void persistirPrato() {
         logger.info("Executando persistirPrato()");
@@ -59,5 +59,5 @@ public class PratoCrudTest extends GenericTest {
         em.flush();
         assertEquals(0,retornaPratosPorNome("Sushi").size());
     }
-    
+    */
 }

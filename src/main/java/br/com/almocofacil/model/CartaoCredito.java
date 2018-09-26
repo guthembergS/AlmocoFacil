@@ -21,7 +21,11 @@ import javax.persistence.TemporalType;
         {
             @NamedQuery(
                     name = "CartaoCredito.PorId",
-                    query = "SELECT e FROM CartaoCredito e WHERE e.idCartaoCredito = ?id"
+                    query = "SELECT e FROM CartaoCredito e WHERE e.idCartaoCredito = :id"
+            ),
+            @NamedQuery(
+                    name = "CartaoCredito.PorNumero",
+                    query = "SELECT e FROM CartaoCredito e WHERE e.numero = :numero"
             )
         }
 )

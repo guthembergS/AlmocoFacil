@@ -15,6 +15,7 @@ import org.junit.Test;
 
 public class PedidoCrudTest extends GenericTest {
 
+    /*
     @Test
     public void persistirPedido() {
         logger.info("Executando persistirPedido()");
@@ -72,7 +73,7 @@ public class PedidoCrudTest extends GenericTest {
         em.flush();
         assertEquals(clienteAlteracao, query.getSingleResult().getCliente());
     }
-/*
+
     @Test
     public void removerCategoria() {
       

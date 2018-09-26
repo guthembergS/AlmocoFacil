@@ -24,7 +24,7 @@ import javax.persistence.Table;
         {
             @NamedQuery(
                     name = "Vendedor.PorId",
-                    query = "SELECT c FROM Vendedor c WHERE c.idUsuario = ?id"
+                    query = "SELECT c FROM Vendedor c WHERE c.idUsuario = :id"
             )
         }
 )

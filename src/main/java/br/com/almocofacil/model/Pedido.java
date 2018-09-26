@@ -28,15 +28,15 @@ import javax.persistence.TemporalType;
         {
             @NamedQuery(
                     name = "Pedido.PorId",
-                    query = "SELECT p FROM Pedido p WHERE p.idPedido = ?id"
+                    query = "SELECT p FROM Pedido p WHERE p.idPedido = :id"
             ),
             @NamedQuery(
                     name = "Pedido.PorIdCliente",
-                    query = "SELECT p FROM Pedido p WHERE p.cliente.idUsuario = ?id"
+                    query = "SELECT p FROM Pedido p WHERE p.cliente.idUsuario = :id"
             ),
             @NamedQuery(
                     name = "Pedido.PorIdVendedor",
-                    query = "SELECT p FROM Pedido p WHERE p.vendedor.idUsuario = ?id"
+                    query = "SELECT p FROM Pedido p WHERE p.vendedor.idUsuario = :id"
             )
         }
 )

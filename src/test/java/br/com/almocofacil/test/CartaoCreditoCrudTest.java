@@ -5,9 +5,7 @@ import javax.persistence.TypedQuery;
 import org.junit.Test;
 import static org.junit.Assert.*;
 import br.com.almocofacil.model.CartaoCredito;
-import static br.com.almocofacil.model.CartaoCredito_.bandeira;
-import static br.com.almocofacil.model.CartaoCredito_.dono;
-import static br.com.almocofacil.model.CartaoCredito_.numero;
+import br.com.almocofacil.model.Cliente;
 import br.com.almocofacil.model.Prato;
 
 /**
@@ -16,14 +14,27 @@ import br.com.almocofacil.model.Prato;
  */
 public class CartaoCreditoCrudTest extends GenericTest {
     
-    private CartaoCredito criarCartaoCredito() {
+    @Test
+    public void criarCartaoCredito() {
         CartaoCredito cartaocredito = new CartaoCredito();
         cartaocredito.setBandeira("Master");
         cartaocredito.setDataExpiracao(getData(12, 06, 2023));
-        cartaocredito.setDono(retornaCliente(8));
-        // <CARTAO_CREDITO BANDEIRA="VISA" NUMERO="1192828000000200" DT_EXPIRACAO="2020-06-11"/> -->
         cartaocredito.setNumero("2345257889548754");
-        return cartaocredito;
+        TypedQuery<Cliente> query = em.createNamedQuery("Cliente.PorId", Cliente.class);
+        query.setHint("javax.persistence.cache.retrieveMode", CacheRetrieveMode.BYPASS);
+        query.setParameter("id", 8);
+        Cliente cliente = query.getSingleResult();
+        assertNotNull(cliente);
+        cartaocredito.setDono(cliente);
+        // <CARTAO_CREDITO BANDEIRA="VISA" NUMERO="1192828000000200" DT_EXPIRACAO="2020-06-11"/> -->
+        em.persist(cartaocredito);
+        em.flush();
+        
+        TypedQuery<CartaoCredito> queryCat = em.createNamedQuery("CartaoCredito.PorNumero", CartaoCredito.class);
+        queryCat.setHint("javax.persistence.cache.retrieveMode", CacheRetrieveMode.BYPASS);
+        queryCat.setParameter("numero", "2345257889548754");
+        
+        assertNotNull(queryCat.getSingleResult());
     }
 
     @Test
@@ -47,7 +58,7 @@ public class CartaoCreditoCrudTest extends GenericTest {
         assertEquals(bandeira, cartaocredito.getBandeira());
         assertEquals(numero, cartaocredito.getNumero());
     }
-
+/*
     @Test
     public void removerCartaoCredito() {
         CartaoCredito cartaocredito = retornaCartaoCredito(7);
@@ -82,5 +93,5 @@ public class CartaoCreditoCrudTest extends GenericTest {
         em.flush();
         assertEquals(0,retornaPratosPorNome("Salada com Bacalhau").size());
     }
-    
+  */  
 }

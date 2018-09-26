@@ -23,15 +23,15 @@ import javax.persistence.Table;
         {
             @NamedQuery(
                     name = "Prato.PorNome",
-                    query = "SELECT c FROM Prato c WHERE c.nmPrato = ?nome"
+                    query = "SELECT c FROM Prato c WHERE c.nmPrato = :nome"
             ),
             @NamedQuery(
                     name = "Prato.PorId",
-                    query = "SELECT c FROM Prato c WHERE c.idPrato = ?id"
+                    query = "SELECT c FROM Prato c WHERE c.idPrato = :id"
             ),
             @NamedQuery(
                     name = "Prato.PorIdVendedor",
-                    query = "SELECT p FROM Prato p WHERE p.vendedor.idUsuario = ?id"
+                    query = "SELECT p FROM Prato p WHERE p.vendedor.idUsuario = :id"
             )   
         }
 )
