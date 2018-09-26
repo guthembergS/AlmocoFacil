@@ -6,7 +6,7 @@ import org.junit.Test;
 import static org.junit.Assert.*;
 import br.com.almocofacil.model.CartaoCredito;
 import br.com.almocofacil.model.Cliente;
-import br.com.almocofacil.model.Prato;
+import java.util.List;
 
 /**
  *
@@ -40,11 +40,10 @@ public class CartaoCreditoCrudTest extends GenericTest {
     @Test
     public void atualizarCartaoCreditoMerge() {
         logger.info("Executando atualizarPratoMerge()");
-        TypedQuery<CartaoCredito> query = em.createQuery("SELECT c FROM CartaoCredito c WHERE c.idCartaoCredito = ?1", CartaoCredito.class);
-        //não considerar cache
+        //TypedQuery<CartaoCredito> query = em.createQuery("SELECT c FROM CartaoCredito c WHERE c.idCartaoCredito = ?1", CartaoCredito.class);
+        TypedQuery<CartaoCredito> query = em.createNamedQuery("CartaoCredito.PorId", CartaoCredito.class);
         query.setHint("javax.persistence.cache.retrieveMode", CacheRetrieveMode.BYPASS);
-        query.setParameter(1, 7);
-        //Retornar apenas um objeto da consulta
+        query.setParameter("id", 7);
         CartaoCredito cartaocredito = query.getSingleResult();
         assertNotNull(cartaocredito);
         String bandeira = "AmericanExpress";
@@ -55,19 +54,31 @@ public class CartaoCreditoCrudTest extends GenericTest {
         em.clear();
         em.merge(cartaocredito);
         em.flush();
+        
+        query.setHint("javax.persistence.cache.retrieveMode", CacheRetrieveMode.BYPASS);
+        cartaocredito = query.getSingleResult();
+
         assertEquals(bandeira, cartaocredito.getBandeira());
         assertEquals(numero, cartaocredito.getNumero());
     }
-/*
+
     @Test
     public void removerCartaoCredito() {
-        CartaoCredito cartaocredito = retornaCartaoCredito(7);
+    
+        TypedQuery<CartaoCredito> query = em.createNamedQuery("CartaoCredito.PorId", CartaoCredito.class);
+        query.setHint("javax.persistence.cache.retrieveMode", CacheRetrieveMode.BYPASS);
+        query.setParameter("id", 8);
+        CartaoCredito cartaocredito = query.getSingleResult();
         assertNotNull(cartaocredito);
+        
         em.remove(cartaocredito);
         em.flush();
-        //comparar null
-    }
+        
+        assertEquals(0,query.getResultList().size());
     
+    }
+
+    /*    
     @Test
     public void atualizarPratoMerge() {
         logger.info("Executando atualizarPratoMerge()");
