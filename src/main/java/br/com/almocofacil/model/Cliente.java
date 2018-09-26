@@ -55,8 +55,8 @@ public class Cliente extends Usuario implements Serializable {
         this.empresa = empresa;
     }
 
-    public void setPedidos(List<Pedido> pedidos) {
-        this.pedidos = pedidos;
+    public boolean setPedidos(Pedido pedido) {
+        return this.pedidos.add(pedido);
     }
         
     public void setCartaoCredito(CartaoCredito cartaoCredito) {

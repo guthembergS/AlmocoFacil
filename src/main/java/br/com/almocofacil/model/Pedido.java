@@ -89,8 +89,9 @@ public class Pedido implements Serializable {
         return cliente;
     }
 
-    public void setPratos(List<Prato> pratos) {
-        this.pratos = pratos;
+    public boolean setPratos(Prato pratos) {
+        //this.pratos = pratos;
+        return this.pratos.add(pratos);
     }
 
     public List<Prato> getPratos() {

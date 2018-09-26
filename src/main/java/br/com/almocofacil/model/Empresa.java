@@ -91,8 +91,10 @@ public class Empresa implements Serializable {
         return clientes;
     }
 
-    public void setClientes(List<Cliente> clientes) {
-        this.clientes = clientes;
+    public boolean setClientes(Cliente clientes) {
+        //this.clientes = clientes;
+        return this.clientes.add(clientes);
+        
     }
 
     public Long getIdEmpresa() {
