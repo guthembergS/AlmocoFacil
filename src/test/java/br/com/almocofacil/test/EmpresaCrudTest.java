@@ -1,5 +1,6 @@
 package br.com.almocofacil.test;
 
+import br.com.almocofacil.model.CartaoCredito;
 import br.com.almocofacil.model.Cliente;
 import br.com.almocofacil.model.Empresa;
 import br.com.almocofacil.model.EnderecoEntrega;
@@ -28,15 +29,9 @@ public class EmpresaCrudTest extends GenericTest {
 
         TypedQuery<EnderecoEntrega> query = em.createNamedQuery("EnderecoEntrega.PorId", EnderecoEntrega.class);
         query.setHint("javax.persistence.cache.retrieveMode", CacheRetrieveMode.BYPASS);
-        query.setParameter("id", 2);
+        query.setParameter("id", 1);
         enderecoEntrega = query.getSingleResult();
 
-        TypedQuery<Cliente> queryC = em.createNamedQuery("Cliente.PorId", Cliente.class);
-        queryC.setHint("javax.persistence.cache.retrieveMode", CacheRetrieveMode.BYPASS);
-        queryC.setParameter("id", 9);
-        cliente = queryC.getSingleResult();
-
-        novaEmpresa.setClientes(cliente);
         novaEmpresa.setEnderecoEntrega(enderecoEntrega);
 
         em.persist(novaEmpresa);
@@ -45,29 +40,49 @@ public class EmpresaCrudTest extends GenericTest {
         assertNotNull(novaEmpresa.getIdEmpresa());
 
     }
-       
+
     @Test
-    public void atualizarEmpresa() {
-        logger.info("Executando atualizarPratoMerge()");       
-        TypedQuery<Empresa> query = em.createNamedQuery("CartaoCredito.PorId", Empresa.class);
+    public void atualizarEmpresaMerge() {
+        logger.info("Executando atualizarEmpresaMerge()");
+
+        Empresa empresa = new Empresa();
+
+        TypedQuery<Empresa> query = em.createNamedQuery("Empresa.PorId", Empresa.class);
         query.setHint("javax.persistence.cache.retrieveMode", CacheRetrieveMode.BYPASS);
-        query.setParameter("id", 8);
-        CartaoCredito cartaocredito = query.getSingleResult();
-        assertNotNull(cartaocredito);
-        String bandeira = "AmericanExpress";
-        String numero = "0987890065488763";
-        cartaocredito.setBandeira(bandeira);
-        cartaocredito.setNumero(numero);
+        query.setParameter("id", 1);
+        empresa = query.getSingleResult();
+
+        assertNotNull(empresa);
+
+        String telefone = "81995208867";
+        String cnpj = "09283726172672";
+
+        empresa.setCnpj(cnpj);
+        empresa.setTelefone(telefone);
 
         em.clear();
-        em.merge(cartaocredito);
+        em.merge(empresa);
+        em.flush();
+
+        query.setHint("javax.persistence.cache.retrieveMode", CacheRetrieveMode.BYPASS);
+        empresa = query.getSingleResult();
+
+    }
+    
+    @Test
+    public void removerEmpresa() {
+    
+        TypedQuery<Empresa> query = em.createNamedQuery("Empresa.PorId", Empresa.class);
+        query.setHint("javax.persistence.cache.retrieveMode", CacheRetrieveMode.BYPASS);
+        query.setParameter("id", 2);
+        Empresa empresa = query.getSingleResult();
+        assertNotNull(empresa);
+        
+        em.remove(empresa);
         em.flush();
         
         query.setHint("javax.persistence.cache.retrieveMode", CacheRetrieveMode.BYPASS);
-        cartaocredito = query.getSingleResult();
-
-        assertEquals(bandeira, cartaocredito.getBandeira());
-        assertEquals(numero, cartaocredito.getNumero());
+        assertEquals(0,query.getResultList().size());
+        
     }
-
 }
