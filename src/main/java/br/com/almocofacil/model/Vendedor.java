@@ -33,23 +33,23 @@ public class Vendedor extends Usuario implements Serializable {
     @OneToMany(mappedBy = "vendedor",fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     protected List<Prato> pratos;
     
-    @OneToMany(mappedBy = "vendedor",fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    protected List<Pedido> pedidos;
+    @OneToMany(mappedBy = "vendedor",fetch = FetchType.LAZY, cascade = CascadeType.ALL)    
+    protected List<Pedido> pedidos;        
 
     public List<Pedido> getPedidos() {
         return pedidos;
     }
 
-    public void setPedidos(List<Pedido> pedidos) {
-        this.pedidos = pedidos;
+    public boolean setPedidos(Pedido pedidos) {
+        return this.pedidos.add(pedidos);
     }
 
     public List<Prato> getPratos() {
         return pratos;
     }
 
-    public void setPratos(List<Prato> pratos) {
-        this.pratos = pratos;
+    public boolean setPratos(Prato pratos) {
+        return this.pratos.add(pratos);
     }
-    
+
 }
