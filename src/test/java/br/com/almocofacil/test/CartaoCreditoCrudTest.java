@@ -77,32 +77,4 @@ public class CartaoCreditoCrudTest extends GenericTest {
         assertEquals(0,query.getResultList().size());
     
     }
-
-    /*    
-    @Test
-    public void atualizarPratoMerge() {
-        logger.info("Executando atualizarPratoMerge()");
-        
-        TypedQuery<Prato> query = em.createQuery("SELECT c FROM Prato c WHERE c.idPrato = ?1",Prato.class);
-        query.setHint("javax.persistence.cache.retrieveMode", CacheRetrieveMode.BYPASS);
-        query.setParameter(1, 8);
-        Prato prato = query.getSingleResult();
-        assertNotNull(prato);
-        prato.setNmPrato("Lasanha Bolonhesa");
-        em.clear();        
-        em.merge(prato);
-        em.flush();
-        assertEquals("Lasanha Bolonhesa", query.getSingleResult().getNmPrato());
-        
-    }
-    
-    @Test
-    public void removerPrato() {
-        Prato pratoRemov = retornaPratoPorNome("Salada com Bacalhau");
-        assertNotNull(pratoRemov);
-        em.remove(pratoRemov);
-        em.flush();
-        assertEquals(0,retornaPratosPorNome("Salada com Bacalhau").size());
-    }
-  */  
 }
