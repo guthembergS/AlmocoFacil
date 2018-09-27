@@ -31,7 +31,7 @@ public class CartaoCreditoCrudTest extends GenericTest {
         em.flush();
         
         TypedQuery<CartaoCredito> queryCat = em.createNamedQuery("CartaoCredito.PorNumero", CartaoCredito.class);
-        queryCat.setHint("javax.persistence.cache.retrieveMode", CacheRetrieveMode.BYPASS);
+        //queryCat.setHint("javax.persistence.cache.retrieveMode", CacheRetrieveMode.BYPASS);
         queryCat.setParameter("numero", "2345257889548754");
         
         assertNotNull(queryCat.getSingleResult());
@@ -55,11 +55,14 @@ public class CartaoCreditoCrudTest extends GenericTest {
         em.merge(cartaocredito);
         em.flush();
         
-        query.setHint("javax.persistence.cache.retrieveMode", CacheRetrieveMode.BYPASS);
+        /* query.setHint("javax.persistence.cache.retrieveMode", CacheRetrieveMode.BYPASS);
         cartaocredito = query.getSingleResult();
-
         assertEquals(bandeira, cartaocredito.getBandeira());
         assertEquals(numero, cartaocredito.getNumero());
+        */
+        assertEquals(bandeira, cartaocredito.getBandeira());
+        assertEquals(numero, cartaocredito.getNumero());
+        
     }
 
     @Test
