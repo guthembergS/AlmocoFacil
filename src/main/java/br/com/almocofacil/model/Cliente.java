@@ -1,6 +1,7 @@
 package br.com.almocofacil.model;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
@@ -44,7 +45,7 @@ public class Cliente extends Usuario implements Serializable {
     protected CartaoCredito cartaoCredito;
     
     @OneToMany(mappedBy = "cliente",fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    protected List<Pedido> pedidos;
+    protected List<Pedido> pedidos = new ArrayList<Pedido>();
 
     public Empresa getEmpresa() {
         return empresa;

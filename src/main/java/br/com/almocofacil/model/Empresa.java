@@ -1,6 +1,7 @@
 package br.com.almocofacil.model;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -52,7 +53,7 @@ public class Empresa implements Serializable {
     private EnderecoEntrega enderecoEntrega;
 
     @OneToMany(mappedBy = "empresa",fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    protected List<Cliente> clientes;
+    protected List<Cliente> clientes = new ArrayList<Cliente>();
 
     public String getNmEmpresa() {
         return nmEmpresa;

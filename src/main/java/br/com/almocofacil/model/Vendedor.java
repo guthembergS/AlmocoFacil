@@ -1,6 +1,7 @@
 package br.com.almocofacil.model;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.DiscriminatorValue;
@@ -31,10 +32,10 @@ import javax.persistence.Table;
 public class Vendedor extends Usuario implements Serializable {
     
     @OneToMany(mappedBy = "vendedor",fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    protected List<Prato> pratos;
+    protected List<Prato> pratos = new ArrayList<>();
     
     @OneToMany(mappedBy = "vendedor",fetch = FetchType.LAZY, cascade = CascadeType.ALL)    
-    protected List<Pedido> pedidos;        
+    protected List<Pedido> pedidos = new ArrayList<>();        
 
     public List<Pedido> getPedidos() {
         return pedidos;
