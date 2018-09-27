@@ -25,6 +25,10 @@ import javax.persistence.Table;
             @NamedQuery(
                     name = "Cliente.PorId",
                     query = "SELECT c FROM Cliente c WHERE c.idUsuario = :id"
+            ),
+            @NamedQuery(
+                    name = "Cliente.PorNome",
+                    query = "SELECT c FROM Cliente c WHERE c.nome = :nome"
             )
         }
 )
