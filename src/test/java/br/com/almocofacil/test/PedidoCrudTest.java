@@ -54,48 +54,43 @@ public class PedidoCrudTest extends GenericTest {
 
     }
      
-//    @Test
-//    public void atualizarPedido() {
-//        logger.info("Executando atualizarPedido()"); 
-//        TypedQuery<Pedido> query = em.createNamedQuery("Pedido.PorId", Pedido.class);
-//        query.setHint("javax.persistence.cache.retrieveMode", CacheRetrieveMode.BYPASS);
-//        query.setParameter("id", 7);
-//        Pedido pedido = query.getSingleResult();
-//        assertNotNull(pedido);
-//       
-//        Date dataPedido = getData(14, 9,2018);
-//        TypedQuery<Cliente> queryCliente = em.createNamedQuery("Cliente.PorId", Cliente.class);
-//        query.setHint("javax.persistence.cache.retrieveMode", CacheRetrieveMode.BYPASS);
-//        query.setParameter("id", 7);
-//        Cliente cliente = queryCliente.getSingleResult();
-//        assertNotNull(cliente);
-//        
-//        pedido.setDtPedido(dataPedido);
-//        pedido.setCliente(cliente);
-//        
-//       //pedido = retornaPedido(pedido);
-//        
-//        assertEquals(dataPedido, pedido.getDtPedido());
-//        assertEquals(cliente, pedido.getCliente());
-//        em.flush();
-//    }
-//    
-//    @Test
-//    public void atualizarPedidoMerge() {
-//        logger.info("Executando atualizarPedidoMerge()");        
-//        TypedQuery<Pedido> query = em.createQuery("SELECT p FROM Pedido p WHERE p.idPedido = ?1",Pedido.class);
-//        query.setHint("javax.persistence.cache.retrieveMode", CacheRetrieveMode.BYPASS);
-//        query.setParameter(1, 18);
-//        Pedido pedido = query.getSingleResult();
-//        assertNotNull(pedido);
-//        Cliente clienteAlteracao = retornaCliente(2);
-//        pedido.setCliente(clienteAlteracao);
-//        em.clear();        
-//        em.merge(clienteAlteracao);
-//        em.flush();
-//        assertEquals(clienteAlteracao, query.getSingleResult().getCliente());
-//    }
-    /*
+    @Test
+    public void atualizarPedido() {
+        logger.info("Executando atualizarPedido()"); 
+        
+        TypedQuery<Pedido> query = em.createNamedQuery("Pedido.PorId", Pedido.class);
+        query.setHint("javax.persistence.cache.retrieveMode", CacheRetrieveMode.BYPASS);
+        query.setParameter("id", 13);
+        Pedido pedido = query.getSingleResult();
+        assertNotNull(pedido);
+        
+        //alterando a data, diferente da data que foi persistida inicialmente
+        Date dataPedido = getData(14, 9,2018);
+        
+        TypedQuery<Cliente> queryCliente = em.createNamedQuery("Cliente.PorId", Cliente.class);
+        queryCliente.setHint("javax.persistence.cache.retrieveMode", CacheRetrieveMode.BYPASS);
+        queryCliente.setParameter("id", 5);
+        Cliente cliente = queryCliente.getSingleResult();
+        assertNotNull(cliente);
+        
+        //seta a nova data do pedido
+        pedido.setDtPedido(dataPedido);
+        //seta o retorno da query "Cliente.PorID"
+        pedido.setCliente(cliente);
+        
+       //pedido = retornaPedido(pedido);
+
+        em.clear();
+        em.merge(pedido);
+        em.flush();
+        
+        pedido = query.getSingleResult();
+        
+        assertEquals(dataPedido, pedido.getDtPedido());
+        //testando apenas o ID Cliente com o ID Cliente do pedido
+        assertEquals(cliente.getIdUsuario(), pedido.getCliente().getIdUsuario());
+    }
+    
     @Test
     public void removerCategoria() {
       
