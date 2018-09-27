@@ -47,27 +47,30 @@ public class EmpresaCrudTest extends GenericTest {
     }
        
     @Test
-    public void atualizarEmpresa() {
+    public void atualizarEmpresaMerge() {
         logger.info("Executando atualizarPratoMerge()");       
+        
+        Empresa empresa = new Empresa();
+        
         TypedQuery<Empresa> query = em.createNamedQuery("CartaoCredito.PorId", Empresa.class);
         query.setHint("javax.persistence.cache.retrieveMode", CacheRetrieveMode.BYPASS);
         query.setParameter("id", 8);
-        CartaoCredito cartaocredito = query.getSingleResult();
-        assertNotNull(cartaocredito);
-        String bandeira = "AmericanExpress";
-        String numero = "0987890065488763";
-        cartaocredito.setBandeira(bandeira);
-        cartaocredito.setNumero(numero);
+        empresa = query.getSingleResult();
+        
+        assertNotNull(empresa);
+        
+        String telefone = "81995208867";
+        String numero = "09283726172672";
+                
+        empresa.setCnpj(numero);
+        empresa.setTelefone(telefone);
 
         em.clear();
-        em.merge(cartaocredito);
+        em.merge(empresa);
         em.flush();
         
         query.setHint("javax.persistence.cache.retrieveMode", CacheRetrieveMode.BYPASS);
-        cartaocredito = query.getSingleResult();
-
-        assertEquals(bandeira, cartaocredito.getBandeira());
-        assertEquals(numero, cartaocredito.getNumero());
-    }
-
+        empresa = query.getSingleResult();
+        
+    }            
 }
