@@ -8,6 +8,8 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.NamedNativeQueries;
+import javax.persistence.NamedNativeQuery;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToOne;
@@ -29,6 +31,16 @@ import javax.persistence.TemporalType;
             )
         }
 )
+@NamedNativeQueries(
+        {
+            @NamedNativeQuery(
+                    name = "CartaoCredito.PorBandeiraSQL",
+                    query = "SELECT ID_CARTAO_CREDITO, BANDEIRA, DT_EXPIRACAO, NUMERO FROM CARTAO_CREDITO WHERE BANDEIRA LIKE ? ORDER BY ID_CARTAO_CREDITO",
+                    resultClass = CartaoCredito.class
+            )
+        }
+)
+
 public class CartaoCredito implements Serializable{
     
     @Id

@@ -86,7 +86,7 @@
     <PRATO NM_PRATO="Arrumadinho" VALOR="14.00" ID_VENDEDOR="2" />
     <!-- ID_PRATO 14 -->
     <PRATO NM_PRATO="Lombo Grelhado" VALOR="15.00" ID_VENDEDOR="2" />
-    
+    <!-- ID_PRATO 15 prato a ser excluido -->
     <PRATO NM_PRATO="Sushi" VALOR="15.00" ID_VENDEDOR="2" />
     
     <!-- ID_PEDIDO 1 -->
