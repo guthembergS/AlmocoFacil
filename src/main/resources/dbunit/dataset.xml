@@ -52,6 +52,8 @@
     <TB_CLIENTE NOME="diogo brito" EMAIL="diogo.b@mail.com" SENHA="diogo123" />    
     <!-- ID_USUARIO 9 -->
     <TB_CLIENTE NOME="Thiago Antonio O" EMAIL="taoalu@mail.com" SENHA="taoalu123" />    
+    <!-- ID_USUARIO 10 -->
+    <TB_CLIENTE NOME="Jose Elias" EMAIL="jose.elias@mail.com" SENHA="elias123" />
     <!-- ID_USUARIO 1 -->
     <TB_VENDEDOR NOME="fred almoco" EMAIL="fred.almoco@mail.com" SENHA="fred123" />
     <!-- ID_USUARIO 2 -->

@@ -102,13 +102,12 @@ public class ClienteCrudTest extends GenericTest {
         assertEquals(email, cliente.getEmail());
     }
 
-    /*
+    
     @Test
     public void removerCliente() {
-    
         TypedQuery<Cliente> query = em.createNamedQuery("Cliente.PorId", Cliente.class);
         query.setHint("javax.persistence.cache.retrieveMode", CacheRetrieveMode.BYPASS);
-        query.setParameter("id", 8);
+        query.setParameter("id", 10);
         Cliente cliente = query.getSingleResult();
         assertNotNull(cliente);
         
@@ -116,7 +115,6 @@ public class ClienteCrudTest extends GenericTest {
         em.flush();
         
         assertEquals(0,query.getResultList().size());
-    
     }
-    */
+    
 }
