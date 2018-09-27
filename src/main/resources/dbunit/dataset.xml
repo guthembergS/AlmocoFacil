@@ -50,6 +50,8 @@
     <TB_CLIENTE NOME="antonella silva" EMAIL="antonella.s@mail.com" SENHA="antonella123" ID_EMPRESA="2" ID_CARTAO_CREDITO="7"/>    
     <!-- ID_USUARIO 8 -->
     <TB_CLIENTE NOME="diogo brito" EMAIL="diogo.b@mail.com" SENHA="diogo123" />    
+    <!-- ID_USUARIO 9 -->
+    <TB_CLIENTE NOME="Thiago Antonio O" EMAIL="taoalu@mail.com" SENHA="taoalu123" />    
     <!-- ID_USUARIO 1 -->
     <TB_VENDEDOR NOME="fred almoco" EMAIL="fred.almoco@mail.com" SENHA="fred123" />
     <!-- ID_USUARIO 2 -->
