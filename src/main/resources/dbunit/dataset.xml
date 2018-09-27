@@ -58,6 +58,8 @@
     <TB_VENDEDOR NOME="fred almoco" EMAIL="fred.almoco@mail.com" SENHA="fred123" />
     <!-- ID_USUARIO 2 -->
     <TB_VENDEDOR NOME="saborear restaurante" EMAIL="saborear.restaurante@mail.com" SENHA="saborear123" />
+    <!-- ID_USUARIO 3 -->
+    <TB_VENDEDOR NOME="Paladar Nordestino" EMAIL="palador.nordestino@mail.com" SENHA="paladar123" />
     <!-- ID_PRATO 1 -->
     <PRATO NM_PRATO="Lasanha" VALOR="13.00" ID_VENDEDOR="1" />
     <!-- ID_PRATO 2 -->
@@ -86,9 +88,10 @@
     <PRATO NM_PRATO="Arrumadinho" VALOR="14.00" ID_VENDEDOR="2" />
     <!-- ID_PRATO 14 -->
     <PRATO NM_PRATO="Lombo Grelhado" VALOR="15.00" ID_VENDEDOR="2" />
-    
+    <!-- ID_PRATO 15 -->
     <PRATO NM_PRATO="Sushi" VALOR="15.00" ID_VENDEDOR="2" />
-    
+    <!-- ID_PRATO 16 -->
+    <PRATO NM_PRATO="Sashimi" VALOR="25.00" ID_VENDEDOR="3" />
     <!-- ID_PEDIDO 1 -->
     <PEDIDO DT_PEDIDO="2018-09-11" ID_CLIENTE="1" ID_VENDEDOR="1" VL_TOTAL="22.00"/>
     <PEDIDO_PRATO ID_PEDIDO="1" ID_PRATO="4"/> 
@@ -143,4 +146,7 @@
     <!-- ID_PEDIDO 17 -->
     <PEDIDO DT_PEDIDO="2018-09-09" ID_CLIENTE="6" ID_VENDEDOR="2" VL_TOTAL="16.00"/>
     <PEDIDO_PRATO ID_PEDIDO="17" ID_PRATO="9"/>
+    <!-- ID_PEDIDO 18 -->
+    <PEDIDO DT_PEDIDO="2018-09-25" ID_CLIENTE="7" ID_VENDEDOR="2" VL_TOTAL="59.00"/>
+    <PEDIDO_PRATO ID_PEDIDO="18" ID_PRATO="10"/>
 </dataset>
