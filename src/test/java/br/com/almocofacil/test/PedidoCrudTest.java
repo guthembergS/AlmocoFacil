@@ -55,7 +55,7 @@ public class PedidoCrudTest extends GenericTest {
     }
      
     @Test
-    public void atualizarPedido() {
+    public void atualizarPedidoMerge() {
         logger.info("Executando atualizarPedido()"); 
         
         TypedQuery<Pedido> query = em.createNamedQuery("Pedido.PorId", Pedido.class);
@@ -93,6 +93,17 @@ public class PedidoCrudTest extends GenericTest {
     
     @Test
     public void removerCategoria() {
+        
+        TypedQuery<Pedido> queryRemove = em.createNamedQuery("Pedido.PorId", Pedido.class);
+        queryRemove.setHint("javax.persistence.cache.retrieveMode", CacheRetrieveMode.BYPASS);
+        queryRemove.setParameter("id", 13);
+        Pedido pedido = queryRemove.getSingleResult();
+        assertNotNull(pedido);
+        
+        em.remove(pedido);
+        em.flush();
+        
+        assertEquals(0,queryRemove.getResultList().size());
       
-    }*/
+    }
 }
