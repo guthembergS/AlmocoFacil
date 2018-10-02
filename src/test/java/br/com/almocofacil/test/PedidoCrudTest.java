@@ -92,7 +92,7 @@ public class PedidoCrudTest extends GenericTest {
     }
     
     @Test
-    public void removerCategoria() {
+    public void removerPedido() {
         
         TypedQuery<Pedido> queryRemove = em.createNamedQuery("Pedido.PorId", Pedido.class);
         queryRemove.setHint("javax.persistence.cache.retrieveMode", CacheRetrieveMode.BYPASS);
