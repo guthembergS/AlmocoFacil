@@ -85,5 +85,8 @@ public class EnderecoEntrega implements Serializable {
     public void setCep(String cep) {
         this.cep = cep;
     }
+     public long getId() {
+        return idEnderecoEntrega;
+    }
     
 }
