@@ -1,6 +1,5 @@
 package br.com.almocofacil.test;
 
-import br.com.almocofacil.model.CartaoCredito;
 import br.com.almocofacil.model.Cliente;
 import br.com.almocofacil.model.Empresa;
 import br.com.almocofacil.model.EnderecoEntrega;
@@ -89,7 +88,13 @@ public class EnderecoEntregaCrudTeste extends GenericTest {
 
     
     @Test
-    public void removerCliente() {
+    public void removerEnderecoEntrega() {
+        
+        TypedQuery<EnderecoEntrega> enderecoentrega = em.createNamedQuery("EnderecoEntrega.PorId", EnderecoEntrega.class);
+        enderecoentrega.setHint("javax.persistence.cache.retrieveMode", CacheRetrieveMode.BYPASS);
+        enderecoentrega.setParameter("id", 5);
+        EnderecoEntrega endereco = enderecoentrega.getSingleResult();
+        
         TypedQuery<Cliente> query = em.createNamedQuery("Cliente.PorId", Cliente.class);
         query.setHint("javax.persistence.cache.retrieveMode", CacheRetrieveMode.BYPASS);
         query.setParameter("id", 10);
