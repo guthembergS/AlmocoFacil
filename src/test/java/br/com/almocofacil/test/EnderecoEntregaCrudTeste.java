@@ -30,60 +30,60 @@ public class EnderecoEntregaCrudTeste extends GenericTest {
     @Test
     public void atualizarCliente() {
         
-        TypedQuery<Cliente> queryCliente= em.createNamedQuery("Cliente.PorId", Cliente.class);
-        //queryCliente.setHint("javax.persistence.cache.retrieveMode", CacheRetrieveMode.BYPASS);
-        queryCliente.setParameter("id", 1);
-        Cliente cliente = queryCliente.getSingleResult();
-        assertNotNull(cliente);
-        
-        cliente.setNome("Guthemberg Augusto de Souza");
-        cliente.setEmail("guthemberg@outlook.com");
-        cliente.setSenha("guthemberg123");
-        
-        //empresa
-        TypedQuery<Empresa> queryEmpresa = em.createNamedQuery("Empresa.PorId", Empresa.class);
-        //queryEmpresa.setHint("javax.persistence.cache.retrieveMode", CacheRetrieveMode.BYPASS);
-        queryEmpresa.setParameter("id", 2);
-        Empresa empresa = queryEmpresa.getSingleResult();
-        assertNotNull(empresa);
-        cliente.setEmpresa(empresa);
-        
-        em.merge(cliente);
-        em.flush();
-        
-        TypedQuery<Cliente> queryCli = em.createNamedQuery("Cliente.PorNome", Cliente.class);
-        //queryCli.setHint("javax.persistence.cache.retrieveMode", CacheRetrieveMode.BYPASS);
-        queryCli.setParameter("nome", "Guthemberg Augusto de Souza");
-        Cliente clienteAtualizado = queryCli.getSingleResult();
-        assertEquals("guthemberg@outlook.com",clienteAtualizado.getEmail());
-        assertEquals("guthemberg123",clienteAtualizado.getSenha());
-        assertEquals(2,clienteAtualizado.getEmpresa().getIdEmpresa().longValue());    
+//        TypedQuery<Cliente> queryCliente= em.createNamedQuery("Cliente.PorId", Cliente.class);
+//        //queryCliente.setHint("javax.persistence.cache.retrieveMode", CacheRetrieveMode.BYPASS);
+//        queryCliente.setParameter("id", 1);
+//        Cliente cliente = queryCliente.getSingleResult();
+//        assertNotNull(cliente);
+//        
+//        cliente.setNome("Guthemberg Augusto de Souza");
+//        cliente.setEmail("guthemberg@outlook.com");
+//        cliente.setSenha("guthemberg123");
+//        
+//        //empresa
+//        TypedQuery<Empresa> queryEmpresa = em.createNamedQuery("Empresa.PorId", Empresa.class);
+//        //queryEmpresa.setHint("javax.persistence.cache.retrieveMode", CacheRetrieveMode.BYPASS);
+//        queryEmpresa.setParameter("id", 2);
+//        Empresa empresa = queryEmpresa.getSingleResult();
+//        assertNotNull(empresa);
+//        cliente.setEmpresa(empresa);
+//        
+//        em.merge(cliente);
+//        em.flush();
+//        
+//        TypedQuery<Cliente> queryCli = em.createNamedQuery("Cliente.PorNome", Cliente.class);
+//        //queryCli.setHint("javax.persistence.cache.retrieveMode", CacheRetrieveMode.BYPASS);
+//        queryCli.setParameter("nome", "Guthemberg Augusto de Souza");
+//        Cliente clienteAtualizado = queryCli.getSingleResult();
+//        assertEquals("guthemberg@outlook.com",clienteAtualizado.getEmail());
+//        assertEquals("guthemberg123",clienteAtualizado.getSenha());
+//        assertEquals(2,clienteAtualizado.getEmpresa().getIdEmpresa().longValue());    
     }
     
     
     @Test
     public void atualizarClienteMerge() {
         
-        TypedQuery<Cliente> query = em.createNamedQuery("Cliente.PorId", Cliente.class);
-        query.setHint("javax.persistence.cache.retrieveMode", CacheRetrieveMode.BYPASS);
-        query.setParameter("id", 2);
-        Cliente cliente = query.getSingleResult();
-        assertNotNull(cliente);
-        
-        String nome = "Thieago Antonio da Silva";
-        String email = "taoalu@gmail.com";
-        cliente.setNome(nome);
-        cliente.setEmail(email);
-        
-        em.clear();
-        em.merge(cliente);
-        em.flush();
-       
-        
-        query.setHint("javax.persistence.cache.retrieveMode", CacheRetrieveMode.BYPASS);
-        cliente = query.getSingleResult();
-        assertEquals(nome, cliente.getNome());
-        assertEquals(email, cliente.getEmail());
+//        TypedQuery<Cliente> query = em.createNamedQuery("Cliente.PorId", Cliente.class);
+//        query.setHint("javax.persistence.cache.retrieveMode", CacheRetrieveMode.BYPASS);
+//        query.setParameter("id", 2);
+//        Cliente cliente = query.getSingleResult();
+//        assertNotNull(cliente);
+//        
+//        String nome = "Thieago Antonio da Silva";
+//        String email = "taoalu@gmail.com";
+//        cliente.setNome(nome);
+//        cliente.setEmail(email);
+//        
+//        em.clear();
+//        em.merge(cliente);
+//        em.flush();
+//       
+//        
+//        query.setHint("javax.persistence.cache.retrieveMode", CacheRetrieveMode.BYPASS);
+//        cliente = query.getSingleResult();
+//        assertEquals(nome, cliente.getNome());
+//        assertEquals(email, cliente.getEmail());
     }
 
     
@@ -92,19 +92,11 @@ public class EnderecoEntregaCrudTeste extends GenericTest {
         
         TypedQuery<EnderecoEntrega> enderecoentrega = em.createNamedQuery("EnderecoEntrega.PorId", EnderecoEntrega.class);
         enderecoentrega.setHint("javax.persistence.cache.retrieveMode", CacheRetrieveMode.BYPASS);
-        enderecoentrega.setParameter("id", 5);
+        enderecoentrega.setParameter("id", 4);
         EnderecoEntrega endereco = enderecoentrega.getSingleResult();
-        
-        TypedQuery<Cliente> query = em.createNamedQuery("Cliente.PorId", Cliente.class);
-        query.setHint("javax.persistence.cache.retrieveMode", CacheRetrieveMode.BYPASS);
-        query.setParameter("id", 10);
-        Cliente cliente = query.getSingleResult();
-        assertNotNull(cliente);
-        
-        em.remove(cliente);
+        em.remove(endereco);
         em.flush();
-        
-        assertEquals(0,query.getResultList().size());
+        assertEquals(0,enderecoentrega.getResultList().size());
     }
     
 }
