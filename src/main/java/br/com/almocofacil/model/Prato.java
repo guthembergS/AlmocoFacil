@@ -11,6 +11,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Id;
+import javax.persistence.NamedNativeQueries;
+import javax.persistence.NamedNativeQuery;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
@@ -35,6 +37,26 @@ import javax.persistence.Table;
             )   
         }
 )
+/*
+@NamedNativeQueries(
+        {
+            //NativeQuery que retorna cartoes de creditos por bandeira
+            @NamedNativeQuery(
+                    name = "Prato.PratoPedidos",
+                    query = "SELECT count(PR.ID_PRATO),PR.ID_PRATO,\n" +
+"       PR.NM_PRATO,\n" +
+"       PR.VALOR,\n" +
+"       PR.ID_VENDEDOR\n" +
+"FROM almocofacil.PEDIDO_PRATO PP,\n" +
+"     almocofacil.PRATO PR\n" +
+"where PR.ID_PRATO = PP.ID_PRATO\n" +
+"group by PR.ID_PRATO",
+                     resultSetMapping = "Prato.PratosPedidos"
+            )
+        }
+)
+*/
+
 public class Prato  implements Serializable {
     
     @Id

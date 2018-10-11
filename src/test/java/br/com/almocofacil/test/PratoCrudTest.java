@@ -1,9 +1,11 @@
 package br.com.almocofacil.test;
 
+import br.com.almocofacil.model.CartaoCredito;
 import br.com.almocofacil.model.Prato;
 import br.com.almocofacil.model.Vendedor;
 import java.util.List;
 import javax.persistence.CacheRetrieveMode;
+import javax.persistence.Query;
 import javax.persistence.TypedQuery;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
@@ -95,4 +97,14 @@ public class PratoCrudTest extends GenericTest {
         //ssertEquals("",query.getSingleResult());
     
     }
+    /*
+    @Test
+    public void contabilizaPratosPedidos(){
+         Query query;
+        query = em.createNamedQuery("Prato.PratosPedidos");
+        List<Prato> cartoes = query.getResultList();
+        
+        assertEquals(4, cartoes.size());
+        
+    }*/
 }

@@ -33,6 +33,7 @@ import javax.persistence.TemporalType;
 )
 @NamedNativeQueries(
         {
+            //NativeQuery que retorna cartoes de creditos por bandeira
             @NamedNativeQuery(
                     name = "CartaoCredito.PorBandeiraSQL",
                     query = "SELECT ID_CARTAO_CREDITO, BANDEIRA, DT_EXPIRACAO, NUMERO FROM CARTAO_CREDITO WHERE BANDEIRA LIKE ? ORDER BY ID_CARTAO_CREDITO",
