@@ -37,6 +37,7 @@ import javax.persistence.Table;
             )   
         }
 )
+/*
 @NamedNativeQueries(
         {
             //NativeQuery que retorna cartoes de creditos por bandeira
@@ -50,13 +51,11 @@ import javax.persistence.Table;
 "     almocofacil.PRATO PR\n" +
 "where PR.ID_PRATO = PP.ID_PRATO\n" +
 "group by PR.ID_PRATO",
-                    resultClass = Prato.class
+                     resultSetMapping = "Prato.PratosPedidos"
             )
         }
 )
-
-
-
+*/
 
 public class Prato  implements Serializable {
     
