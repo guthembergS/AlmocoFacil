@@ -7,6 +7,7 @@ import static org.junit.Assert.*;
 import br.com.almocofacil.model.CartaoCredito;
 import br.com.almocofacil.model.Cliente;
 import java.util.List;
+import javax.persistence.Query;
 
 /**
  *
@@ -79,5 +80,15 @@ public class CartaoCreditoCrudTest extends GenericTest {
         
         assertEquals(0,query.getResultList().size());
     
+    }
+    
+    //teste de nativeQuery, retorna cartões por bandeira.
+    @Test
+    public void retornarNativeQuery(){
+        Query query;
+        query = em.createNamedQuery("CartaoCredito.PorBandeiraSQL");
+        query.setParameter(1, "VISA");
+        List<CartaoCredito> cartoes = query.getResultList();
+        assertEquals(4, cartoes.size());
     }
 }
