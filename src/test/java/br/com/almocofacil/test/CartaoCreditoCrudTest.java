@@ -18,7 +18,7 @@ public class CartaoCreditoCrudTest extends GenericTest {
     @Test
     public void criarCartaoCredito() {
         CartaoCredito cartaocredito = new CartaoCredito();
-        cartaocredito.setBandeira("Master");
+        cartaocredito.setBandeira("VISA");
         cartaocredito.setDataExpiracao(getData(12, 06, 2023));
         cartaocredito.setNumero("2345257889548754");
         TypedQuery<Cliente> query = em.createNamedQuery("Cliente.PorId", Cliente.class);
@@ -85,10 +85,10 @@ public class CartaoCreditoCrudTest extends GenericTest {
     //teste de nativeQuery, retorna cartões por bandeira.
     @Test
     public void retornarNativeQuery(){
-        Query query;
-        query = em.createNamedQuery("CartaoCredito.PorBandeiraSQL");
-        query.setParameter(1, "VISA");
+        Query query = em.createNamedQuery("CartaoCredito.PorBandeiraSQL");
+        query.setHint("javax.persistence.cache.retrieveMode", CacheRetrieveMode.BYPASS);
+        query.setParameter(1, "MASTER");
         List<CartaoCredito> cartoes = query.getResultList();
-        assertEquals(4, cartoes.size());
+        assertEquals(3, cartoes.size());
     }
 }
