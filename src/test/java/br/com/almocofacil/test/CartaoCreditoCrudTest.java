@@ -19,8 +19,8 @@ public class CartaoCreditoCrudTest extends GenericTest {
     public void criarCartaoCredito() {
         CartaoCredito cartaocredito = new CartaoCredito();
         cartaocredito.setBandeira("VISA");
-        cartaocredito.setDataExpiracao(getData(12, 06, 2023));
-        cartaocredito.setNumero("2345257889548754");
+        cartaocredito.setDataExpiracao(getData(12, 01, 2025));
+        cartaocredito.setNumero("2345257889548000");
         TypedQuery<Cliente> query = em.createNamedQuery("Cliente.PorId", Cliente.class);
         query.setHint("javax.persistence.cache.retrieveMode", CacheRetrieveMode.BYPASS);
         query.setParameter("id", 8);
@@ -33,7 +33,7 @@ public class CartaoCreditoCrudTest extends GenericTest {
         
         TypedQuery<CartaoCredito> queryCat = em.createNamedQuery("CartaoCredito.PorNumero", CartaoCredito.class);
         //queryCat.setHint("javax.persistence.cache.retrieveMode", CacheRetrieveMode.BYPASS);
-        queryCat.setParameter("numero", "2345257889548754");
+        queryCat.setParameter("numero", "2345257889548000");
         
         assertNotNull(queryCat.getSingleResult());
     }
