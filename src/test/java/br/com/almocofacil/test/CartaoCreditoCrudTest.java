@@ -6,8 +6,6 @@ import org.junit.Test;
 import static org.junit.Assert.*;
 import br.com.almocofacil.model.CartaoCredito;
 import br.com.almocofacil.model.Cliente;
-import java.util.List;
-import javax.persistence.Query;
 
 /**
  *
@@ -67,6 +65,9 @@ public class CartaoCreditoCrudTest extends GenericTest {
         cartaocredito.setNumero(novoNumero);
 
         em.flush();
+        
+        //Executa a query para confirmar a atualização
+        cartaocredito = query.getSingleResult();
 
         assertEquals(novaBandeira, cartaocredito.getBandeira());
         assertEquals(novoNumero, cartaocredito.getNumero());
@@ -95,6 +96,9 @@ public class CartaoCreditoCrudTest extends GenericTest {
         em.merge(cartaocredito);
         em.flush();
 
+         //Executa a query para confirmar a atualização
+        cartaocredito = query.getSingleResult(); 
+        
         assertEquals(novaBandeira, cartaocredito.getBandeira());
         assertEquals(novoNumero, cartaocredito.getNumero());
 

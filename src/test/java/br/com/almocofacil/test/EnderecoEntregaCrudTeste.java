@@ -1,7 +1,5 @@
 package br.com.almocofacil.test;
 
-import br.com.almocofacil.model.Cliente;
-import br.com.almocofacil.model.Empresa;
 import br.com.almocofacil.model.EnderecoEntrega;
 import javax.persistence.CacheRetrieveMode;
 import javax.persistence.TypedQuery;
@@ -44,10 +42,11 @@ public class EnderecoEntregaCrudTeste extends GenericTest {
         String cidade = "Abreu e Lima";
         String estado = "Pernambuco";
         String logradouro = "Rua das amelias";
+        long idEndereco = 1;
 
         TypedQuery<EnderecoEntrega> enderecoentrega = em.createNamedQuery("EnderecoEntrega.PorId", EnderecoEntrega.class);
         enderecoentrega.setHint("javax.persistence.cache.retrieveMode", CacheRetrieveMode.BYPASS);
-        enderecoentrega.setParameter("id", 1);
+        enderecoentrega.setParameter("id", idEndereco);
         EnderecoEntrega enderecoEntrega = enderecoentrega.getSingleResult();
 
         assertNotNull(enderecoentrega);
@@ -60,8 +59,7 @@ public class EnderecoEntregaCrudTeste extends GenericTest {
 
         em.flush();
 
-        enderecoentrega.setHint("javax.persistence.cache.retrieveMode", CacheRetrieveMode.BYPASS);
-        enderecoentrega.setParameter("id", 1);
+        //Executa a query para confirmar a atualização
         EnderecoEntrega enderecoatualizado = enderecoentrega.getSingleResult();
 
         assertEquals(bairro, enderecoatualizado.getBairro());
@@ -81,10 +79,11 @@ public class EnderecoEntregaCrudTeste extends GenericTest {
         String cidade = "Abreu e Lima";
         String estado = "Pernambuco";
         String logradouro = "Rua das amelias";
+        long idEndereco = 1;
 
         TypedQuery<EnderecoEntrega> enderecoentrega = em.createNamedQuery("EnderecoEntrega.PorId", EnderecoEntrega.class);
         enderecoentrega.setHint("javax.persistence.cache.retrieveMode", CacheRetrieveMode.BYPASS);
-        enderecoentrega.setParameter("id", 1);
+        enderecoentrega.setParameter("id", idEndereco);
         EnderecoEntrega enderecoEntrega = enderecoentrega.getSingleResult();
 
         assertNotNull(enderecoentrega);
@@ -98,9 +97,8 @@ public class EnderecoEntregaCrudTeste extends GenericTest {
         em.clear();
         em.merge(enderecoEntrega);
         em.flush();
-
-        enderecoentrega.setHint("javax.persistence.cache.retrieveMode", CacheRetrieveMode.BYPASS);
-        enderecoentrega.setParameter("id", 1);
+       
+        //Executa a query para confirmar a atualização
         EnderecoEntrega enderecoatualizado = enderecoentrega.getSingleResult();
 
         assertEquals(bairro, enderecoatualizado.getBairro());

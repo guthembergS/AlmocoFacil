@@ -1,19 +1,13 @@
 package br.com.almocofacil.test;
 
-import br.com.almocofacil.model.Pedido;
-import br.com.almocofacil.model.Prato;
-import br.com.almocofacil.model.Vendedor;
 import java.util.Calendar;
 import java.util.Date;
-import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.EntityTransaction;
 import javax.persistence.Persistence;
-import javax.persistence.TypedQuery;
-import static org.eclipse.persistence.sessions.remote.corba.sun.TransporterHelper.id;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;

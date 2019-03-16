@@ -33,18 +33,18 @@ import javax.persistence.Table;
             )
         }
 )
-@PrimaryKeyJoinColumn(name="ID_USUARIO", referencedColumnName = "ID_USUARIO")
+@PrimaryKeyJoinColumn(name = "ID_USUARIO", referencedColumnName = "ID_USUARIO")
 public class Cliente extends Usuario implements Serializable {
-    
+
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "ID_EMPRESA", referencedColumnName = "ID_EMPRESA")
     protected Empresa empresa;
-    
-    @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL )
+
+    @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JoinColumn(name = "ID_CARTAO_CREDITO", referencedColumnName = "ID_CARTAO_CREDITO")
     protected CartaoCredito cartaoCredito;
-    
-    @OneToMany(mappedBy = "cliente",fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+
+    @OneToMany(mappedBy = "cliente", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     protected List<Pedido> pedidos = new ArrayList<Pedido>();
 
     public Empresa getEmpresa() {
@@ -54,7 +54,6 @@ public class Cliente extends Usuario implements Serializable {
     public List<Pedido> getPedidos() {
         return pedidos;
     }
-    
 
     public void setEmpresa(Empresa empresa) {
         this.empresa = empresa;
@@ -63,7 +62,7 @@ public class Cliente extends Usuario implements Serializable {
     public boolean setPedidos(Pedido pedido) {
         return this.pedidos.add(pedido);
     }
-        
+
     public void setCartaoCredito(CartaoCredito cartaoCredito) {
         this.cartaoCredito = cartaoCredito;
     }
