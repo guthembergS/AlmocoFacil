@@ -14,81 +14,110 @@ import javax.persistence.Query;
  * @author gerson-brandao
  */
 public class CartaoCreditoCrudTest extends GenericTest {
-    
+
     @Test
     public void criarCartaoCredito() {
+        logger.info("Executando criarCartaoCredito()");
+        
+        String bandeira = "VISA";
+        String numeroCartao = "090928938495856";
+        long idCliente = 8;
+        
         CartaoCredito cartaocredito = new CartaoCredito();
-        cartaocredito.setBandeira("VISA");
+        cartaocredito.setBandeira(bandeira);
         cartaocredito.setDataExpiracao(getData(12, 01, 2025));
-        cartaocredito.setNumero("2345257889548000");
+        cartaocredito.setNumero(numeroCartao);
+
+        //Busca o nome do dono do cartão
         TypedQuery<Cliente> query = em.createNamedQuery("Cliente.PorId", Cliente.class);
         query.setHint("javax.persistence.cache.retrieveMode", CacheRetrieveMode.BYPASS);
-        query.setParameter("id", 8);
+        query.setParameter("id", idCliente);
         Cliente cliente = query.getSingleResult();
+
+        //Verifica de retornou algo
         assertNotNull(cliente);
         cartaocredito.setDono(cliente);
-        // <CARTAO_CREDITO BANDEIRA="VISA" NUMERO="1192828000000200" DT_EXPIRACAO="2020-06-11"/> -->
+
         em.persist(cartaocredito);
         em.flush();
-        
-        TypedQuery<CartaoCredito> queryCat = em.createNamedQuery("CartaoCredito.PorNumero", CartaoCredito.class);
-        //queryCat.setHint("javax.persistence.cache.retrieveMode", CacheRetrieveMode.BYPASS);
-        queryCat.setParameter("numero", "2345257889548000");
-        
-        assertNotNull(queryCat.getSingleResult());
+
+        TypedQuery<CartaoCredito> queryCartao = em.createNamedQuery("CartaoCredito.PorNumero", CartaoCredito.class);
+        queryCartao.setParameter("numero", numeroCartao);
+
+        assertNotNull(queryCartao.getSingleResult());
+
+    }
+
+    @Test
+    public void atualizarCartaoCredito() {
+        logger.info("Executando atualizarCartaoCredito()");
+
+        long idCartao = 9;
+        String novaBandeira = "AmericanExpress";
+        String novoNumero = "0987890065488763";
+
+        TypedQuery<CartaoCredito> query = em.createNamedQuery("CartaoCredito.PorId", CartaoCredito.class);
+        query.setHint("javax.persistence.cache.retrieveMode", CacheRetrieveMode.BYPASS);
+        query.setParameter("id", idCartao);
+        CartaoCredito cartaocredito = query.getSingleResult();
+
+        assertNotNull(cartaocredito);
+
+        cartaocredito.setBandeira(novaBandeira);
+        cartaocredito.setNumero(novoNumero);
+
+        em.flush();
+
+        assertEquals(novaBandeira, cartaocredito.getBandeira());
+        assertEquals(novoNumero, cartaocredito.getNumero());
+
     }
 
     @Test
     public void atualizarCartaoCreditoMerge() {
-        logger.info("Executando atualizarPratoMerge()");
-        //TypedQuery<CartaoCredito> query = em.createQuery("SELECT c FROM CartaoCredito c WHERE c.idCartaoCredito = ?1", CartaoCredito.class);
+        logger.info("Executando atualizarCartaoCreditoMerge()");
+
+        long idCartao = 9;
+        String novaBandeira = "AmericanExpress";
+        String novoNumero = "0987890065488763";
+
         TypedQuery<CartaoCredito> query = em.createNamedQuery("CartaoCredito.PorId", CartaoCredito.class);
         query.setHint("javax.persistence.cache.retrieveMode", CacheRetrieveMode.BYPASS);
-        query.setParameter("id", 7);
+        query.setParameter("id", idCartao);
         CartaoCredito cartaocredito = query.getSingleResult();
+
         assertNotNull(cartaocredito);
-        String bandeira = "AmericanExpress";
-        String numero = "0987890065488763";
-        cartaocredito.setBandeira(bandeira);
-        cartaocredito.setNumero(numero);
+
+        cartaocredito.setBandeira(novaBandeira);
+        cartaocredito.setNumero(novoNumero);
 
         em.clear();
         em.merge(cartaocredito);
         em.flush();
-        
-        /* query.setHint("javax.persistence.cache.retrieveMode", CacheRetrieveMode.BYPASS);
-        cartaocredito = query.getSingleResult();
-        assertEquals(bandeira, cartaocredito.getBandeira());
-        assertEquals(numero, cartaocredito.getNumero());
-        */
-        assertEquals(bandeira, cartaocredito.getBandeira());
-        assertEquals(numero, cartaocredito.getNumero());
-        
+
+        assertEquals(novaBandeira, cartaocredito.getBandeira());
+        assertEquals(novoNumero, cartaocredito.getNumero());
+
     }
 
     @Test
     public void removerCartaoCredito() {
-    
+        logger.info("Executando removerCartaoCredito()");
+
+        long idCartao = 8;
+
         TypedQuery<CartaoCredito> query = em.createNamedQuery("CartaoCredito.PorId", CartaoCredito.class);
         query.setHint("javax.persistence.cache.retrieveMode", CacheRetrieveMode.BYPASS);
-        query.setParameter("id", 8);
+        query.setParameter("id", idCartao);
         CartaoCredito cartaocredito = query.getSingleResult();
+
         assertNotNull(cartaocredito);
-        
+
         em.remove(cartaocredito);
         em.flush();
-        
-        assertEquals(0,query.getResultList().size());
-    
+
+        assertEquals(0, query.getResultList().size());
+
     }
-    
-    //teste de nativeQuery, retorna cartões por bandeira.
-    @Test
-    public void retornarNativeQuery(){
-        Query query = em.createNamedQuery("CartaoCredito.PorBandeiraSQL");
-        query.setHint("javax.persistence.cache.retrieveMode", CacheRetrieveMode.BYPASS);
-        query.setParameter(1, "MASTER");
-        List<CartaoCredito> cartoes = query.getResultList();
-        assertEquals(3, cartoes.size());
-    }
+
 }

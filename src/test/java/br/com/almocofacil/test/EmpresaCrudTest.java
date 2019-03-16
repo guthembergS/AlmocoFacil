@@ -18,19 +18,24 @@ public class EmpresaCrudTest extends GenericTest {
 
     @Test
     public void criarEmpresa() {
-        logger.info("Executando persistirEmpresa()");
-        Empresa novaEmpresa = new Empresa();
+        logger.info("Executando criarEmpresa()");
+                
+        String cnpj = "1209039283298";
+        String empresa = "MV Sistemas";
+        String telefone = "8133221122";
         
-        Long id = 4L;
+        long idEndereco = 4;
+
+        Empresa novaEmpresa = new Empresa();
         EnderecoEntrega enderecoEntrega = new EnderecoEntrega();
 
-        novaEmpresa.setCnpj("1209039283298");
-        novaEmpresa.setNmEmpresa("MV Sistemas");
-        novaEmpresa.setTelefone("8133221122");
+        novaEmpresa.setCnpj(cnpj);
+        novaEmpresa.setNmEmpresa(empresa);
+        novaEmpresa.setTelefone(telefone);
 
         TypedQuery<EnderecoEntrega> query = em.createNamedQuery("EnderecoEntrega.PorId", EnderecoEntrega.class);
         query.setHint("javax.persistence.cache.retrieveMode", CacheRetrieveMode.BYPASS);
-        query.setParameter("id", id);
+        query.setParameter("id", idEndereco);
         enderecoEntrega = query.getSingleResult();
 
         novaEmpresa.setEnderecoEntrega(enderecoEntrega);
@@ -42,25 +47,25 @@ public class EmpresaCrudTest extends GenericTest {
     }
 
     @Test
-    public void atualizaEmpresa() {
-        logger.info("Executando atualizarEmpresa()");
-
-        Empresa empresa = new Empresa();
+    public void atualizarEmpresa() {
+        logger.info("Executando atualizarEmpresa()");        
 
         String cnpj = "123526378293827";
         String nome = "IFPE";
-        Long id = 3L;
+        long idEmpresa = 3;
 
+        Empresa empresa = new Empresa();
+        
         TypedQuery<Empresa> query = em.createNamedQuery("Empresa.PorId", Empresa.class);
         query.setHint("javax.persistence.cache.retrieveMode", CacheRetrieveMode.BYPASS);
-        query.setParameter("id", id);
+        query.setParameter("id", idEmpresa);
         empresa = query.getSingleResult();
 
         assertNotNull(empresa);
 
         empresa.setCnpj(cnpj);
         empresa.setNmEmpresa(nome);
-
+        
         em.flush();
 
         assertEquals(cnpj, empresa.getCnpj());
@@ -71,19 +76,20 @@ public class EmpresaCrudTest extends GenericTest {
     @Test
     public void atualizarEmpresaMerge() {
         logger.info("Executando atualizarEmpresaMerge()");
-
+        
+        String telefone = "81995208867";
+        String cnpj = "09283726172672";
+        long idEmpresa = 3;
+               
         Empresa empresa = new Empresa();
 
         TypedQuery<Empresa> query = em.createNamedQuery("Empresa.PorId", Empresa.class);
         query.setHint("javax.persistence.cache.retrieveMode", CacheRetrieveMode.BYPASS);
-        query.setParameter("id", 1);
+        query.setParameter("id", idEmpresa);
         empresa = query.getSingleResult();
 
         assertNotNull(empresa);
-
-        String telefone = "81995208867";
-        String cnpj = "09283726172672";
-
+        
         empresa.setCnpj(cnpj);
         empresa.setTelefone(telefone);
 
@@ -99,12 +105,14 @@ public class EmpresaCrudTest extends GenericTest {
     @Test
     public void removerEmpresa() {
         logger.info("Executando removerEmpresa()");
+
+        long idEmpresa = 3;
         
         TypedQuery<Empresa> query = em.createNamedQuery("Empresa.PorId", Empresa.class);
         query.setHint("javax.persistence.cache.retrieveMode", CacheRetrieveMode.BYPASS);
-        query.setParameter("id", 4);
+        query.setParameter("id", idEmpresa);
         Empresa empresa = query.getSingleResult();
-        
+
         assertNotNull(empresa);
 
         em.remove(empresa);

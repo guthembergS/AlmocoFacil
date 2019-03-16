@@ -10,90 +10,121 @@ import static org.junit.Assert.assertNotNull;
 import org.junit.Test;
 
 public class EnderecoEntregaCrudTeste extends GenericTest {
-    
+
     @Test
     public void criarEnderecoEntrega() {
-        
+        logger.info("Executando criarEnderecoEntrega()");
+
+        String bairro = "Caetes I";
+        String cep = "53530785";
+        String cidade = "Abreu e Lima";
+        String estado = "Pernambuco";
+        String logradouro = "Rua das amelias";
+
         EnderecoEntrega endereco = new EnderecoEntrega();
-        endereco.setBairro("Caetes I");
-        endereco.setCep("53530785");
-        endereco.setCidade("Abreu e Lima");
-        endereco.setEstado("Pernambuco");
-        endereco.setLogadouro("Rua das amelias");
-        
+        endereco.setBairro(bairro);
+        endereco.setCep(cep);
+        endereco.setCidade(cidade);
+        endereco.setEstado(estado);
+        endereco.setLogadouro(logradouro);
+
         em.persist(endereco);
         em.flush();
 
         assertNotNull(endereco.getId());
+
     }
-    
+
     @Test
     public void atualizarEnderecoEntrega() {
-        
-          TypedQuery<EnderecoEntrega> enderecoentrega = em.createNamedQuery("EnderecoEntrega.PorId", EnderecoEntrega.class);
-          enderecoentrega.setHint("javax.persistence.cache.retrieveMode", CacheRetrieveMode.BYPASS);
-          enderecoentrega.setParameter("id", 1);
-          EnderecoEntrega enderecoEntrega = enderecoentrega.getSingleResult();
-          assertNotNull(enderecoentrega);
-        
-           enderecoEntrega.setBairro("Caetes I");
-           enderecoEntrega.setCep("53530785");
-           enderecoEntrega.setCidade("Abreu e Lima");
-           enderecoEntrega.setEstado("Pernambuco");
-           enderecoEntrega.setLogadouro("Rua das amelias");   
+        logger.info("Executando atualizarEnderecoEntrega()");
 
-    
-            //em.merge(enderecoEntrega);
-            em.flush();
-     
-        TypedQuery<EnderecoEntrega> enderecoteste = em.createNamedQuery("EnderecoEntrega.PorId", EnderecoEntrega.class);
-        //queryCli.setHint("javax.persistence.cache.retrieveMode", CacheRetrieveMode.BYPASS);
-        enderecoteste.setParameter("id", 1);
-        
-        EnderecoEntrega enderecoatualizado = enderecoteste.getSingleResult();
-        
-        assertEquals("53530785",enderecoatualizado.getCep());
-        assertEquals("Pernambuco", enderecoatualizado.getEstado());
-            
+        String bairro = "Caetes II";
+        String cep = "53530785";
+        String cidade = "Abreu e Lima";
+        String estado = "Pernambuco";
+        String logradouro = "Rua das amelias";
+
+        TypedQuery<EnderecoEntrega> enderecoentrega = em.createNamedQuery("EnderecoEntrega.PorId", EnderecoEntrega.class);
+        enderecoentrega.setHint("javax.persistence.cache.retrieveMode", CacheRetrieveMode.BYPASS);
+        enderecoentrega.setParameter("id", 1);
+        EnderecoEntrega enderecoEntrega = enderecoentrega.getSingleResult();
+
+        assertNotNull(enderecoentrega);
+
+        enderecoEntrega.setBairro(bairro);
+        enderecoEntrega.setCep(cep);
+        enderecoEntrega.setCidade(cidade);
+        enderecoEntrega.setEstado(estado);
+        enderecoEntrega.setLogadouro(logradouro);
+
+        em.flush();
+
+        enderecoentrega.setHint("javax.persistence.cache.retrieveMode", CacheRetrieveMode.BYPASS);
+        enderecoentrega.setParameter("id", 1);
+        EnderecoEntrega enderecoatualizado = enderecoentrega.getSingleResult();
+
+        assertEquals(bairro, enderecoatualizado.getBairro());
+        assertEquals(estado, enderecoatualizado.getEstado());
+        assertEquals(cidade, enderecoatualizado.getCidade());
+        assertEquals(cep, enderecoatualizado.getCep());
+        assertEquals(logradouro, enderecoatualizado.getLogadouro());
+
     }
-    
-    
+
     @Test
-    public void atualizarClienteMerge() {
-        
-//        TypedQuery<Cliente> query = em.createNamedQuery("Cliente.PorId", Cliente.class);
-//        query.setHint("javax.persistence.cache.retrieveMode", CacheRetrieveMode.BYPASS);
-//        query.setParameter("id", 2);
-//        Cliente cliente = query.getSingleResult();
-//        assertNotNull(cliente);
-//        
-//        String nome = "Thieago Antonio da Silva";
-//        String email = "taoalu@gmail.com";
-//        cliente.setNome(nome);
-//        cliente.setEmail(email);
-//        
-//        em.clear();
-//        em.merge(cliente);
-//        em.flush();
-//       
-//        
-//        query.setHint("javax.persistence.cache.retrieveMode", CacheRetrieveMode.BYPASS);
-//        cliente = query.getSingleResult();
-//        assertEquals(nome, cliente.getNome());
-//        assertEquals(email, cliente.getEmail());
+    public void atualizarEnderecoEntregaMerge() {
+        logger.info("Executando atualizarEnderecoEntregaMerge()");
+
+        String bairro = "Caetes II";
+        String cep = "53530785";
+        String cidade = "Abreu e Lima";
+        String estado = "Pernambuco";
+        String logradouro = "Rua das amelias";
+
+        TypedQuery<EnderecoEntrega> enderecoentrega = em.createNamedQuery("EnderecoEntrega.PorId", EnderecoEntrega.class);
+        enderecoentrega.setHint("javax.persistence.cache.retrieveMode", CacheRetrieveMode.BYPASS);
+        enderecoentrega.setParameter("id", 1);
+        EnderecoEntrega enderecoEntrega = enderecoentrega.getSingleResult();
+
+        assertNotNull(enderecoentrega);
+
+        enderecoEntrega.setBairro(bairro);
+        enderecoEntrega.setCep(cep);
+        enderecoEntrega.setCidade(cidade);
+        enderecoEntrega.setEstado(estado);
+        enderecoEntrega.setLogadouro(logradouro);
+
+        em.clear();
+        em.merge(enderecoEntrega);
+        em.flush();
+
+        enderecoentrega.setHint("javax.persistence.cache.retrieveMode", CacheRetrieveMode.BYPASS);
+        enderecoentrega.setParameter("id", 1);
+        EnderecoEntrega enderecoatualizado = enderecoentrega.getSingleResult();
+
+        assertEquals(bairro, enderecoatualizado.getBairro());
+        assertEquals(estado, enderecoatualizado.getEstado());
+        assertEquals(cidade, enderecoatualizado.getCidade());
+        assertEquals(cep, enderecoatualizado.getCep());
+        assertEquals(logradouro, enderecoatualizado.getLogadouro());
+
     }
 
-    
     @Test
     public void removerEnderecoEntrega() {
-        
+        logger.info("Executando removerEnderecoEntrega()");
+
         TypedQuery<EnderecoEntrega> enderecoentrega = em.createNamedQuery("EnderecoEntrega.PorId", EnderecoEntrega.class);
         enderecoentrega.setHint("javax.persistence.cache.retrieveMode", CacheRetrieveMode.BYPASS);
         enderecoentrega.setParameter("id", 4);
         EnderecoEntrega endereco = enderecoentrega.getSingleResult();
+        
         em.remove(endereco);
         em.flush();
-        assertEquals(0,enderecoentrega.getResultList().size());
+        
+        assertEquals(0, enderecoentrega.getResultList().size());
+        
     }
-    
+
 }
