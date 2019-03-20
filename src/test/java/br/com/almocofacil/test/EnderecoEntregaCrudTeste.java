@@ -112,10 +112,12 @@ public class EnderecoEntregaCrudTeste extends GenericTest {
     @Test
     public void removerEnderecoEntrega() {
         logger.info("Executando removerEnderecoEntrega()");
+        
+        long idEnderecoEntrega = 4;
 
         TypedQuery<EnderecoEntrega> enderecoentrega = em.createNamedQuery("EnderecoEntrega.PorId", EnderecoEntrega.class);
         enderecoentrega.setHint("javax.persistence.cache.retrieveMode", CacheRetrieveMode.BYPASS);
-        enderecoentrega.setParameter("id", 4);
+        enderecoentrega.setParameter("id", idEnderecoEntrega);
         EnderecoEntrega endereco = enderecoentrega.getSingleResult();
         
         em.remove(endereco);

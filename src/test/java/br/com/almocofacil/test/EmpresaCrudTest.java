@@ -15,7 +15,7 @@ public class EmpresaCrudTest extends GenericTest {
     public void criarEmpresa() {
         logger.info("Executando criarEmpresa()");
 
-        String cnpj = "1209039283298";
+        String cnpj = "12090392832983";
         String empresa = "MV Sistemas";
         String telefone = "8133221122";
 
@@ -45,9 +45,9 @@ public class EmpresaCrudTest extends GenericTest {
     public void atualizarEmpresa() {
         logger.info("Executando atualizarEmpresa()");
 
-        String cnpj = "123526378293827";
+        String cnpj = "12352637829382";
         String nome = "IFPE";
-        long idEmpresa = 3;
+        long idEmpresa = 1;
 
         Empresa empresa = new Empresa();
 
@@ -107,7 +107,7 @@ public class EmpresaCrudTest extends GenericTest {
     public void removerEmpresa() {
         logger.info("Executando removerEmpresa()");
 
-        long idEmpresa = 3;
+        long idEmpresa = 4;
 
         TypedQuery<Empresa> query = em.createNamedQuery("Empresa.PorId", Empresa.class);
         query.setHint("javax.persistence.cache.retrieveMode", CacheRetrieveMode.BYPASS);

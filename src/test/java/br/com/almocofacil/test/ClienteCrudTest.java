@@ -152,7 +152,7 @@ public class ClienteCrudTest extends GenericTest {
     public void removerCliente() {
         logger.info("Executando removerCliente()");
 
-        long idCliente = 1;
+        long idCliente = 10;
 
         TypedQuery<Cliente> query = em.createNamedQuery("Cliente.PorId", Cliente.class);
         query.setHint("javax.persistence.cache.retrieveMode", CacheRetrieveMode.BYPASS);

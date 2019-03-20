@@ -20,10 +20,12 @@ public class PedidoCrudTest extends GenericTest {
 
         Pedido novoPedido = new Pedido();
         novoPedido.setDtPedido(getData(13, 9, 2018));
-        //
+        long idPrato = 16;
+        long idCliente = 8;
+        
         TypedQuery<Prato> query = em.createNamedQuery("Prato.PorId", Prato.class);
         query.setHint("javax.persistence.cache.retrieveMode", CacheRetrieveMode.BYPASS);
-        query.setParameter("id", 16);
+        query.setParameter("id", idPrato);
         Prato prato = query.getSingleResult();
         assertNotNull(prato);
         List<Prato> pratos = novoPedido.getPratos();
@@ -31,7 +33,7 @@ public class PedidoCrudTest extends GenericTest {
         //necessário colocar um TypedQuery já que na classe Pedido a coluna ID Cliente é (nullable = false)
         TypedQuery<Cliente> queryCliente = em.createNamedQuery("Cliente.PorId", Cliente.class);
         queryCliente.setHint("javax.persistence.cache.retrieveMode", CacheRetrieveMode.BYPASS);
-        queryCliente.setParameter("id", 8);
+        queryCliente.setParameter("id", idCliente);
         novoPedido.setCliente(queryCliente.getSingleResult());
 
         novoPedido.setPratos(prato);

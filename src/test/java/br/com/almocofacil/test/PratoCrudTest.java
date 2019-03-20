@@ -4,6 +4,7 @@ import br.com.almocofacil.model.Prato;
 import br.com.almocofacil.model.Vendedor;
 import java.util.List;
 import javax.persistence.CacheRetrieveMode;
+import javax.persistence.Query;
 import javax.persistence.TypedQuery;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
@@ -14,6 +15,7 @@ public class PratoCrudTest extends GenericTest {
     @Test
     public void persistirPrato() {
         logger.info("Executando persistirPrato()");
+        
         Prato novoPrato = new Prato();
         novoPrato.setNmPrato("Salada com Bacalhau");
         novoPrato.setValor(14.00);
@@ -91,18 +93,18 @@ public class PratoCrudTest extends GenericTest {
             }
 
         }
+
         assertEquals(temSushi, false);
-        //ssertEquals("",query.getSingleResult());
 
     }
     /*
     @Test
-    public void contabilizaPratosPedidos(){
-         Query query;
-        query = em.createNamedQuery("Prato.PratosPedidos");
+    public void contabilizaPratosPedidos() {
+        
+        Query query =  em.createNamedQuery("Prato.PratosPedidos");
         List<Prato> cartoes = query.getResultList();
-        
+
         assertEquals(4, cartoes.size());
-        
+
     }*/
 }
