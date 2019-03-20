@@ -90,9 +90,11 @@ public class EmpresaCrudTest extends GenericTest {
 
         empresa.setCnpj(cnpj);
         empresa.setTelefone(telefone);
-
+        //limpa o entity manager (deixa de gerenciar o objeto)
         em.clear();
+        //força o gerencimento do objeto
         em.merge(empresa);
+        //sincroniza com o banco de dados
         em.flush();
 
         //Executa a query para confirmar a atualização
