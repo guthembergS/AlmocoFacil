@@ -17,8 +17,8 @@ public class PratoCrudTest extends GenericTest {
         logger.info("Executando persistirPrato()");
         
         Prato novoPrato = new Prato();
-        novoPrato.setNmPrato("Salada com Bacalhau");
-        novoPrato.setValor(14.00);
+        novoPrato.setNmPrato("Lasanha de Bacalhau");
+        novoPrato.setValor(15.00);
 
         TypedQuery<Vendedor> query = em.createNamedQuery("Vendedor.PorId", Vendedor.class);
         query.setHint("javax.persistence.cache.retrieveMode", CacheRetrieveMode.BYPASS);
@@ -29,6 +29,7 @@ public class PratoCrudTest extends GenericTest {
 
         em.persist(novoPrato);
         em.flush();
+        
         assertNotNull(novoPrato.getIdPrato());
 
     }
@@ -38,6 +39,7 @@ public class PratoCrudTest extends GenericTest {
         logger.info("Executando atualizarPrato()");
 
         TypedQuery<Prato> query = em.createNamedQuery("Prato.PorId", Prato.class);
+        //bypassar cache do banco
         query.setHint("javax.persistence.cache.retrieveMode", CacheRetrieveMode.BYPASS);
         query.setParameter("id", 1);
         Prato pratoUpdate = query.getSingleResult();
@@ -97,14 +99,5 @@ public class PratoCrudTest extends GenericTest {
         assertEquals(temSushi, false);
 
     }
-    /*
-    @Test
-    public void contabilizaPratosPedidos() {
-        
-        Query query =  em.createNamedQuery("Prato.PratosPedidos");
-        List<Prato> cartoes = query.getResultList();
 
-        assertEquals(4, cartoes.size());
-
-    }*/
 }
