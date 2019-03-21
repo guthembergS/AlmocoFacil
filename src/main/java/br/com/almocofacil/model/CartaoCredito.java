@@ -18,7 +18,7 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
 @Entity
-@Table(name="CARTAO_CREDITO")
+@Table(name = "CARTAO_CREDITO")
 @NamedQueries(
         {
             @NamedQuery(
@@ -32,22 +32,41 @@ import javax.persistence.TemporalType;
         }
 )
 
-public class CartaoCredito implements Serializable{
-    
+@NamedNativeQueries(
+        {
+            @NamedNativeQuery(
+                    name = "CartaoCredito.PorIdSQL",
+                    query = " SELECT c.ID_CARTAO_CREDITO, c.BANDEIRA, c.DT_EXPIRACAO, c.NUMERO "
+                    + " FROM CARTAO_CREDITO c "
+                    + " WHERE c.ID_CARTAO_CREDITO = ? ",
+                    resultClass = CartaoCredito.class
+            ),
+            @NamedNativeQuery(
+                    name = "CartaoCredito.PorNumeroSQL",
+                    query = " SELECT c.ID_CARTAO_CREDITO, c.BANDEIRA, c.DT_EXPIRACAO, c.NUMERO "
+                    + " FROM CARTAO_CREDITO c "
+                    + " WHERE c.NUMERO = ? ",
+                    resultClass = CartaoCredito.class
+            )
+        }
+)
+
+public class CartaoCredito implements Serializable {
+
     @Id
     @Column(name = "ID_CARTAO_CREDITO")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     protected Long idCartaoCredito;
-    
+
     @OneToOne(fetch = FetchType.LAZY, mappedBy = "cartaoCredito", optional = false)
     private Cliente dono;
-    
+
     @Column(name = "BANDEIRA", nullable = false, length = 100)
     private String bandeira;
-    
+
     @Column(name = "NUMERO", nullable = false, length = 30)
     private String numero;
-    
+
     @Temporal(TemporalType.DATE)
     @Column(name = "DT_EXPIRACAO", nullable = false)
     private Date dataExpiracao;
@@ -87,5 +106,5 @@ public class CartaoCredito implements Serializable{
     public void setNumero(String numero) {
         this.numero = numero;
     }
-    
+
 }

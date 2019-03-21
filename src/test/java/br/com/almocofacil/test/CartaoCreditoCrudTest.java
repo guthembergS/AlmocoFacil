@@ -6,6 +6,7 @@ import org.junit.Test;
 import static org.junit.Assert.*;
 import br.com.almocofacil.model.CartaoCredito;
 import br.com.almocofacil.model.Cliente;
+import javax.persistence.Query;
 
 /**
  *
@@ -73,7 +74,61 @@ public class CartaoCreditoCrudTest extends GenericTest {
         assertEquals(novoNumero, cartaocredito.getNumero());
 
     }
+    
+    @Test
+    public void atualizarCartaoCreditoNativeQueryID() {
+        logger.info("Executando atualizarCartaoCreditoNativeQueryID()");
 
+        long idCartao = 9;
+        String novaBandeira = "AmericanExpress";
+        String novoNumero = "0987890065488763";
+                
+        Query cartaoNativeQuery = em.createNamedQuery("CartaoCredito.PorIdSQL");
+        cartaoNativeQuery.setParameter(1, idCartao);
+        CartaoCredito cartaoCreditoNative = (CartaoCredito) cartaoNativeQuery.getSingleResult();
+        
+        assertNotNull(cartaoCreditoNative);
+               
+        cartaoCreditoNative.setBandeira(novaBandeira);
+        cartaoCreditoNative.setNumero(novoNumero);
+
+        em.flush();
+        
+        cartaoCreditoNative = (CartaoCredito) cartaoNativeQuery.getSingleResult();
+
+        assertEquals(novaBandeira, cartaoCreditoNative.getBandeira());
+        assertEquals(novoNumero, cartaoCreditoNative.getNumero());
+
+    }
+
+    @Test
+    public void atualizarCartaoCreditoNativeQueryNumero() {
+        logger.info("Executando atualizarCartaoCreditoNativeQueryNumero()");
+
+        long idCartao = 9;
+        String novaBandeira = "Hiper";
+        String numeroAntigo = "02020200200200";
+        String novoNumero = "0987890065488666";
+                
+        Query cartaoNativeQuery = em.createNamedQuery("CartaoCredito.PorNumeroSQL");
+        cartaoNativeQuery.setParameter(1, numeroAntigo);
+        CartaoCredito cartaoCreditoNative = (CartaoCredito) cartaoNativeQuery.getSingleResult();
+        
+        assertNotNull(cartaoCreditoNative);
+               
+        cartaoCreditoNative.setBandeira(novaBandeira);
+        cartaoCreditoNative.setNumero(novoNumero);
+
+        em.flush();
+        
+        cartaoNativeQuery.setParameter(1, novoNumero);
+        cartaoCreditoNative = (CartaoCredito) cartaoNativeQuery.getSingleResult();
+
+        assertEquals(novaBandeira, cartaoCreditoNative.getBandeira());
+        assertEquals(novoNumero, cartaoCreditoNative.getNumero());
+
+    }
+    
     @Test
     public void atualizarCartaoCreditoMerge() {
         logger.info("Executando atualizarCartaoCreditoMerge()");
