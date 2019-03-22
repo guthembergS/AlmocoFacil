@@ -6,6 +6,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.NamedNativeQueries;
+import javax.persistence.NamedNativeQuery;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
@@ -25,6 +27,22 @@ import javax.persistence.Table;
         }
         
 )
+@NamedNativeQueries(
+        {
+            @NamedNativeQuery(
+                    name = "EnderecoEntrega.PorIdNative",
+                    query = "SELECT E.ID_ENDERECO_ENTREGA,E.BAIRRO,E.CEP,E.CIDADE,E.ESTADO,E.LOGADOURO FROM ENDERECO_ENTREGA E WHERE E.ID_ENDERECO_ENTREGA = ?",
+                    resultClass = EnderecoEntrega.class
+            ),
+            @NamedNativeQuery(
+                    name = "EnderecoEntrega.PorBairroNative",
+                    query = "SELECT E.ID_ENDERECO_ENTREGA,E.BAIRRO,E.CEP,E.CIDADE,E.ESTADO,E.LOGADOURO FROM ENDERECO_ENTREGA E WHERE UPPER(E.BAIRRO) LIKE UPPER(?)",
+                    resultClass = EnderecoEntrega.class
+            )
+        }
+        
+)
+
 public class EnderecoEntrega implements Serializable {
     @Id
     @Column(name = "ID_ENDERECO_ENTREGA")
