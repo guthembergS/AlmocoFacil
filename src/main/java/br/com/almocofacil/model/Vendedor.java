@@ -7,6 +7,8 @@ import javax.persistence.CascadeType;
 import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
+import javax.persistence.NamedNativeQueries;
+import javax.persistence.NamedNativeQuery;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
@@ -29,6 +31,16 @@ import javax.persistence.Table;
             )
         }
 )
+@NamedNativeQueries(
+        {
+            @NamedNativeQuery(
+                    name = "Vendedor.PorIdSQL",
+                    query = "SELECT ID_USUARIO, email, nome, senha FROM TB_VENDEDOR WHERE ID_USUARIO = ? ",
+                    resultClass = Vendedor.class
+            )
+        }
+)
+
 public class Vendedor extends Usuario implements Serializable {
     
     @OneToMany(mappedBy = "vendedor",fetch = FetchType.LAZY, cascade = CascadeType.ALL)
