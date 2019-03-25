@@ -79,11 +79,12 @@ public class CartaoCreditoCrudTest extends GenericTest {
     public void atualizarCartaoCreditoNativeQueryID() {
         logger.info("Executando atualizarCartaoCreditoNativeQueryID()");
 
-        long idCartao = 9;
+        long idCartao = 7;
         String novaBandeira = "AmericanExpress";
         String novoNumero = "0987890065488763";
                 
         Query cartaoNativeQuery = em.createNamedQuery("CartaoCredito.PorIdSQL");
+        cartaoNativeQuery.setHint("javax.persistence.cache.retrieveMode", CacheRetrieveMode.BYPASS);
         cartaoNativeQuery.setParameter(1, idCartao);
         CartaoCredito cartaoCreditoNative = (CartaoCredito) cartaoNativeQuery.getSingleResult();
         
@@ -105,7 +106,7 @@ public class CartaoCreditoCrudTest extends GenericTest {
     public void atualizarCartaoCreditoNativeQueryNumero() {
         logger.info("Executando atualizarCartaoCreditoNativeQueryNumero()");
 
-        long idCartao = 9;
+        long idCartao = 7;
         String novaBandeira = "Hiper";
         String numeroAntigo = "02020200200200";
         String novoNumero = "0987890065488666";
@@ -133,7 +134,7 @@ public class CartaoCreditoCrudTest extends GenericTest {
     public void atualizarCartaoCreditoMerge() {
         logger.info("Executando atualizarCartaoCreditoMerge()");
 
-        long idCartao = 9;
+        long idCartao = 7;
         String novaBandeira = "AmericanExpress";
         String novoNumero = "0987890065488763";
 
@@ -164,6 +165,27 @@ public class CartaoCreditoCrudTest extends GenericTest {
         logger.info("Executando removerCartaoCredito()");
 
         long idCartao = 8;
+
+       Query cartaoNativeQuery = em.createNamedQuery("CartaoCredito.PorIdSQL");
+        cartaoNativeQuery.setParameter(1, idCartao);
+        CartaoCredito cartaoCreditoNative = (CartaoCredito) cartaoNativeQuery.getSingleResult();
+        
+        assertNotNull(cartaoCreditoNative);
+
+        assertNotNull(cartaoCreditoNative);
+
+        em.remove(cartaoCreditoNative);
+        em.flush();
+
+        assertEquals(0, cartaoNativeQuery.getResultList().size());
+        
+    }
+    
+    @Test
+    public void removerCartaoCreditoNativeQueryID() {
+        logger.info("Executando removerCartaoCredito()");
+
+        long idCartao = 9;
 
         TypedQuery<CartaoCredito> query = em.createNamedQuery("CartaoCredito.PorId", CartaoCredito.class);
         query.setHint("javax.persistence.cache.retrieveMode", CacheRetrieveMode.BYPASS);

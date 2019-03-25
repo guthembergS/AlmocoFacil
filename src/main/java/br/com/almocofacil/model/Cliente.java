@@ -8,6 +8,8 @@ import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.NamedNativeQueries;
+import javax.persistence.NamedNativeQuery;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
@@ -33,6 +35,26 @@ import javax.persistence.Table;
             )
         }
 )
+
+@NamedNativeQueries(
+        {
+            @NamedNativeQuery(
+                    name = "Cliente.PorIdSQL",
+                    query = " c.email, c.nome, c.senha, c.ID_EMPRESA, c.ID_CARTAO_CREDITO"
+                               + " FROM tb_cliente c "
+                               + " WHERE c.ID_USUARIO = ? ",
+                    resultClass = Cliente.class
+            ),
+            @NamedNativeQuery(
+                    name = "Cliente.PorNomeSQL",
+                    query = " SELECT c.ID_USUARIO, c.email, c.nome, c.senha, c.ID_EMPRESA, c.ID_CARTAO_CREDITO"
+                    + " FROM tb_cliente c,  "
+                    + " WHERE c.nome = ? ",
+                    resultClass = Cliente.class
+            )
+        }
+)
+
 @PrimaryKeyJoinColumn(name = "ID_USUARIO", referencedColumnName = "ID_USUARIO")
 public class Cliente extends Usuario implements Serializable {
 

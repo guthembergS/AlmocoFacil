@@ -11,6 +11,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.NamedNativeQueries;
+import javax.persistence.NamedNativeQuery;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
@@ -22,7 +24,7 @@ import javax.persistence.Table;
  * @author guthemberg
  */
 @Entity
-@Table(name="EMPRESA")
+@Table(name = "EMPRESA")
 @NamedQueries(
         {
             @NamedQuery(
@@ -30,29 +32,41 @@ import javax.persistence.Table;
                     query = "SELECT e FROM Empresa e WHERE e.idEmpresa = :id"
             )
         }
-        
 )
+
+@NamedNativeQueries(
+        {
+            @NamedNativeQuery(
+                    name = "Empresa.PorIdSQL",
+                    query = " SELECT e.ID_EMPRESA, e.CNPJ, e.NM_EMPRESA, e.TELEFONE, e.ID_ENDERECO_ENTREGA "
+                    + " FROM empresa e "
+                    + " WHERE e.ID_EMPRESA = ? ",
+                    resultClass = Empresa.class
+            )
+        }
+)
+
 public class Empresa implements Serializable {
-    
+
     @Id
     @Column(name = "ID_EMPRESA")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     protected Long idEmpresa;
-    
+
     @Column(name = "NM_EMPRESA")
     protected String nmEmpresa;
-    
+
     @Column(name = "CNPJ")
     protected String cnpj;
 
     @Column(name = "TELEFONE")
     protected String telefone;
-    
+
     @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL, optional = true)
     @JoinColumn(name = "ID_ENDERECO_ENTREGA", referencedColumnName = "ID_ENDERECO_ENTREGA")
     private EnderecoEntrega enderecoEntrega;
 
-    @OneToMany(mappedBy = "empresa",fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "empresa", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     protected List<Cliente> clientes = new ArrayList<Cliente>();
 
     public String getNmEmpresa() {
@@ -71,7 +85,6 @@ public class Empresa implements Serializable {
         this.telefone = telefone;
     }
 
-    
     public String getCnpj() {
         return cnpj;
     }
@@ -95,13 +108,11 @@ public class Empresa implements Serializable {
     public boolean setClientes(Cliente clientes) {
         //this.clientes = clientes;
         return this.clientes.add(clientes);
-        
+
     }
 
     public Long getIdEmpresa() {
         return idEmpresa;
     }
-    
-    
-    
+
 }

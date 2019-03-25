@@ -4,6 +4,7 @@ import br.com.almocofacil.model.CartaoCredito;
 import br.com.almocofacil.model.Cliente;
 import br.com.almocofacil.model.Empresa;
 import javax.persistence.CacheRetrieveMode;
+import javax.persistence.Query;
 import javax.persistence.TypedQuery;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
@@ -87,6 +88,45 @@ public class ClienteCrudTest extends GenericTest {
         queryCli.setHint("javax.persistence.cache.retrieveMode", CacheRetrieveMode.BYPASS);
         queryCli.setParameter("nome", novoNome);
         Cliente clienteAtualizado = queryCli.getSingleResult();
+
+        assertEquals(novoEmail, clienteAtualizado.getEmail());
+        assertEquals(novaSenha, clienteAtualizado.getSenha());
+        assertEquals(2, clienteAtualizado.getEmpresa().getIdEmpresa().longValue());
+
+    }
+
+    @Test
+    public void atualizarClienteNativeQueryId() {
+        logger.info("Executando atualizarClienteNativeQueryId()");
+
+        String novoNome = "Guthemberg Augusto de Souza";
+        String novoEmail = "guthemberg@outlook.com";
+        String novaSenha = "guthemberg123";
+        long idCliente = 1;
+        long idEmpresa = 2;
+
+        Query clienteNativeQuery = em.createNamedQuery("Cliente.PorIdSQL");
+        clienteNativeQuery.setHint("javax.persistence.cache.retrieveMode", CacheRetrieveMode.BYPASS);
+        clienteNativeQuery.setParameter(1, idCliente);
+        Cliente clienteNative = (Cliente) clienteNativeQuery.getSingleResult();
+
+        assertNotNull(clienteNative);
+
+        clienteNative.setNome(novoNome);
+        clienteNative.setEmail(novoEmail);
+        clienteNative.setSenha(novaSenha);
+
+        Query empresaNativeQuery = em.createNamedQuery("Empresa.PorIdSQL");
+        empresaNativeQuery.setHint("javax.persistence.cache.retrieveMode", CacheRetrieveMode.BYPASS);
+        clienteNativeQuery.setParameter(1, idEmpresa);
+        Empresa empresaNative = (Empresa) clienteNativeQuery.getSingleResult();
+
+        assertNotNull(empresaNative);
+        clienteNative.setEmpresa(empresaNative);
+
+        em.flush();
+        
+        Cliente clienteAtualizado = (Cliente) clienteNativeQuery.getSingleResult();
 
         assertEquals(novoEmail, clienteAtualizado.getEmail());
         assertEquals(novaSenha, clienteAtualizado.getSenha());
