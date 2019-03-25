@@ -1,7 +1,9 @@
 package br.com.almocofacil.test;
 
 import br.com.almocofacil.model.EnderecoEntrega;
+import java.util.List;
 import javax.persistence.CacheRetrieveMode;
+import javax.persistence.Query;
 import javax.persistence.TypedQuery;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
@@ -126,5 +128,55 @@ public class EnderecoEntregaCrudTeste extends GenericTest {
         assertEquals(0, enderecoentrega.getResultList().size());
         
     }
+    
+    @Test
+    public void atualizarEnderecoEntregaNativeQuery() {
+        logger.info("Executando atualizarEnderecoEntrega()");
 
+        String bairro = "Boa Viagem";
+        String cep = "53530798";
+        String cidade = "Recife";
+        String estado = "Pernambuco";
+        String logradouro = "Av Domingos Ferreira";
+        long idEndereco = 1;
+
+        Query query;
+        query = em.createNamedQuery("EnderecoEntrega.PorIdNative");
+        query.setParameter(1, idEndereco);
+        
+        EnderecoEntrega enderecoEntrega = (EnderecoEntrega) query.getSingleResult();
+        
+        assertNotNull(enderecoEntrega);
+        enderecoEntrega.setBairro(bairro);
+        enderecoEntrega.setCep(cep);
+        enderecoEntrega.setCidade(cidade);
+        enderecoEntrega.setEstado(estado);
+        enderecoEntrega.setLogadouro(logradouro);
+
+        em.flush();
+
+//        //Executa a query para confirmar a atualização
+        EnderecoEntrega enderecoatualizado = (EnderecoEntrega) query.getSingleResult();
+
+        assertEquals(bairro, enderecoatualizado.getBairro());
+        assertEquals(estado, enderecoatualizado.getEstado());
+        assertEquals(cidade, enderecoatualizado.getCidade());
+        assertEquals(cep, enderecoatualizado.getCep());
+        assertEquals(logradouro, enderecoatualizado.getLogadouro());
+    }
+
+    @Test
+    public void buscaEnderecoEntregaBairroNativeQuery() {
+        logger.info("Executando buscaEnderecoEntregaBairroNativeQuery()");
+
+        String bairro = "imbiribeira";
+        
+        Query query;
+        query = em.createNamedQuery("EnderecoEntrega.PorBairroNative");
+        query.setParameter(1, bairro);
+        
+        List<EnderecoEntrega> enderecoEntrega = (List<EnderecoEntrega>) query.getResultList();
+        assertEquals(2, enderecoEntrega.size());
+    }
+    
 }
