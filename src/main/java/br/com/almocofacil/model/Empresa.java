@@ -39,7 +39,7 @@ import javax.persistence.Table;
             @NamedNativeQuery(
                     name = "Empresa.PorIdSQL",
                     query = " SELECT e.ID_EMPRESA, e.CNPJ, e.NM_EMPRESA, e.TELEFONE, e.ID_ENDERECO_ENTREGA "
-                    + " FROM empresa e "
+                    + " FROM EMPRESA e "
                     + " WHERE e.ID_EMPRESA = ? ",
                     resultClass = Empresa.class
             )

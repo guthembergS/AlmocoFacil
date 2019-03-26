@@ -25,33 +25,36 @@ import javax.persistence.Table;
                     query = "SELECT e FROM EnderecoEntrega e WHERE e.idEnderecoEntrega = :id"
             )
         }
-        
 )
 @NamedNativeQueries(
         {
             @NamedNativeQuery(
-                    name = "EnderecoEntrega.PorIdNative",
-                    query = "SELECT E.ID_ENDERECO_ENTREGA,E.BAIRRO,E.CEP,E.CIDADE,E.ESTADO,E.LOGADOURO FROM ENDERECO_ENTREGA E WHERE E.ID_ENDERECO_ENTREGA = ?",
+                    name = "EnderecoEntrega.PorIdSQL",
+                    query = "SELECT E.ID_ENDERECO_ENTREGA,E.BAIRRO,E.CEP,E.CIDADE,E.ESTADO,E.LOGADOURO "
+                    + "FROM ENDERECO_ENTREGA E "
+                    + "WHERE E.ID_ENDERECO_ENTREGA = ?",
                     resultClass = EnderecoEntrega.class
             ),
             @NamedNativeQuery(
-                    name = "EnderecoEntrega.PorBairroNative",
-                    query = "SELECT E.ID_ENDERECO_ENTREGA,E.BAIRRO,E.CEP,E.CIDADE,E.ESTADO,E.LOGADOURO FROM ENDERECO_ENTREGA E WHERE UPPER(E.BAIRRO) LIKE UPPER(?)",
+                    name = "EnderecoEntrega.PorBairroSQL",
+                    query = "SELECT E.ID_ENDERECO_ENTREGA,E.BAIRRO,E.CEP,E.CIDADE,E.ESTADO,E.LOGADOURO "
+                    + "FROM ENDERECO_ENTREGA E "
+                    + "WHERE UPPER(E.BAIRRO) LIKE UPPER(?)",
                     resultClass = EnderecoEntrega.class
             )
         }
-        
 )
 
 public class EnderecoEntrega implements Serializable {
+
     @Id
     @Column(name = "ID_ENDERECO_ENTREGA")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     protected Long idEnderecoEntrega;
-    
+
     @Column(name = "LOGADOURO")
     protected String logadouro;
-    
+
     @Column(name = "BAIRRO")
     protected String bairro;
 
@@ -103,8 +106,9 @@ public class EnderecoEntrega implements Serializable {
     public void setCep(String cep) {
         this.cep = cep;
     }
-     public long getId() {
+
+    public long getId() {
         return idEnderecoEntrega;
     }
-    
+
 }

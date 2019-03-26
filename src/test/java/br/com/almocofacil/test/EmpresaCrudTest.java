@@ -1,9 +1,11 @@
 package br.com.almocofacil.test;
 
+import br.com.almocofacil.model.Cliente;
 import br.com.almocofacil.model.Empresa;
 import br.com.almocofacil.model.EnderecoEntrega;
 import static br.com.almocofacil.test.GenericTest.logger;
 import javax.persistence.CacheRetrieveMode;
+import javax.persistence.Query;
 import javax.persistence.TypedQuery;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
@@ -68,6 +70,36 @@ public class EmpresaCrudTest extends GenericTest {
 
         assertEquals(cnpj, empresa.getCnpj());
         assertEquals(nome, empresa.getNmEmpresa());
+
+    }
+    
+    @Test
+    public void atualizarEmpresaNativeQueryId() {
+        logger.info("Executando atualizarEmpresaNativeQueryId()");
+
+        String cnpj = "12352637829382";
+        String nome = "IFPE";
+        long idEmpresa = 1;
+
+        Empresa empresa = new Empresa();
+
+        Query empresaNativeQuery = em.createNamedQuery("Empresa.PorIdSQL");
+        empresaNativeQuery.setHint("javax.persistence.cache.retrieveMode", CacheRetrieveMode.BYPASS);
+        empresaNativeQuery.setParameter(1, idEmpresa);
+        Empresa empresaNative = (Empresa) empresaNativeQuery.getSingleResult();
+
+        assertNotNull(empresaNative);
+
+        empresaNative.setCnpj(cnpj);        
+        empresaNative.setNmEmpresa(nome);
+
+        em.flush();
+
+        //Executa a query para confirmar a atualização
+        empresaNativeQuery.getSingleResult();
+
+        assertEquals(cnpj, empresaNative.getCnpj());
+        assertEquals(nome, empresaNative.getNmEmpresa());
 
     }
 

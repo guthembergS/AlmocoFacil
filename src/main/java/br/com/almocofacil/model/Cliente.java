@@ -21,6 +21,7 @@ import javax.persistence.Table;
  *
  * @author guthemberg
  */
+
 @Entity
 @Table(name = "TB_CLIENTE")
 @NamedQueries(
@@ -40,11 +41,12 @@ import javax.persistence.Table;
         {
             @NamedNativeQuery(
                     name = "Cliente.PorIdSQL",
-                    query = " c.email, c.nome, c.senha, c.ID_EMPRESA, c.ID_CARTAO_CREDITO"
-                               + " FROM tb_cliente c "
+                    query = "SELECT c.id_usuario, c.email, c.nome, c.senha, c.ID_EMPRESA, c.ID_CARTAO_CREDITO"
+                               + " FROM TB_CLIENTE c "
                                + " WHERE c.ID_USUARIO = ? ",
                     resultClass = Cliente.class
             ),
+            
             @NamedNativeQuery(
                     name = "Cliente.PorNomeSQL",
                     query = " SELECT c.ID_USUARIO, c.email, c.nome, c.senha, c.ID_EMPRESA, c.ID_CARTAO_CREDITO"
@@ -52,6 +54,7 @@ import javax.persistence.Table;
                     + " WHERE c.nome = ? ",
                     resultClass = Cliente.class
             )
+                                                              
         }
 )
 

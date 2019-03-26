@@ -102,7 +102,7 @@ public class ClienteCrudTest extends GenericTest {
         String novoNome = "Guthemberg Augusto de Souza";
         String novoEmail = "guthemberg@outlook.com";
         String novaSenha = "guthemberg123";
-        long idCliente = 1;
+        long idCliente = 2;
         long idEmpresa = 2;
 
         Query clienteNativeQuery = em.createNamedQuery("Cliente.PorIdSQL");
@@ -118,14 +118,14 @@ public class ClienteCrudTest extends GenericTest {
 
         Query empresaNativeQuery = em.createNamedQuery("Empresa.PorIdSQL");
         empresaNativeQuery.setHint("javax.persistence.cache.retrieveMode", CacheRetrieveMode.BYPASS);
-        clienteNativeQuery.setParameter(1, idEmpresa);
-        Empresa empresaNative = (Empresa) clienteNativeQuery.getSingleResult();
+        empresaNativeQuery.setParameter(1, idEmpresa);
+        Empresa empresaNative = (Empresa) empresaNativeQuery.getSingleResult();
 
         assertNotNull(empresaNative);
         clienteNative.setEmpresa(empresaNative);
 
         em.flush();
-        
+
         Cliente clienteAtualizado = (Cliente) clienteNativeQuery.getSingleResult();
 
         assertEquals(novoEmail, clienteAtualizado.getEmail());
@@ -192,7 +192,7 @@ public class ClienteCrudTest extends GenericTest {
     public void removerCliente() {
         logger.info("Executando removerCliente()");
 
-        long idCliente = 10;
+        long idCliente = 9;
 
         TypedQuery<Cliente> query = em.createNamedQuery("Cliente.PorId", Cliente.class);
         query.setHint("javax.persistence.cache.retrieveMode", CacheRetrieveMode.BYPASS);
