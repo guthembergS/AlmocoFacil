@@ -72,36 +72,6 @@ public class EmpresaCrudTest extends GenericTest {
         assertEquals(nome, empresa.getNmEmpresa());
 
     }
-    
-    @Test
-    public void atualizarEmpresaNativeQueryId() {
-        logger.info("Executando atualizarEmpresaNativeQueryId()");
-
-        String cnpj = "12352637829382";
-        String nome = "IFPE";
-        long idEmpresa = 1;
-
-        Empresa empresa = new Empresa();
-
-        Query empresaNativeQuery = em.createNamedQuery("Empresa.PorIdSQL");
-        empresaNativeQuery.setHint("javax.persistence.cache.retrieveMode", CacheRetrieveMode.BYPASS);
-        empresaNativeQuery.setParameter(1, idEmpresa);
-        Empresa empresaNative = (Empresa) empresaNativeQuery.getSingleResult();
-
-        assertNotNull(empresaNative);
-
-        empresaNative.setCnpj(cnpj);        
-        empresaNative.setNmEmpresa(nome);
-
-        em.flush();
-
-        //Executa a query para confirmar a atualização
-        empresaNativeQuery.getSingleResult();
-
-        assertEquals(cnpj, empresaNative.getCnpj());
-        assertEquals(nome, empresaNative.getNmEmpresa());
-
-    }
 
     @Test
     public void atualizarEmpresaMerge() {
@@ -157,4 +127,37 @@ public class EmpresaCrudTest extends GenericTest {
         assertEquals(0, query.getResultList().size());
 
     }
+
+    /*
+    @Test
+    public void atualizarEmpresaNativeQueryId() {
+        logger.info("Executando atualizarEmpresaNativeQueryId()");
+
+        String cnpj = "12352637829382";
+        String nome = "IFPE";
+        long idEmpresa = 1;
+
+        Empresa empresa = new Empresa();
+
+        Query empresaNativeQuery = em.createNamedQuery("Empresa.PorIdSQL");
+        empresaNativeQuery.setHint("javax.persistence.cache.retrieveMode", CacheRetrieveMode.BYPASS);
+        empresaNativeQuery.setParameter(1, idEmpresa);
+        Empresa empresaNative = (Empresa) empresaNativeQuery.getSingleResult();
+
+        assertNotNull(empresaNative);
+
+        empresaNative.setCnpj(cnpj);
+        empresaNative.setNmEmpresa(nome);
+
+        em.flush();
+
+        //Executa a query para confirmar a atualização
+        empresaNativeQuery.getSingleResult();
+
+        assertEquals(cnpj, empresaNative.getCnpj());
+        assertEquals(nome, empresaNative.getNmEmpresa());
+
+    }
+     */
+    
 }

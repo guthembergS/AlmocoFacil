@@ -99,7 +99,7 @@ public class EnderecoEntregaCrudTeste extends GenericTest {
         em.clear();
         em.merge(enderecoEntrega);
         em.flush();
-       
+
         //Executa a query para confirmar a atualização
         EnderecoEntrega enderecoatualizado = enderecoentrega.getSingleResult();
 
@@ -114,21 +114,22 @@ public class EnderecoEntregaCrudTeste extends GenericTest {
     @Test
     public void removerEnderecoEntrega() {
         logger.info("Executando removerEnderecoEntrega()");
-        
+
         long idEnderecoEntrega = 4;
 
         TypedQuery<EnderecoEntrega> enderecoentrega = em.createNamedQuery("EnderecoEntrega.PorId", EnderecoEntrega.class);
         enderecoentrega.setHint("javax.persistence.cache.retrieveMode", CacheRetrieveMode.BYPASS);
         enderecoentrega.setParameter("id", idEnderecoEntrega);
         EnderecoEntrega endereco = enderecoentrega.getSingleResult();
-        
+
         em.remove(endereco);
         em.flush();
-        
+
         assertEquals(0, enderecoentrega.getResultList().size());
-        
+
     }
-    
+
+    /*
     @Test
     public void atualizarEnderecoEntregaNativeQuery() {
         logger.info("Executando atualizarEnderecoEntrega()");
@@ -155,7 +156,7 @@ public class EnderecoEntregaCrudTeste extends GenericTest {
 
         em.flush();
 
-//        //Executa a query para confirmar a atualização
+        //Executa a query para confirmar a atualização
         EnderecoEntrega enderecoatualizado = (EnderecoEntrega) query.getSingleResult();
 
         assertEquals(bairro, enderecoatualizado.getBairro());
@@ -178,5 +179,5 @@ public class EnderecoEntregaCrudTeste extends GenericTest {
         List<EnderecoEntrega> enderecoEntrega = (List<EnderecoEntrega>) query.getResultList();
         assertEquals(2, enderecoEntrega.size());
     }
-    
+     */
 }

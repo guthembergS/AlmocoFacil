@@ -96,45 +96,6 @@ public class ClienteCrudTest extends GenericTest {
     }
 
     @Test
-    public void atualizarClienteNativeQueryId() {
-        logger.info("Executando atualizarClienteNativeQueryId()");
-
-        String novoNome = "Guthemberg Augusto de Souza";
-        String novoEmail = "guthemberg@outlook.com";
-        String novaSenha = "guthemberg123";
-        long idCliente = 2;
-        long idEmpresa = 2;
-
-        Query clienteNativeQuery = em.createNamedQuery("Cliente.PorIdSQL");
-        clienteNativeQuery.setHint("javax.persistence.cache.retrieveMode", CacheRetrieveMode.BYPASS);
-        clienteNativeQuery.setParameter(1, idCliente);
-        Cliente clienteNative = (Cliente) clienteNativeQuery.getSingleResult();
-
-        assertNotNull(clienteNative);
-
-        clienteNative.setNome(novoNome);
-        clienteNative.setEmail(novoEmail);
-        clienteNative.setSenha(novaSenha);
-
-        Query empresaNativeQuery = em.createNamedQuery("Empresa.PorIdSQL");
-        empresaNativeQuery.setHint("javax.persistence.cache.retrieveMode", CacheRetrieveMode.BYPASS);
-        empresaNativeQuery.setParameter(1, idEmpresa);
-        Empresa empresaNative = (Empresa) empresaNativeQuery.getSingleResult();
-
-        assertNotNull(empresaNative);
-        clienteNative.setEmpresa(empresaNative);
-
-        em.flush();
-
-        Cliente clienteAtualizado = (Cliente) clienteNativeQuery.getSingleResult();
-
-        assertEquals(novoEmail, clienteAtualizado.getEmail());
-        assertEquals(novaSenha, clienteAtualizado.getSenha());
-        assertEquals(2, clienteAtualizado.getEmpresa().getIdEmpresa().longValue());
-
-    }
-
-    @Test
     public void atualizarClienteMerge() {
         logger.info("Executando atualizarClienteMerge()");
 
@@ -207,5 +168,45 @@ public class ClienteCrudTest extends GenericTest {
         assertEquals(0, query.getResultList().size());
 
     }
+    /*
+    @Test
+    public void atualizarClienteNativeQueryId() {
+        logger.info("Executando atualizarClienteNativeQueryId()");
 
+        String novoNome = "Guthemberg Augusto de Souza";
+        String novoEmail = "guthemberg@outlook.com";
+        String novaSenha = "guthemberg123";
+        long idCliente = 2;
+        long idEmpresa = 2;
+
+        Query clienteNativeQuery = em.createNamedQuery("Cliente.PorIdSQL");
+        clienteNativeQuery.setHint("javax.persistence.cache.retrieveMode", CacheRetrieveMode.BYPASS);
+        clienteNativeQuery.setParameter(1, idCliente);
+        Cliente clienteNative = (Cliente) clienteNativeQuery.getSingleResult();
+
+        assertNotNull(clienteNative);
+
+        clienteNative.setNome(novoNome);
+        clienteNative.setEmail(novoEmail);
+        clienteNative.setSenha(novaSenha);
+
+        Query empresaNativeQuery = em.createNamedQuery("Empresa.PorIdSQL");
+        empresaNativeQuery.setHint("javax.persistence.cache.retrieveMode", CacheRetrieveMode.BYPASS);
+        empresaNativeQuery.setParameter(1, idEmpresa);
+        Empresa empresaNative = (Empresa) empresaNativeQuery.getSingleResult();
+
+        assertNotNull(empresaNative);
+        clienteNative.setEmpresa(empresaNative);
+
+        em.flush();
+
+        Cliente clienteAtualizado = (Cliente) clienteNativeQuery.getSingleResult();
+
+        assertEquals(novoEmail, clienteAtualizado.getEmail());
+        assertEquals(novaSenha, clienteAtualizado.getSenha());
+        assertEquals(2, clienteAtualizado.getEmpresa().getIdEmpresa().longValue());
+
+    }
+     */
+    
 }

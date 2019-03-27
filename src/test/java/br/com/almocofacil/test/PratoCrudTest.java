@@ -16,7 +16,9 @@ public class PratoCrudTest extends GenericTest {
     @Test
     public void persistirPrato() {
         logger.info("Executando persistirPrato()");
-        long id_vendedor = 1;
+
+        long idVendedor = 1;
+
         Prato novoPrato = new Prato();
         novoPrato.setNmPrato("Lasanha de Bacalhau");
         novoPrato.setValor(15.00);
@@ -30,7 +32,7 @@ public class PratoCrudTest extends GenericTest {
        
         em.persist(novoPrato);
         em.flush();
-        
+
         assertNotNull(novoPrato.getIdPrato());
 
     }
@@ -39,18 +41,23 @@ public class PratoCrudTest extends GenericTest {
     public void atualizarPrato() {
         logger.info("Executando atualizarPrato()");
 
+        long idPrato = 1;
+        String novoNome = "Lasanha Bolonhesa";
+
         TypedQuery<Prato> query = em.createNamedQuery("Prato.PorId", Prato.class);
-        //bypassar cache do banco
         query.setHint("javax.persistence.cache.retrieveMode", CacheRetrieveMode.BYPASS);
-        query.setParameter("id", 1);
+        query.setParameter("id", idPrato);
         Prato pratoUpdate = query.getSingleResult();
+
         assertNotNull(pratoUpdate);
         pratoUpdate.setNmPrato("Lasanha Bolonhesa");
 
+        pratoUpdate.setNmPrato(novoNome);
+
         em.flush();
 
-        Prato pratoAtual = query.getSingleResult();
-        assertEquals("Lasanha Bolonhesa", pratoAtual.getNmPrato());
+        pratoUpdate = query.getSingleResult();
+        assertEquals(novoNome, pratoUpdate.getNmPrato());
     }
 
     @Test
@@ -69,25 +76,37 @@ public class PratoCrudTest extends GenericTest {
     public void atualizarPratoMerge() {
         logger.info("Executando atualizarPratoMerge()");
 
+        long idPrato = 1;
+        String novoNome = "Bacalhoada";
+
         TypedQuery<Prato> query = em.createNamedQuery("Prato.PorId", Prato.class);
         query.setHint("javax.persistence.cache.retrieveMode", CacheRetrieveMode.BYPASS);
-        query.setParameter("id", 8);
-        Prato prato = query.getSingleResult();
-        assertNotNull(prato);
-        prato.setNmPrato("Bacalhoada");
+        query.setParameter("id", idPrato);
+        Prato pratoUpdate = query.getSingleResult();
+
+        assertNotNull(pratoUpdate);
+
+        pratoUpdate.setNmPrato(novoNome);
+
         em.clear();
-        em.merge(prato);
+        em.merge(pratoUpdate);
         em.flush();
-        assertEquals("Bacalhoada", query.getSingleResult().getNmPrato());
+
+        assertEquals(novoNome, query.getSingleResult().getNmPrato());
 
     }
 
     @Test
     public void removerPrato() {
+        logger.info("Executando removerPrato()");
+        
+        String nomePrato = "sushi";
+        
         TypedQuery<Prato> query = em.createNamedQuery("Prato.PorNome", Prato.class);
         query.setHint("javax.persistence.cache.retrieveMode", CacheRetrieveMode.BYPASS);
-        query.setParameter("nome", "sushi");
+        query.setParameter("nome", nomePrato);
         Prato pratoRemov = query.getSingleResult();
+
         assertNotNull(pratoRemov);
 
         long idVendedor = pratoRemov.getVendedor().getIdUsuario();
@@ -102,11 +121,9 @@ public class PratoCrudTest extends GenericTest {
         boolean temSushi = false;
 
         for (int i = 0; i > pratos.size(); i++) {
-
             if (pratos.get(i).getNmPrato().equals("sushi")) {
                 temSushi = true;
             }
-
         }
 
         assertEquals(temSushi, false);

@@ -139,5 +139,6 @@ public class PedidoCrudTest extends GenericTest {
 
         assertEquals(0, queryRemove.getResultList().size());
 
-    }
+    }        
+    
 }
