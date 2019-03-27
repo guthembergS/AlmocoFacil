@@ -21,19 +21,12 @@ public class PratoCrudTest extends GenericTest {
         novoPrato.setNmPrato("Lasanha de Bacalhau");
         novoPrato.setValor(15.00);
 
-//        TypedQuery<Vendedor> query = em.createNamedQuery("Vendedor.PorId", Vendedor.class);
-//        query.setHint("javax.persistence.cache.retrieveMode", CacheRetrieveMode.BYPASS);
-//        query.setParameter("id", 1);
-//        Vendedor vendedor = query.getSingleResult();
-//        assertNotNull(vendedor);
-//        novoPrato.setVendedor(vendedor);
-
-        Query vendedor_native = em.createNamedQuery("Vendedor.PorIdSQL");
-        vendedor_native.setHint("javax.persistence.cache.retrieveMode", CacheRetrieveMode.BYPASS);
-        vendedor_native.setParameter(1, id_vendedor);
-        Vendedor vendedor_native_2 = (Vendedor) vendedor_native.getSingleResult();
-        novoPrato.setVendedor(vendedor_native_2);
-
+        TypedQuery<Vendedor> query = em.createNamedQuery("Vendedor.PorId", Vendedor.class);
+        query.setHint("javax.persistence.cache.retrieveMode", CacheRetrieveMode.BYPASS);
+        query.setParameter("id", 1);
+        Vendedor vendedor = query.getSingleResult();
+        assertNotNull(vendedor);
+        novoPrato.setVendedor(vendedor);
        
         em.persist(novoPrato);
         em.flush();
@@ -53,10 +46,6 @@ public class PratoCrudTest extends GenericTest {
         Prato pratoUpdate = query.getSingleResult();
         assertNotNull(pratoUpdate);
         pratoUpdate.setNmPrato("Lasanha Bolonhesa");
-        
-//        Query prato_query = em.createNamedQuery("Prato.PorNomeSQL", Prato.class);
-//       prato_query.setParameter( 1, "Macarronada");
-//       Prato prato_consulta = (Prato)prato_query.getSingleResult();
 
         em.flush();
 
@@ -64,6 +53,18 @@ public class PratoCrudTest extends GenericTest {
         assertEquals("Lasanha Bolonhesa", pratoAtual.getNmPrato());
     }
 
+    @Test
+    public void atualizarPratoNativeQuery() {
+        logger.info("Executando atualizarPrato()");
+
+       
+
+        em.flush();
+
+        //Prato pratoAtual = query.getSingleResult();
+        //assertEquals("Lasanha Bolonhesa", pratoAtual.getNmPrato());
+    }
+    
     @Test
     public void atualizarPratoMerge() {
         logger.info("Executando atualizarPratoMerge()");
@@ -110,6 +111,45 @@ public class PratoCrudTest extends GenericTest {
 
         assertEquals(temSushi, false);
 
+    }
+    @Test
+    public void persistirPratoNativeQuery() {
+        logger.info("Executando persistirPrato()");
+        long id_vendedor = 4;
+        Prato novoPrato = new Prato();
+        novoPrato.setNmPrato("Lasanha de Bacalhau");
+        novoPrato.setValor(15.00);
+
+        Query vendedor_native = em.createNamedQuery("Vendedor.PorIdSQL");
+        vendedor_native.setHint("javax.persistence.cache.retrieveMode", CacheRetrieveMode.BYPASS);
+        vendedor_native.setParameter(1, id_vendedor);
+        Vendedor vendedor_native_2 = (Vendedor) vendedor_native.getSingleResult();
+        novoPrato.setVendedor(vendedor_native_2);
+
+       
+        em.persist(novoPrato);
+        em.flush();
+        
+        assertNotNull(novoPrato.getIdPrato());
+
+    }
+    
+    @Test
+    public void atualizarPratoNative() {
+        logger.info("Executando atualizarPrato()");
+
+        TypedQuery<Prato> query = em.createNamedQuery("Prato.PorId", Prato.class);
+        //bypassar cache do banco
+        query.setHint("javax.persistence.cache.retrieveMode", CacheRetrieveMode.BYPASS);
+        query.setParameter("id", 1);
+        Prato pratoUpdate = query.getSingleResult();
+        assertNotNull(pratoUpdate);
+        pratoUpdate.setNmPrato("Lasanha Bolonhesa");
+
+        em.flush();
+
+        Prato pratoAtual = query.getSingleResult();
+        assertEquals("Lasanha Bolonhesa", pratoAtual.getNmPrato());
     }
 
 }
