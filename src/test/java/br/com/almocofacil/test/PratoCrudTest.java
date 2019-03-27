@@ -21,12 +21,27 @@ public class PratoCrudTest extends GenericTest {
         novoPrato.setNmPrato("Lasanha de Bacalhau");
         novoPrato.setValor(15.00);
 
-//        TypedQuery<Vendedor> query = em.createNamedQuery("Vendedor.PorId", Vendedor.class);
-//        query.setHint("javax.persistence.cache.retrieveMode", CacheRetrieveMode.BYPASS);
-//        query.setParameter("id", 1);
-//        Vendedor vendedor = query.getSingleResult();
-//        assertNotNull(vendedor);
-//        novoPrato.setVendedor(vendedor);
+        TypedQuery<Vendedor> query = em.createNamedQuery("Vendedor.PorId", Vendedor.class);
+        query.setHint("javax.persistence.cache.retrieveMode", CacheRetrieveMode.BYPASS);
+        query.setParameter("id", 1);
+        Vendedor vendedor = query.getSingleResult();
+        assertNotNull(vendedor);
+        novoPrato.setVendedor(vendedor);
+       
+        em.persist(novoPrato);
+        em.flush();
+        
+        assertNotNull(novoPrato.getIdPrato());
+
+    }
+    
+    @Test
+    public void persistirPratoNativeQuery() {
+        logger.info("Executando persistirPrato()");
+        long id_vendedor = 4;
+        Prato novoPrato = new Prato();
+        novoPrato.setNmPrato("Lasanha de Bacalhau");
+        novoPrato.setValor(15.00);
 
         Query vendedor_native = em.createNamedQuery("Vendedor.PorIdSQL");
         vendedor_native.setHint("javax.persistence.cache.retrieveMode", CacheRetrieveMode.BYPASS);
@@ -53,10 +68,6 @@ public class PratoCrudTest extends GenericTest {
         Prato pratoUpdate = query.getSingleResult();
         assertNotNull(pratoUpdate);
         pratoUpdate.setNmPrato("Lasanha Bolonhesa");
-        
-//        Query prato_query = em.createNamedQuery("Prato.PorNomeSQL", Prato.class);
-//       prato_query.setParameter( 1, "Macarronada");
-//       Prato prato_consulta = (Prato)prato_query.getSingleResult();
 
         em.flush();
 
@@ -64,6 +75,18 @@ public class PratoCrudTest extends GenericTest {
         assertEquals("Lasanha Bolonhesa", pratoAtual.getNmPrato());
     }
 
+    @Test
+    public void atualizarPratoNativeQuery() {
+        logger.info("Executando atualizarPrato()");
+
+       
+
+        em.flush();
+
+        //Prato pratoAtual = query.getSingleResult();
+        //assertEquals("Lasanha Bolonhesa", pratoAtual.getNmPrato());
+    }
+    
     @Test
     public void atualizarPratoMerge() {
         logger.info("Executando atualizarPratoMerge()");

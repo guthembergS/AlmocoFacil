@@ -62,6 +62,8 @@
     <TB_VENDEDOR NOME="saborear restaurante" EMAIL="saborear.restaurante@mail.com" SENHA="saborear123" />
     <!-- ID_USUARIO 3 -->
     <TB_VENDEDOR NOME="Paladar Nordestino" EMAIL="palador.nordestino@mail.com" SENHA="paladar123" />
+    <!-- ID_USUARIO 4 -->
+    <TB_VENDEDOR NOME="MV" EMAIL="gerson.brandao@mv.com.br" SENHA="mvmv@@2019" />
     <!-- ID_PRATO 1 -->
     <PRATO NM_PRATO="Lasanha" VALOR="13.00" ID_VENDEDOR="1" />
     <!-- ID_PRATO 2 -->
