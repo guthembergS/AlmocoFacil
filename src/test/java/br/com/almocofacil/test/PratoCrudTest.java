@@ -34,28 +34,6 @@ public class PratoCrudTest extends GenericTest {
         assertNotNull(novoPrato.getIdPrato());
 
     }
-    
-    @Test
-    public void persistirPratoNativeQuery() {
-        logger.info("Executando persistirPrato()");
-        long id_vendedor = 4;
-        Prato novoPrato = new Prato();
-        novoPrato.setNmPrato("Lasanha de Bacalhau");
-        novoPrato.setValor(15.00);
-
-        Query vendedor_native = em.createNamedQuery("Vendedor.PorIdSQL");
-        vendedor_native.setHint("javax.persistence.cache.retrieveMode", CacheRetrieveMode.BYPASS);
-        vendedor_native.setParameter(1, id_vendedor);
-        Vendedor vendedor_native_2 = (Vendedor) vendedor_native.getSingleResult();
-        novoPrato.setVendedor(vendedor_native_2);
-
-       
-        em.persist(novoPrato);
-        em.flush();
-        
-        assertNotNull(novoPrato.getIdPrato());
-
-    }
 
     @Test
     public void atualizarPrato() {
@@ -133,6 +111,45 @@ public class PratoCrudTest extends GenericTest {
 
         assertEquals(temSushi, false);
 
+    }
+    @Test
+    public void persistirPratoNativeQuery() {
+        logger.info("Executando persistirPrato()");
+        long id_vendedor = 4;
+        Prato novoPrato = new Prato();
+        novoPrato.setNmPrato("Lasanha de Bacalhau");
+        novoPrato.setValor(15.00);
+
+        Query vendedor_native = em.createNamedQuery("Vendedor.PorIdSQL");
+        vendedor_native.setHint("javax.persistence.cache.retrieveMode", CacheRetrieveMode.BYPASS);
+        vendedor_native.setParameter(1, id_vendedor);
+        Vendedor vendedor_native_2 = (Vendedor) vendedor_native.getSingleResult();
+        novoPrato.setVendedor(vendedor_native_2);
+
+       
+        em.persist(novoPrato);
+        em.flush();
+        
+        assertNotNull(novoPrato.getIdPrato());
+
+    }
+    
+    @Test
+    public void atualizarPratoNative() {
+        logger.info("Executando atualizarPrato()");
+
+        TypedQuery<Prato> query = em.createNamedQuery("Prato.PorId", Prato.class);
+        //bypassar cache do banco
+        query.setHint("javax.persistence.cache.retrieveMode", CacheRetrieveMode.BYPASS);
+        query.setParameter("id", 1);
+        Prato pratoUpdate = query.getSingleResult();
+        assertNotNull(pratoUpdate);
+        pratoUpdate.setNmPrato("Lasanha Bolonhesa");
+
+        em.flush();
+
+        Prato pratoAtual = query.getSingleResult();
+        assertEquals("Lasanha Bolonhesa", pratoAtual.getNmPrato());
     }
 
 }
