@@ -102,8 +102,8 @@ public class EmpresaCrudTest extends GenericTest {
         //Executa a query para confirmar a atualização
         empresa = query.getSingleResult();
 
-        query.setHint("javax.persistence.cache.retrieveMode", CacheRetrieveMode.BYPASS);
-        empresa = query.getSingleResult();
+        assertEquals(cnpj, empresa.getCnpj());
+        assertEquals(telefone, empresa.getTelefone());
 
     }
 
@@ -128,7 +128,6 @@ public class EmpresaCrudTest extends GenericTest {
 
     }
 
-    /*
     @Test
     public void atualizarEmpresaNativeQueryId() {
         logger.info("Executando atualizarEmpresaNativeQueryId()");
@@ -158,6 +157,5 @@ public class EmpresaCrudTest extends GenericTest {
         assertEquals(nome, empresaNative.getNmEmpresa());
 
     }
-     */
-    
+
 }
