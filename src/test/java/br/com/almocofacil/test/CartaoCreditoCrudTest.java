@@ -19,7 +19,7 @@ public class CartaoCreditoCrudTest extends GenericTest {
         logger.info("Executando criarCartaoCredito()");
 
         String bandeira = "VISA";
-        String numeroCartao = "090928938495856";
+        String numeroCartao = "4539707770653196";
         long idCliente = 8;
 
         CartaoCredito cartaocredito = new CartaoCredito();
@@ -52,8 +52,8 @@ public class CartaoCreditoCrudTest extends GenericTest {
         logger.info("Executando atualizarCartaoCredito()");
 
         long idCartao = 9;
-        String novaBandeira = "AmericanExpress";
-        String novoNumero = "0987890065488763";
+        String novaBandeira = "VISA";
+        String novoNumero = "4539669152193672";
 
         TypedQuery<CartaoCredito> query = em.createNamedQuery("CartaoCredito.PorId", CartaoCredito.class);
         query.setHint("javax.persistence.cache.retrieveMode", CacheRetrieveMode.BYPASS);
@@ -80,8 +80,8 @@ public class CartaoCreditoCrudTest extends GenericTest {
         logger.info("Executando atualizarCartaoCreditoMerge()");
 
         long idCartao = 7;
-        String novaBandeira = "AmericanExpress";
-        String novoNumero = "0987890065488763";
+        String novaBandeira = "VISA";
+        String novoNumero = "4556443417804160";
 
         TypedQuery<CartaoCredito> query = em.createNamedQuery("CartaoCredito.PorId", CartaoCredito.class);
         query.setHint("javax.persistence.cache.retrieveMode", CacheRetrieveMode.BYPASS);

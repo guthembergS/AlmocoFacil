@@ -16,6 +16,8 @@ import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.validation.constraints.Future;
+import org.hibernate.validator.constraints.CreditCardNumber;
 
 @Entity
 @Table(name = "CARTAO_CREDITO")
@@ -64,9 +66,11 @@ public class CartaoCredito implements Serializable {
     @Column(name = "BANDEIRA", nullable = false, length = 100)
     private String bandeira;
 
+    @CreditCardNumber
     @Column(name = "NUMERO", nullable = false, length = 30)
     private String numero;
 
+    @Future
     @Temporal(TemporalType.DATE)
     @Column(name = "DT_EXPIRACAO", nullable = false)
     private Date dataExpiracao;
