@@ -17,7 +17,7 @@ public class PratoCrudTest extends GenericTest {
     public void persistirPrato() {
         logger.info("Executando persistirPrato()");
 
-        long idVendedor = 1;
+        long idVendedor = 11;
 
         Prato novoPrato = new Prato();
         novoPrato.setNmPrato("Lasanha de Bacalhau");
@@ -25,7 +25,7 @@ public class PratoCrudTest extends GenericTest {
 
         TypedQuery<Vendedor> query = em.createNamedQuery("Vendedor.PorId", Vendedor.class);
         query.setHint("javax.persistence.cache.retrieveMode", CacheRetrieveMode.BYPASS);
-        query.setParameter("id", 1);
+        query.setParameter("id", idVendedor);
         Vendedor vendedor = query.getSingleResult();
         assertNotNull(vendedor);
         novoPrato.setVendedor(vendedor);

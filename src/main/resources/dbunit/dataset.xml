@@ -37,126 +37,126 @@
      <!-- ID_CARTAO_CREDITO = 9 teste de criacao de cliente  -->
     <CARTAO_CREDITO BANDEIRA="MASTER" NUMERO="102984930309" DT_EXPIRACAO="2024-02-11"/>
     <!-- ID_USUARIO 1 -->
-    <TB_CLIENTE NOME="guthemberg souza" EMAIL="guthemberg@mail.com" SENHA="guthemberg123" ID_EMPRESA="1" ID_CARTAO_CREDITO="1"/>    
+    <TB_USUARIO TP_USUARIO="C" NOME="guthemberg souza" EMAIL="guthemberg@mail.com" SENHA="guthemberg123" ID_EMPRESA="1" ID_CARTAO_CREDITO="1"/>    
     <!-- ID_USUARIO 2 -->
-    <TB_CLIENTE NOME="thiago antonio" EMAIL="thiago.a@mail.com" SENHA="thiago123" ID_EMPRESA="1" ID_CARTAO_CREDITO="2"/>    
+    <TB_USUARIO TP_USUARIO="C" NOME="thiago antonio" EMAIL="thiago.a@mail.com" SENHA="thiago123" ID_EMPRESA="1" ID_CARTAO_CREDITO="2"/>    
     <!-- ID_USUARIO 3 -->
-    <TB_CLIENTE NOME="gerson brandao" EMAIL="gerson.b@mail.com" SENHA="gerson123" ID_EMPRESA="2" ID_CARTAO_CREDITO="3"/>    
+    <TB_USUARIO TP_USUARIO="C" NOME="gerson brandao" EMAIL="gerson.b@mail.com" SENHA="gerson123" ID_EMPRESA="2" ID_CARTAO_CREDITO="3"/>    
     <!-- ID_USUARIO 4 -->
-    <TB_CLIENTE NOME="antonio malaquias" EMAIL="antonio.m@mail.com" SENHA="antonio123" ID_EMPRESA="2" ID_CARTAO_CREDITO="4"/>    
+    <TB_USUARIO TP_USUARIO="C" NOME="antonio malaquias" EMAIL="antonio.m@mail.com" SENHA="antonio123" ID_EMPRESA="2" ID_CARTAO_CREDITO="4"/>    
     <!-- ID_USUARIO 5 -->
-    <TB_CLIENTE NOME="armando silva" EMAIL="armando.s@mail.com" SENHA="armando123" ID_EMPRESA="3" ID_CARTAO_CREDITO="5"/>    
+    <TB_USUARIO TP_USUARIO="C" NOME="armando silva" EMAIL="armando.s@mail.com" SENHA="armando123" ID_EMPRESA="3" ID_CARTAO_CREDITO="5"/>    
     <!-- ID_USUARIO 6 -->
-    <TB_CLIENTE NOME="jessica monteiro" EMAIL="jessica.m@mail.com" SENHA="jessica123" ID_EMPRESA="3" ID_CARTAO_CREDITO="6"/>    
+    <TB_USUARIO TP_USUARIO="C" NOME="jessica monteiro" EMAIL="jessica.m@mail.com" SENHA="jessica123" ID_EMPRESA="3" ID_CARTAO_CREDITO="6"/>    
     <!-- ID_USUARIO 7 -->
-    <TB_CLIENTE NOME="antonella silva" EMAIL="antonella.s@mail.com" SENHA="antonella123" ID_EMPRESA="2" ID_CARTAO_CREDITO="7"/>    
+    <TB_USUARIO TP_USUARIO="C" NOME="antonella silva" EMAIL="antonella.s@mail.com" SENHA="antonella123" ID_EMPRESA="2" ID_CARTAO_CREDITO="7"/>    
     <!-- ID_USUARIO 8 -->
-    <TB_CLIENTE NOME="diogo brito" EMAIL="diogo.b@mail.com" SENHA="diogo123" />    
+    <TB_USUARIO TP_USUARIO="C" NOME="diogo brito" EMAIL="diogo.b@mail.com" SENHA="diogo123" />    
     <!-- ID_USUARIO 9 -->
-    <TB_CLIENTE NOME="Thiago Antonio O" EMAIL="taoalu@mail.com" SENHA="taoalu123" />    
+    <TB_USUARIO TP_USUARIO="C" NOME="Thiago Antonio O" EMAIL="taoalu@mail.com" SENHA="taoalu123" />    
     <!-- ID_USUARIO 10 -->
-    <TB_CLIENTE NOME="Jose Elias" EMAIL="jose.elias@mail.com" SENHA="elias123" />
-    <!-- ID_USUARIO 1 -->
-    <TB_VENDEDOR NOME="fred almoco" EMAIL="fred.almoco@mail.com" SENHA="fred123" />
-    <!-- ID_USUARIO 2 -->
-    <TB_VENDEDOR NOME="saborear restaurante" EMAIL="saborear.restaurante@mail.com" SENHA="saborear123" />
-    <!-- ID_USUARIO 3 -->
-    <TB_VENDEDOR NOME="Paladar Nordestino" EMAIL="palador.nordestino@mail.com" SENHA="paladar123" />
-    <!-- ID_USUARIO 4 -->
-    <TB_VENDEDOR NOME="MV" EMAIL="gerson.brandao@mv.com.br" SENHA="mvmv@@2019" />
+    <TB_USUARIO TP_USUARIO="C" NOME="Jose Elias" EMAIL="jose.elias@mail.com" SENHA="elias123" />
+    <!-- ID_USUARIO 11 -->
+    <TB_USUARIO TP_USUARIO="V" NOME="fred almoco" EMAIL="fred.almoco@mail.com" SENHA="fred123" />
+    <!-- ID_USUARIO 12 -->
+    <TB_USUARIO TP_USUARIO="V" NOME="saborear restaurante" EMAIL="saborear.restaurante@mail.com" SENHA="saborear123" />
+    <!-- ID_USUARIO 13 -->
+    <TB_USUARIO TP_USUARIO="V" NOME="Paladar Nordestino" EMAIL="palador.nordestino@mail.com" SENHA="paladar123" />
+    <!-- ID_USUARIO 14 -->
+    <TB_USUARIO TP_USUARIO="V" NOME="MV" EMAIL="gerson.brandao@mv.com.br" SENHA="mvmv@@2019" />
     <!-- ID_PRATO 1 -->
-    <PRATO NM_PRATO="Lasanha" VALOR="13.00" ID_VENDEDOR="1" />
+    <PRATO NM_PRATO="Lasanha" VALOR="13.00" ID_USUARIO"11" />
     <!-- ID_PRATO 2 -->
-    <PRATO NM_PRATO="Torta de Frango" VALOR="11.00" ID_VENDEDOR="1" />
+    <PRATO NM_PRATO="Torta de Frango" VALOR="11.00" ID_USUARIO"11" />
     <!-- ID_PRATO 3 -->
-    <PRATO NM_PRATO="Cozido" VALOR="11.00" ID_VENDEDOR="1" />
+    <PRATO NM_PRATO="Cozido" VALOR="11.00" ID_USUARIO"11" />
     <!-- ID_PRATO 4 -->
-    <PRATO NM_PRATO="Arrumadinho de Charque" VALOR="11.00" ID_VENDEDOR="1" />
+    <PRATO NM_PRATO="Arrumadinho de Charque" VALOR="11.00" ID_USUARIO"11" />
     <!-- ID_PRATO 5 -->
-    <PRATO NM_PRATO="Frango a Parmegiana" VALOR="11.00" ID_VENDEDOR="1" />
+    <PRATO NM_PRATO="Frango a Parmegiana" VALOR="11.00" ID_USUARIO"11" />
     <!-- ID_PRATO 6 -->
-    <PRATO NM_PRATO="Peixada" VALOR="11.00" ID_VENDEDOR="1" />
+    <PRATO NM_PRATO="Peixada" VALOR="11.00" ID_USUARIO"11" />
     <!-- ID_PRATO 7 -->
-    <PRATO NM_PRATO="Macarronada" VALOR="11.00" ID_VENDEDOR="1" />
+    <PRATO NM_PRATO="Macarronada" VALOR="11.00" ID_USUARIO"11" />
     <!-- ID_PRATO 8 -->
-    <PRATO NM_PRATO="Lasanha" VALOR="15.00" ID_VENDEDOR="2" />
+    <PRATO NM_PRATO="Lasanha" VALOR="15.00" ID_USUARIO"12" />
     <!-- ID_PRATO 9 -->
-    <PRATO NM_PRATO="Frango a Cerveja" VALOR="16.00" ID_VENDEDOR="2" />
+    <PRATO NM_PRATO="Frango a Cerveja" VALOR="16.00" ID_USUARIO"12" />
     <!-- ID_PRATO 10 -->
-    <PRATO NM_PRATO="Cupim ao Molho Madeira" VALOR="16.00" ID_VENDEDOR="2" />
+    <PRATO NM_PRATO="Cupim ao Molho Madeira" VALOR="16.00" ID_USUARIO"12" />
     <!-- ID_PRATO 11 -->
-    <PRATO NM_PRATO="Strogonoff de Frango" VALOR="12.00" ID_VENDEDOR="2" />
+    <PRATO NM_PRATO="Strogonoff de Frango" VALOR="12.00" ID_USUARIO"12" />
     <!-- ID_PRATO 12 -->
-    <PRATO NM_PRATO="Peixada" VALOR="13.00" ID_VENDEDOR="2" />
+    <PRATO NM_PRATO="Peixada" VALOR="13.00" ID_USUARIO"12" />
     <!-- ID_PRATO 13 -->
-    <PRATO NM_PRATO="Arrumadinho" VALOR="14.00" ID_VENDEDOR="2" />
+    <PRATO NM_PRATO="Arrumadinho" VALOR="14.00" ID_USUARIO"12" />
     <!-- ID_PRATO 14 -->
-    <PRATO NM_PRATO="Lombo Grelhado" VALOR="15.00" ID_VENDEDOR="2" />
+    <PRATO NM_PRATO="Lombo Grelhado" VALOR="15.00" ID_USUARIO"12" />
     <!-- ID_PRATO 15 prato a ser excluido -->
-    <PRATO NM_PRATO="Sushi" VALOR="15.00" ID_VENDEDOR="2" />
+    <PRATO NM_PRATO="Sushi" VALOR="15.00" ID_USUARIO"12" />
     <!-- ID_PRATO 16 -->
-    <PRATO NM_PRATO="Sashimi" VALOR="25.00" ID_VENDEDOR="3" />
+    <PRATO NM_PRATO="Sashimi" VALOR="25.00" ID_USUARIO"13" />
     <!-- ID_PEDIDO 1 -->
-    <PEDIDO DT_PEDIDO="2018-09-11" ID_CLIENTE="1" ID_VENDEDOR="1" VL_TOTAL="22.00"/>
+    <PEDIDO DT_PEDIDO="2018-09-11" ID_USUARIO"1" ID_USUARIO"11" VL_TOTAL="22.00"/>
     <PEDIDO_PRATO ID_PEDIDO="1" ID_PRATO="4"/> 
     <PEDIDO_PRATO ID_PEDIDO="1" ID_PRATO="5"/>
     <!-- ID_PEDIDO 2 -->
-    <PEDIDO DT_PEDIDO="2018-09-11" ID_CLIENTE="2" ID_VENDEDOR="1" VL_TOTAL="35.00"/>
+    <PEDIDO DT_PEDIDO="2018-09-11" ID_USUARIO"2" ID_USUARIO"11" VL_TOTAL="35.00"/>
     <PEDIDO_PRATO ID_PEDIDO="2" ID_PRATO="1"/>
     <PEDIDO_PRATO ID_PEDIDO="2" ID_PRATO="4"/> 
     <PEDIDO_PRATO ID_PEDIDO="2" ID_PRATO="5"/>
     <!-- ID_PEDIDO 3 -->
-    <PEDIDO DT_PEDIDO="2018-09-11" ID_CLIENTE="8" ID_VENDEDOR="1" VL_TOTAL="11.00"/>
+    <PEDIDO DT_PEDIDO="2018-09-11" ID_USUARIO"8" ID_USUARIO"11" VL_TOTAL="11.00"/>
     <PEDIDO_PRATO ID_PEDIDO="3" ID_PRATO="2"/>
     <!-- ID_PEDIDO 4 -->
-    <PEDIDO DT_PEDIDO="2018-09-11" ID_CLIENTE="8" ID_VENDEDOR="1" VL_TOTAL="11.00"/>
+    <PEDIDO DT_PEDIDO="2018-09-11" ID_USUARIO"8" ID_USUARIO"11" VL_TOTAL="11.00"/>
     <PEDIDO_PRATO ID_PEDIDO="4" ID_PRATO="7"/>
     <!-- ID_PEDIDO 5 -->
-    <PEDIDO DT_PEDIDO="2018-09-10" ID_CLIENTE="1" ID_VENDEDOR="1" VL_TOTAL="11.00"/>
+    <PEDIDO DT_PEDIDO="2018-09-10" ID_USUARIO"1" ID_USUARIO"11" VL_TOTAL="11.00"/>
     <PEDIDO_PRATO ID_PEDIDO="5" ID_PRATO="3"/>
     <!-- ID_PEDIDO 6 -->
-    <PEDIDO DT_PEDIDO="2018-09-10" ID_CLIENTE="2" ID_VENDEDOR="1" VL_TOTAL="22.00"/>
+    <PEDIDO DT_PEDIDO="2018-09-10" ID_USUARIO"2" ID_USUARIO"11" VL_TOTAL="22.00"/>
     <PEDIDO_PRATO ID_PEDIDO="6" ID_PRATO="2"/>
     <PEDIDO_PRATO ID_PEDIDO="6" ID_PRATO="3"/>
     <!-- ID_PEDIDO 7 -->
-    <PEDIDO DT_PEDIDO="2018-09-10" ID_CLIENTE="8" ID_VENDEDOR="1" VL_TOTAL="22.00"/>
+    <PEDIDO DT_PEDIDO="2018-09-10" ID_USUARIO"8" ID_USUARIO"11" VL_TOTAL="22.00"/>
     <PEDIDO_PRATO ID_PEDIDO="7" ID_PRATO="3"/>
     <PEDIDO_PRATO ID_PEDIDO="7" ID_PRATO="2"/>
     <!-- ID_PEDIDO 8 -->
-    <PEDIDO DT_PEDIDO="2018-09-10" ID_CLIENTE="4" ID_VENDEDOR="2" VL_TOTAL="27.00"/>
+    <PEDIDO DT_PEDIDO="2018-09-10" ID_USUARIO"4" ID_USUARIO"12" VL_TOTAL="27.00"/>
     <PEDIDO_PRATO ID_PEDIDO="8" ID_PRATO="8"/>
     <PEDIDO_PRATO ID_PEDIDO="8" ID_PRATO="11"/>
     <!-- ID_PEDIDO 9 -->
-    <PEDIDO DT_PEDIDO="2018-09-10" ID_CLIENTE="3" ID_VENDEDOR="2" VL_TOTAL="30.00"/>
+    <PEDIDO DT_PEDIDO="2018-09-10" ID_USUARIO"3" ID_USUARIO"12" VL_TOTAL="30.00"/>
     <PEDIDO_PRATO ID_PEDIDO="9" ID_PRATO="9"/> 
     <PEDIDO_PRATO ID_PEDIDO="9" ID_PRATO="13"/>
     <!-- ID_PEDIDO 10 -->
-    <PEDIDO DT_PEDIDO="2018-09-10" ID_CLIENTE="7" ID_VENDEDOR="2" VL_TOTAL="16.00"/>
+    <PEDIDO DT_PEDIDO="2018-09-10" ID_USUARIO"7" ID_USUARIO"12" VL_TOTAL="16.00"/>
     <PEDIDO_PRATO ID_PEDIDO="10" ID_PRATO="10"/>
     <!-- ID_PEDIDO 11 -->
-    <PEDIDO DT_PEDIDO="2018-09-11" ID_CLIENTE="3" ID_VENDEDOR="2" VL_TOTAL="15.00"/>
+    <PEDIDO DT_PEDIDO="2018-09-11" ID_USUARIO"3" ID_USUARIO"12" VL_TOTAL="15.00"/>
     <PEDIDO_PRATO ID_PEDIDO="11" ID_PRATO="8"/>
     <!-- ID_PEDIDO 12 -->
-    <PEDIDO DT_PEDIDO="2018-09-11" ID_CLIENTE="4" ID_VENDEDOR="2" VL_TOTAL="14.00"/>
+    <PEDIDO DT_PEDIDO="2018-09-11" ID_USUARIO"4" ID_USUARIO"12" VL_TOTAL="14.00"/>
     <PEDIDO_PRATO ID_PEDIDO="12" ID_PRATO="13"/>
     <!-- ID_PEDIDO 13 -->
-    <PEDIDO DT_PEDIDO="2018-09-11" ID_CLIENTE="7" ID_VENDEDOR="2" VL_TOTAL="15.00"/>
+    <PEDIDO DT_PEDIDO="2018-09-11" ID_USUARIO"7" ID_USUARIO"12" VL_TOTAL="15.00"/>
     <PEDIDO_PRATO ID_PEDIDO="13" ID_PRATO="8"/>
     <!-- ID_PEDIDO 14 -->
-    <PEDIDO DT_PEDIDO="2018-09-09" ID_CLIENTE="1" ID_VENDEDOR="1" VL_TOTAL="11.00"/>
+    <PEDIDO DT_PEDIDO="2018-09-09" ID_USUARIO"1" ID_USUARIO"11" VL_TOTAL="11.00"/>
     <PEDIDO_PRATO ID_PEDIDO="14" ID_PRATO="2"/>
     <!-- ID_PEDIDO 15 -->
-    <PEDIDO DT_PEDIDO="2018-09-09" ID_CLIENTE="2" ID_VENDEDOR="1" VL_TOTAL="11.00"/>
+    <PEDIDO DT_PEDIDO="2018-09-09" ID_USUARIO"2" ID_USUARIO"11" VL_TOTAL="11.00"/>
     <PEDIDO_PRATO ID_PEDIDO="15" ID_PRATO="3"/>
     <!-- ID_PEDIDO 16 -->
-    <PEDIDO DT_PEDIDO="2018-09-09" ID_CLIENTE="8" ID_VENDEDOR="1" VL_TOTAL="11.00"/>
+    <PEDIDO DT_PEDIDO="2018-09-09" ID_USUARIO"8" ID_USUARIO"11" VL_TOTAL="11.00"/>
     <PEDIDO_PRATO ID_PEDIDO="16" ID_PRATO="4"/>
     <!-- ID_PEDIDO 17 -->
-    <PEDIDO DT_PEDIDO="2018-09-09" ID_CLIENTE="6" ID_VENDEDOR="2" VL_TOTAL="32.00"/>
+    <PEDIDO DT_PEDIDO="2018-09-09" ID_USUARIO"6" ID_USUARIO"12" VL_TOTAL="32.00"/>
     <PEDIDO_PRATO ID_PEDIDO="17" ID_PRATO="9"/>
     <PEDIDO_PRATO ID_PEDIDO="17" ID_PRATO="10"/>
     <!-- ID_PEDIDO 18 -->
-    <PEDIDO DT_PEDIDO="2018-09-25" ID_CLIENTE="7" ID_VENDEDOR="2" VL_TOTAL="32.00"/>
+    <PEDIDO DT_PEDIDO="2018-09-25" ID_USUARIO"7" ID_USUARIO"12" VL_TOTAL="32.00"/>
     <PEDIDO_PRATO ID_PEDIDO="18" ID_PRATO="10"/>
     <PEDIDO_PRATO ID_PEDIDO="18" ID_PRATO="9"/>
 </dataset>

@@ -12,17 +12,11 @@ import javax.persistence.NamedNativeQuery;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
-import javax.persistence.PrimaryKeyJoinColumn;
-import javax.persistence.Table;
 
 /**
  *
  * @author guthemberg
  */
-
-@Entity
-@Table(name = "TB_VENDEDOR")
-@PrimaryKeyJoinColumn(name="ID_USUARIO", referencedColumnName = "ID_USUARIO")
 @NamedQueries(
         {
             @NamedQuery(
@@ -35,12 +29,14 @@ import javax.persistence.Table;
         {
             @NamedNativeQuery(
                     name = "Vendedor.PorIdSQL",
-                    query = "SELECT ID_USUARIO, email, nome, senha FROM TB_VENDEDOR WHERE ID_USUARIO = ? ",
+                    query = "SELECT ID_USUARIO, email, nome, senha FROM TB_USUARIO WHERE ID_USUARIO = ? ",
                     resultClass = Vendedor.class
             )
         }
 )
 
+@Entity
+@DiscriminatorValue(value = "V")
 public class Vendedor extends Usuario implements Serializable {
     
     @OneToMany(mappedBy = "vendedor",fetch = FetchType.LAZY, cascade = CascadeType.ALL)

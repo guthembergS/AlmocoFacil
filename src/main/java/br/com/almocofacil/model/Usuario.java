@@ -12,11 +12,13 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
-import javax.persistence.MappedSuperclass;
 import javax.persistence.Table;
 
-@MappedSuperclass
-@Inheritance(strategy = InheritanceType.JOINED) //Estratégia de herança.
+@Entity
+@Table(name = "TB_USUARIO")
+@Inheritance(strategy = InheritanceType.SINGLE_TABLE) //Estratégia de herança. Single Table Strategy
+@DiscriminatorColumn(name="TP_USUARIO",
+        discriminatorType = DiscriminatorType.STRING, length = 1)
 @Access(AccessType.FIELD)
 public abstract class Usuario implements Serializable{
     @Id

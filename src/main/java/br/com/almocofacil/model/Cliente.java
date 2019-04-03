@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.CascadeType;
+import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
@@ -22,8 +23,9 @@ import javax.persistence.Table;
  * @author guthemberg
  */
 
+
 @Entity
-@Table(name = "TB_CLIENTE")
+@DiscriminatorValue(value = "C")
 @NamedQueries(
         {
             @NamedQuery(
@@ -42,7 +44,7 @@ import javax.persistence.Table;
             @NamedNativeQuery(
                     name = "Cliente.PorIdSQL",
                     query = "SELECT c.id_usuario, c.email, c.nome, c.senha, c.ID_EMPRESA, c.ID_CARTAO_CREDITO"
-                               + " FROM TB_CLIENTE c "
+                               + " FROM TB_USUARIO c "
                                + " WHERE c.ID_USUARIO = ? ",
                     resultClass = Cliente.class
             ),
@@ -50,7 +52,7 @@ import javax.persistence.Table;
             @NamedNativeQuery(
                     name = "Cliente.PorNomeSQL",
                     query = " SELECT c.ID_USUARIO, c.email, c.nome, c.senha, c.ID_EMPRESA, c.ID_CARTAO_CREDITO"
-                    + " FROM tb_cliente c,  "
+                    + " FROM TB_USUARIO c,  "
                     + " WHERE c.nome = ? ",
                     resultClass = Cliente.class
             )
@@ -58,7 +60,6 @@ import javax.persistence.Table;
         }
 )
 
-@PrimaryKeyJoinColumn(name = "ID_USUARIO", referencedColumnName = "ID_USUARIO")
 public class Cliente extends Usuario implements Serializable {
 
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
@@ -69,7 +70,7 @@ public class Cliente extends Usuario implements Serializable {
     @JoinColumn(name = "ID_CARTAO_CREDITO", referencedColumnName = "ID_CARTAO_CREDITO")
     protected CartaoCredito cartaoCredito;
 
-    @OneToMany(mappedBy = "cliente", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "usuario", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     protected List<Pedido> pedidos = new ArrayList<Pedido>();
 
     public Empresa getEmpresa() {

@@ -3,13 +3,13 @@
   <persistence-unit name="almocofacil_01" transaction-type="RESOURCE_LOCAL">
     <provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
     <class>br.com.almocofacil.model.Prato</class>
-    <class>br.com.almocofacil.model.Cliente</class>
     <class>br.com.almocofacil.model.Pedido</class>
     <class>br.com.almocofacil.model.Usuario</class>
-    <class>br.com.almocofacil.model.Vendedor</class>
     <class>br.com.almocofacil.model.CartaoCredito</class>
     <class>br.com.almocofacil.model.EnderecoEntrega</class>
     <class>br.com.almocofacil.model.Empresa</class>
+    <class>br.com.almocofacil.model.Cliente</class>
+    <class>br.com.almocofacil.model.Vendedor</class>
     <properties>
       <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/almocofacil"/>
       <property name="javax.persistence.jdbc.user" value="root"/>
