@@ -12,10 +12,10 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -58,7 +58,9 @@ public class Pedido implements Serializable {
     @JoinColumn(name = "ID_CLIENTE", referencedColumnName = "ID_USUARIO", nullable = false)
     protected Cliente cliente;
 
-    @OneToMany(fetch = FetchType.LAZY)
+    //É importante analisar e regrar o fato do pedido apontar os pratos de um memo vendedor.
+    //Por regra de negócio, estudar uma forma de validar que a lista de pratos pertença a um mesmo vendedor.
+    @ManyToMany(fetch = FetchType.LAZY)
     @JoinTable(name="PEDIDO_PRATO",joinColumns = {
         @JoinColumn(name = "ID_PEDIDO", referencedColumnName = "ID_PEDIDO", nullable = false)},
             inverseJoinColumns = { 
