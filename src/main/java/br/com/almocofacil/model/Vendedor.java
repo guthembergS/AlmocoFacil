@@ -21,8 +21,8 @@ import javax.persistence.Table;
  */
 
 @Entity
-@Table(name = "TB_VENDEDOR")
-@PrimaryKeyJoinColumn(name="ID_USUARIO", referencedColumnName = "ID_USUARIO")
+@DiscriminatorValue(value = "V")
+//@PrimaryKeyJoinColumn(name="ID_USUARIO", referencedColumnName = "ID_USUARIO")
 @NamedQueries(
         {
             @NamedQuery(
@@ -35,7 +35,7 @@ import javax.persistence.Table;
         {
             @NamedNativeQuery(
                     name = "Vendedor.PorIdSQL",
-                    query = "SELECT ID_USUARIO, email, nome, senha FROM TB_VENDEDOR WHERE ID_USUARIO = ? ",
+                    query = "SELECT ID_USUARIO, email, nome, senha FROM TB_USUARIO WHERE ID_USUARIO = ? ",
                     resultClass = Vendedor.class
             )
         }
