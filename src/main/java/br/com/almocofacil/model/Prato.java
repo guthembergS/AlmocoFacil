@@ -16,6 +16,8 @@ import javax.persistence.NamedNativeQuery;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotNull;
 
 
 @Entity
@@ -60,13 +62,17 @@ import javax.persistence.Table;
 public class Prato  implements Serializable {
     
     @Id
+    @ NotNull
     @Column(name = "ID_PRATO")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     protected Long idPrato;
     
+    @NotNull
     @Column(name = "NM_PRATO")
     protected String nmPrato;
    
+    @NotNull  
+    @Min (value = 0)
     @Column(name = "VALOR")
     protected Double valor;
     

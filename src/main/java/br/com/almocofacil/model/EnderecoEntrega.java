@@ -11,6 +11,9 @@ import javax.persistence.NamedNativeQuery;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
+import javax.persistence.metamodel.StaticMetamodel;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 /**
  *
@@ -51,19 +54,24 @@ public class EnderecoEntrega implements Serializable {
     @Column(name = "ID_ENDERECO_ENTREGA")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     protected Long idEnderecoEntrega;
-
+        
+    @NotNull
     @Column(name = "LOGADOURO")
     protected String logadouro;
 
+    @NotNull
     @Column(name = "BAIRRO")
     protected String bairro;
-
+    
+    @NotNull
     @Column(name = "CIDADE")
     protected String cidade;
-
+    
+    @NotNull
     @Column(name = "ESTADO")
     protected String estado;
 
+    @Size (max = 8)
     @Column(name = "CEP")
     protected String cep;
 

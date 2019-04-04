@@ -17,8 +17,8 @@ public class ClienteCrudTest extends GenericTest {
         logger.info("Executando criarCliente()");
 
         String nome = "Marcio Silva";
-        String email = "marcio.silva@gmail.com";
-        String senha = "senha123";
+        String email = "marciosilva@gmail.com";
+        String senha = "hhjskdj8";
         long idEmpresa = 1;
         long idCartaoCredito = 9;
 
@@ -59,7 +59,7 @@ public class ClienteCrudTest extends GenericTest {
 
         String novoNome = "Guthemberg Augusto de Souza";
         String novoEmail = "guthemberg@outlook.com";
-        String novaSenha = "guthemberg123";
+        String novaSenha = "guthe123";
         long idCliente = 1;
         long idEmpresa = 2;
 
@@ -101,7 +101,7 @@ public class ClienteCrudTest extends GenericTest {
 
         String novoNome = "Guthemberg Augusto de Souza";
         String novoEmail = "guthemberg@outlook.com";
-        String novaSenha = "guthemberg123";
+        String novaSenha = "guthe433";
         long idCliente = 1;
         long idEmpresa = 2;
         long idCartaoCredito = 3;

@@ -1,5 +1,6 @@
 package br.com.almocofacil.model;
 
+import com.sun.org.glassfish.gmbal.NameValue;
 import java.io.Serializable;
 import javax.persistence.Access;
 import javax.persistence.AccessType;
@@ -14,22 +15,33 @@ import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
 import javax.persistence.MappedSuperclass;
 import javax.persistence.Table;
+import javax.validation.constraints.Max;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
+import org.hibernate.validator.constraints.Email;
 
 @MappedSuperclass
 @Inheritance(strategy = InheritanceType.JOINED) //Estratégia de herança.
 @Access(AccessType.FIELD)
-public abstract class Usuario implements Serializable{
+public abstract class Usuario implements Serializable {
+
     @Id
     @Column(name = "ID_USUARIO")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     protected Long idUsuario;
-    
+
+    @NotNull
+    @NameValue
     @Column(name = "nome")
     protected String nome;
-    
+
+    @NotNull
+    @Size(max = 8)
     @Column(name = "senha")
     protected String senha;
-    
+
+    @NotNull
+    @Email
     @Column(name = "email")
     protected String email;
 
@@ -60,5 +72,5 @@ public abstract class Usuario implements Serializable{
     public String getSenha() {
         return senha;
     }
-    
+
 }

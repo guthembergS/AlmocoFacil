@@ -37,27 +37,27 @@
      <!-- ID_CARTAO_CREDITO = 9 teste de criacao de cliente  -->
     <CARTAO_CREDITO BANDEIRA="MASTER" NUMERO="102984930309" DT_EXPIRACAO="2024-02-11"/>
     <!-- ID_USUARIO 1 -->
-    <TB_CLIENTE NOME="guthemberg souza" EMAIL="guthemberg@mail.com" SENHA="guthemberg123" ID_EMPRESA="1" ID_CARTAO_CREDITO="1"/>    
+    <TB_CLIENTE NOME="guthemberg souza" EMAIL="guthemberg@mail.com" SENHA="jkj898js" ID_EMPRESA="1" ID_CARTAO_CREDITO="1"/>    
     <!-- ID_USUARIO 2 -->
-    <TB_CLIENTE NOME="thiago antonio" EMAIL="thiago.a@mail.com" SENHA="thiago123" ID_EMPRESA="1" ID_CARTAO_CREDITO="2"/>    
+    <TB_CLIENTE NOME="thiago antonio" EMAIL="thiago.a@mail.com" SENHA="jkshu898" ID_EMPRESA="1" ID_CARTAO_CREDITO="2"/>    
     <!-- ID_USUARIO 3 -->
-    <TB_CLIENTE NOME="gerson brandao" EMAIL="gerson.b@mail.com" SENHA="gerson123" ID_EMPRESA="2" ID_CARTAO_CREDITO="3"/>    
+    <TB_CLIENTE NOME="gerson brandao" EMAIL="gerson.b@mail.com" SENHA="9087u7u2" ID_EMPRESA="2" ID_CARTAO_CREDITO="3"/>    
     <!-- ID_USUARIO 4 -->
-    <TB_CLIENTE NOME="antonio malaquias" EMAIL="antonio.m@mail.com" SENHA="antonio123" ID_EMPRESA="2" ID_CARTAO_CREDITO="4"/>    
+    <TB_CLIENTE NOME="antonio malaquias" EMAIL="antonio.m@mail.com" SENHA="00opo9iu" ID_EMPRESA="2" ID_CARTAO_CREDITO="4"/>    
     <!-- ID_USUARIO 5 -->
-    <TB_CLIENTE NOME="armando silva" EMAIL="armando.s@mail.com" SENHA="armando123" ID_EMPRESA="3" ID_CARTAO_CREDITO="5"/>    
+    <TB_CLIENTE NOME="armando silva" EMAIL="armando.s@mail.com" SENHA="9oiwue93" ID_EMPRESA="3" ID_CARTAO_CREDITO="5"/>    
     <!-- ID_USUARIO 6 -->
-    <TB_CLIENTE NOME="jessica monteiro" EMAIL="jessica.m@mail.com" SENHA="jessica123" ID_EMPRESA="3" ID_CARTAO_CREDITO="6"/>    
+    <TB_CLIENTE NOME="jessica monteiro" EMAIL="jessica.m@mail.com" SENHA="oopw09i3" ID_EMPRESA="3" ID_CARTAO_CREDITO="6"/>    
     <!-- ID_USUARIO 7 -->
-    <TB_CLIENTE NOME="antonella silva" EMAIL="antonella.s@mail.com" SENHA="antonella123" ID_EMPRESA="2" ID_CARTAO_CREDITO="7"/>    
+    <TB_CLIENTE NOME="antonella silva" EMAIL="antonella.s@mail.com" SENHA="kklskd99" ID_EMPRESA="2" ID_CARTAO_CREDITO="7"/>    
     <!-- ID_USUARIO 8 -->
-    <TB_CLIENTE NOME="diogo brito" EMAIL="diogo.b@mail.com" SENHA="diogo123" />    
+    <TB_CLIENTE NOME="diogo brito" EMAIL="diogo.b@mail.com" SENHA="jjkisue9" />    
     <!-- ID_USUARIO 9 -->
-    <TB_CLIENTE NOME="thiago Antonio O" EMAIL="taoalu@mail.com" SENHA="taoalu123" />    
+    <TB_CLIENTE NOME="thiago Antonio O" EMAIL="taoalu@mail.com" SENHA="12788928" />    
     <!-- ID_USUARIO 10 -->
-    <TB_CLIENTE NOME="jose Elias" EMAIL="jose.elias@mail.com" SENHA="elias123" />
+    <TB_CLIENTE NOME="jose Elias" EMAIL="jose.elias@mail.com" SENHA="llpo9990" />
     <!-- ID_USUARIO 1 -->
-    <TB_VENDEDOR NOME="fred almoco" EMAIL="fred.almoco@mail.com" SENHA="fred123" />
+    <TB_VENDEDOR NOME="fred almoco" EMAIL="fred.almoco@mail.com" SENHA="fred1234" />
     <!-- ID_USUARIO 2 -->
     <TB_VENDEDOR NOME="saborear restaurante" EMAIL="saborear.restaurante@mail.com" SENHA="saborear123" />
     <!-- ID_USUARIO 3 -->
