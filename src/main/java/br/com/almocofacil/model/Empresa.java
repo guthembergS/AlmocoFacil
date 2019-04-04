@@ -18,6 +18,8 @@ import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
+import org.hibernate.validator.constraints.br.CNPJ;
 
 /**
  *
@@ -49,19 +51,24 @@ import javax.persistence.Table;
 public class Empresa implements Serializable {
 
     @Id
+    @NotNull
     @Column(name = "ID_EMPRESA")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     protected Long idEmpresa;
-
+    
+    @NotNull
     @Column(name = "NM_EMPRESA")
     protected String nmEmpresa;
-
+    
+    @CNPJ
+    @NotNull
     @Column(name = "CNPJ")
     protected String cnpj;
-
+    
+    @NotNull
     @Column(name = "TELEFONE")
     protected String telefone;
-
+        
     @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL, optional = true)
     @JoinColumn(name = "ID_ENDERECO_ENTREGA", referencedColumnName = "ID_ENDERECO_ENTREGA")
     private EnderecoEntrega enderecoEntrega;

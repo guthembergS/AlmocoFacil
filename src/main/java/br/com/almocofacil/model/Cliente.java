@@ -15,7 +15,7 @@ import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
-import javax.persistence.PrimaryKeyJoinColumn;
+import org.hibernate.validator.constraints.CreditCardNumber;
 
 /**
  *
@@ -64,7 +64,7 @@ public class Cliente extends Usuario implements Serializable {
     @ManyToOne(fetch = FetchType.LAZY, optional = true)
     @JoinColumn(name = "ID_EMPRESA", referencedColumnName = "ID_EMPRESA")
     protected Empresa empresa;
-
+    
     @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL, optional = true)
     @JoinColumn(name = "ID_CARTAO_CREDITO", referencedColumnName = "ID_CARTAO_CREDITO")
     protected CartaoCredito cartaoCredito;

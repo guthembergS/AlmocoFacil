@@ -19,7 +19,10 @@ import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
-
+import javax.validation.Valid;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Past;
 
 @Entity
 @Table(name = "PEDIDO")
@@ -41,19 +44,24 @@ import javax.persistence.TemporalType;
 )
 
 public class Pedido implements Serializable {
-    
+
     @Id
+    @NotNull
     @Column(name = "ID_PEDIDO")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     protected Long idPedido;
-    
+
+    @NotNull
+    @Past
     @Temporal(TemporalType.TIMESTAMP)
     @Column(name = "DT_PEDIDO", nullable = false)
     protected Date dtPedido;
-    
-    @Column(name="VL_TOTAL")
+
+    @NotNull
+    @Min(value = 0)
+    @Column(name = "VL_TOTAL")
     protected Double vlTotal;
-    
+
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "ID_CLIENTE", referencedColumnName = "ID_USUARIO", nullable = false)
     protected Cliente cliente;
@@ -61,18 +69,18 @@ public class Pedido implements Serializable {
     //É importante analisar e regrar o fato do pedido apontar os pratos de um memo vendedor.
     //Por regra de negócio, estudar uma forma de validar que a lista de pratos pertença a um mesmo vendedor.
     @ManyToMany(fetch = FetchType.LAZY)
-    @JoinTable(name="PEDIDO_PRATO",joinColumns = {
+    @JoinTable(name = "PEDIDO_PRATO", joinColumns = {
         @JoinColumn(name = "ID_PEDIDO", referencedColumnName = "ID_PEDIDO", nullable = false)},
-            inverseJoinColumns = { 
-                 @JoinColumn(name = "ID_PRATO", referencedColumnName = "ID_PRATO", nullable = false)
+            inverseJoinColumns = {
+                @JoinColumn(name = "ID_PRATO", referencedColumnName = "ID_PRATO", nullable = false)
             }
     )
     public List<Prato> pratos = new ArrayList<Prato>();
-    
+
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "ID_VENDEDOR", referencedColumnName = "ID_USUARIO", nullable = false)
     protected Vendedor vendedor;
-    
+
     public void setVendedor(Vendedor vendedor) {
         this.vendedor = vendedor;
     }
@@ -81,7 +89,6 @@ public class Pedido implements Serializable {
         return vendedor;
     }
 
-    
     public void setCliente(Cliente cliente) {
         this.cliente = cliente;
     }
@@ -118,5 +125,5 @@ public class Pedido implements Serializable {
     public Double getVlTotal() {
         return vlTotal;
     }
-    
+
 }
