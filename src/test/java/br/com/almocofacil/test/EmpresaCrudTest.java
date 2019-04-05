@@ -17,7 +17,7 @@ public class EmpresaCrudTest extends GenericTest {
     public void criarEmpresa() {
         logger.info("Executando criarEmpresa()");
 
-        String cnpj = "12090392832983";
+        String cnpj = "45594214000171";
         String empresa = "MV Sistemas";
         String telefone = "8133221122";
 
@@ -47,7 +47,7 @@ public class EmpresaCrudTest extends GenericTest {
     public void atualizarEmpresa() {
         logger.info("Executando atualizarEmpresa()");
 
-        String cnpj = "12352637829382";
+        String cnpj = "59807258000147";
         String nome = "IFPE";
         long idEmpresa = 1;
 
@@ -78,7 +78,7 @@ public class EmpresaCrudTest extends GenericTest {
         logger.info("Executando atualizarEmpresaMerge()");
 
         String telefone = "81995208867";
-        String cnpj = "09283726172672";
+        String cnpj = "27173184000148";
         long idEmpresa = 3;
 
         Empresa empresa = new Empresa();
@@ -132,7 +132,7 @@ public class EmpresaCrudTest extends GenericTest {
     public void atualizarEmpresaNativeQueryId() {
         logger.info("Executando atualizarEmpresaNativeQueryId()");
 
-        String cnpj = "12352637829382";
+        String cnpj = "20350679000156";
         String nome = "IFPE";
         long idEmpresa = 1;
 

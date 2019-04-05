@@ -51,7 +51,6 @@ import org.hibernate.validator.constraints.br.CNPJ;
 public class Empresa implements Serializable {
 
     @Id
-    @NotNull
     @Column(name = "ID_EMPRESA")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     protected Long idEmpresa;

@@ -62,7 +62,6 @@ import javax.validation.constraints.NotNull;
 public class Prato  implements Serializable {
     
     @Id
-    @ NotNull
     @Column(name = "ID_PRATO")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     protected Long idPrato;
@@ -72,7 +71,7 @@ public class Prato  implements Serializable {
     protected String nmPrato;
    
     @NotNull  
-    @Min (value = 0)
+    //@Min (value = 0)
     @Column(name = "VALOR")
     protected Double valor;
     

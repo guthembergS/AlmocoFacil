@@ -68,7 +68,7 @@ public class PedidoCrudTest extends GenericTest {
         TypedQuery<Cliente> queryCliente = em.createNamedQuery("Cliente.PorId", Cliente.class);
         queryCliente.setHint("javax.persistence.cache.retrieveMode", CacheRetrieveMode.BYPASS);
         queryCliente.setParameter("id", 5);
-        Cliente cliente = queryCliente.getSingleResult();
+        Cliente cliente =(Cliente) queryCliente.getSingleResult();
         assertNotNull(cliente);
 
         //seta a nova data do pedido

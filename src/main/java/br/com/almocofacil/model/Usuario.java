@@ -1,6 +1,5 @@
 package br.com.almocofacil.model;
 
-import com.sun.org.glassfish.gmbal.NameValue;
 import java.io.Serializable;
 import javax.persistence.Access;
 import javax.persistence.AccessType;
@@ -33,7 +32,6 @@ public abstract class Usuario implements Serializable {
     protected Long idUsuario;
 
     @NotNull
-    @NameValue
     @Column(name = "nome")
     protected String nome;
 

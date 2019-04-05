@@ -59,7 +59,7 @@
     <!-- ID_USUARIO 11 -->
     <TB_USUARIO DISC_USUARIO="V" NOME="fred almoco" EMAIL="fred.almoco@mail.com" SENHA="fred1234" />
     <!-- ID_USUARIO 12 -->
-    <TB_USUARIO DISC_USUARIO="V"NOME="saborear restaurante" EMAIL="saborear.restaurante@mail.com" SENHA="saborear123" />
+    <TB_USUARIO DISC_USUARIO="V" NOME="saborear restaurante" EMAIL="saborear.restaurante@mail.com" SENHA="saborear123" />
     <!-- ID_USUARIO 13 -->
     <TB_USUARIO DISC_USUARIO="V" NOME="Paladar Nordestino" EMAIL="palador.nordestino@mail.com" SENHA="paladar123" />
     <!-- ID_USUARIO 14 -->

@@ -46,7 +46,6 @@ import javax.validation.constraints.Past;
 public class Pedido implements Serializable {
 
     @Id
-    @NotNull
     @Column(name = "ID_PEDIDO")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     protected Long idPedido;
