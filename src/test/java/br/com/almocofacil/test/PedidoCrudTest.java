@@ -140,5 +140,90 @@ public class PedidoCrudTest extends GenericTest {
         assertEquals(0, queryRemove.getResultList().size());
 
     }        
+
+    
+    
+    @Test
+    public void criarPedidoNative() {
+        logger.info("Executando criarPedido()");
+
+        Pedido novoPedido = new Pedido();
+        novoPedido.setDtPedido(getData(2,2, 2019));
+        long idVendedor = 12;
+        long idCliente = 8;
+        double valorTotal = 0 ;
+        
+        TypedQuery<Prato> query = em.createNamedQuery("Prato.PorIdVendedorSQL", Prato.class);
+        query.setHint("javax.persistence.cache.retrieveMode", CacheRetrieveMode.BYPASS);
+        query.setParameter(1, idVendedor);
+        List<Prato> pratos = query.getResultList();
+        assertNotNull(pratos);
+        
+        for(int prato=0;prato<pratos.size();prato++){
+            novoPedido.setPratos(pratos.get(prato));
+            valorTotal += pratos.get(prato).getValor();
+        }
+        
+        //necessário colocar um TypedQuery já que na classe Pedido a coluna ID Cliente é (nullable = false)
+        TypedQuery<Cliente> queryCliente = em.createNamedQuery("Cliente.PorId", Cliente.class);
+        queryCliente.setHint("javax.persistence.cache.retrieveMode", CacheRetrieveMode.BYPASS);
+        queryCliente.setParameter("id", idCliente);
+        novoPedido.setCliente(queryCliente.getSingleResult());
+
+        novoPedido.setVlTotal(valorTotal);
+        novoPedido.setVendedor(pratos.get(0).getVendedor());
+        em.persist(novoPedido);
+        em.flush();
+        assertNotNull(novoPedido.getIdPedido());
+
+    }
+    
+//    @Test
+//    public void atualizarPedidoNative() {
+//        logger.info("Executando atualizarPedidoNative()");
+//
+//        long idPedido = 1;
+//        TypedQuery<Pedido> queryPedido = em.createNamedQuery("Pedido.PorIdSQL", Pedido.class);
+//        //bypassar cache do banco
+//        queryPedido.setHint("javax.persistence.cache.retrieveMode", CacheRetrieveMode.BYPASS);
+//        queryPedido.setParameter("id", idPedido);
+//        Pedido pedido = (Pedido) queryPedido.getSingleResult();
+//        assertNotNull(pedido);
+//        
+//        
+//        TypedQuery<Prato> query = em.createNamedQuery("Pedido.PratosDoPedidoSQL", Prato.class);
+//        query.setParameter("id", idPedido);
+//        List<Prato> pratosPedido = query.getResultList();
+//        assertNotNull(pratosPedido);
+//        Prato pratoaRemover = new Prato();
+//        int indicePratoExcluido = pratosPedido.size()-1;
+//        
+//        if(pratosPedido.size() > 1){
+//            
+//            pratoaRemover = pratosPedido.get(indicePratoExcluido);
+//            pratosPedido.remove(indicePratoExcluido);
+//            logger.info("Excluir ultimo prato da lista de pedidos");
+//            
+//            double valorPedido = 0;
+//            
+//            pedido.pratos.clear();
+//            
+//            for(int i = 0;i>pratosPedido.size();i++){
+//                pedido.setPratos(pratosPedido.get(i));
+//                valorPedido += pratosPedido.get(i).getValor();
+//            }
+//            pedido.setVlTotal(valorPedido);
+//        }
+//        
+//        em.flush();
+//
+//        List<Prato> pratosPedidoAtual = query.getResultList();
+//        
+//        assertEquals(pratosPedidoAtual.size() ,indicePratoExcluido+1);
+//        
+//        
+//    }
+
+
     
 }

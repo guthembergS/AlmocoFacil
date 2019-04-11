@@ -14,6 +14,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
+import javax.persistence.NamedNativeQueries;
+import javax.persistence.NamedNativeQuery;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
@@ -42,6 +44,25 @@ import javax.validation.constraints.Past;
             )
         }
 )
+@NamedNativeQueries(
+        {
+            @NamedNativeQuery(
+                    name = "Pedido.PorIdSQL",
+                    query = "SELECT ID_PEDIDO, DT_PEDIDO,VL_TOTAL FROM almocofacil.PEDIDO WHERE ID_PEDIDO = ? ",
+                    resultClass = Pedido.class
+            ),
+            @NamedNativeQuery(
+                    name = "Pedido.PratosDoPedidoSQL",
+                    query = "SELECT P.ID_PRATO,P.NM_PRATO,P.VALOR,P.ID_VENDEDOR "
+                            +"	FROM almocofacil.PEDIDO_PRATO PP, " 
+                            +" 	almocofacil.PRATO P " 
+                            +"	WHERE PP.ID_PEDIDO = ? " 
+                            +"	AND P.ID_PRATO = PP.ID_PRATO",
+                    resultClass = Prato.class
+            )
+        }
+)
+
 
 public class Pedido implements Serializable {
 
