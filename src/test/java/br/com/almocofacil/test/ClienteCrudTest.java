@@ -168,7 +168,48 @@ public class ClienteCrudTest extends GenericTest {
         assertEquals(0, query.getResultList().size());
 
     }
-    /*
+    
+    @Test
+    public void criarClienteNative() {
+        logger.info("Executando criarClienteNative()");
+
+        String nome = "Antonio Filho";
+        String email = "antonio.filho@mail.com";
+        String senha = "123456";
+        long idEmpresa = 1;
+        long idCartaoCredito = 10;
+
+        Cliente cliente = new Cliente();
+        cliente.setNome(nome);
+        cliente.setEmail(email);
+        cliente.setSenha(senha);
+
+        TypedQuery<Empresa> queryEmpresa = em.createNamedQuery("Empresa.PorIdSQL", Empresa.class);
+        queryEmpresa.setHint("javax.persistence.cache.retrieveMode", CacheRetrieveMode.BYPASS);
+        queryEmpresa.setParameter(1, idEmpresa);
+        Empresa empresa = queryEmpresa.getSingleResult();
+
+        assertNotNull(empresa);
+        cliente.setEmpresa(empresa);
+
+        TypedQuery<CartaoCredito> queryCartaoCredito = em.createNamedQuery("CartaoCredito.PorIdSQL", CartaoCredito.class);
+        queryCartaoCredito.setHint("javax.persistence.cache.retrieveMode", CacheRetrieveMode.BYPASS);
+        queryCartaoCredito.setParameter(1, idCartaoCredito);
+        CartaoCredito cartao = queryCartaoCredito.getSingleResult();
+
+        assertNotNull(cartao);
+        cliente.setCartaoCredito(cartao);
+
+        em.persist(cliente);
+        em.flush();
+
+        TypedQuery<Cliente> queryCliente = em.createNamedQuery("Cliente.PorNomeSQL", Cliente.class);
+        queryCliente.setHint("javax.persistence.cache.retrieveMode", CacheRetrieveMode.BYPASS);
+        queryCliente.setParameter(1, nome);
+
+        assertNotNull(queryCliente.getSingleResult());
+    }
+    
     @Test
     public void atualizarClienteNativeQueryId() {
         logger.info("Executando atualizarClienteNativeQueryId()");
@@ -207,6 +248,83 @@ public class ClienteCrudTest extends GenericTest {
         assertEquals(2, clienteAtualizado.getEmpresa().getIdEmpresa().longValue());
 
     }
-     */
     
+    @Test
+    public void atualizarClienteNativeMerge() {
+        logger.info("Executando atualizarClienteNativeMerge()");
+
+        String novoNome = "Nayara Souza";
+        String novoEmail = "nayara.souza@outlook.com";
+        String novaSenha = "010203";
+        long idCliente = 7;
+        long idEmpresa = 1;
+        long idCartaoCredito = 3;
+
+        TypedQuery<Cliente> queryCliente = em.createNamedQuery("Cliente.PorId", Cliente.class);
+        queryCliente.setHint("javax.persistence.cache.retrieveMode", CacheRetrieveMode.BYPASS);
+        queryCliente.setParameter("id", idCliente);
+        Cliente cliente = queryCliente.getSingleResult();
+
+        assertNotNull(cliente);
+
+        cliente.setNome(novoNome);
+        cliente.setEmail(novoEmail);
+        cliente.setSenha(novaSenha);
+
+        TypedQuery<Empresa> queryEmpresa = em.createNamedQuery("Empresa.PorId", Empresa.class);
+        queryEmpresa.setHint("javax.persistence.cache.retrieveMode", CacheRetrieveMode.BYPASS);
+        queryEmpresa.setParameter("id", idEmpresa);
+        Empresa empresa = queryEmpresa.getSingleResult();
+
+        assertNotNull(empresa);
+        cliente.setEmpresa(empresa);
+
+        TypedQuery<CartaoCredito> queryCartao = em.createNamedQuery("CartaoCredito.PorId", CartaoCredito.class);
+        queryCartao.setHint("javax.persistence.cache.retrieveMode", CacheRetrieveMode.BYPASS);
+        queryCartao.setParameter("id", idCartaoCredito);
+        CartaoCredito cartaoCredito = queryCartao.getSingleResult();
+
+        assertNotNull(cartaoCredito);
+        cliente.setCartaoCredito(cartaoCredito);
+
+        em.clear();
+        em.merge(cliente);
+        em.flush();
+
+        TypedQuery<Cliente> queryCli = em.createNamedQuery("Cliente.PorNome", Cliente.class);
+        queryCli.setHint("javax.persistence.cache.retrieveMode", CacheRetrieveMode.BYPASS);
+        queryCli.setParameter("nome", novoNome);
+        Cliente clienteAtualizado = queryCli.getSingleResult();
+
+        assertEquals(novoEmail, clienteAtualizado.getEmail());
+        assertEquals(novaSenha, clienteAtualizado.getSenha());
+        assertEquals(2, clienteAtualizado.getEmpresa().getIdEmpresa().longValue());
+        assertEquals(3, clienteAtualizado.getCartaoCredito().getIdCartaoCredito().longValue());
+
+    }
+     
+    @Test
+    public void removerClienteNative() {
+        logger.info("Executando removerClienteNative()");
+
+        long idCliente = 7;
+
+        TypedQuery<Cliente> query = em.createNamedQuery("Cliente.PorIdSQL", Cliente.class);
+        query.setHint("javax.persistence.cache.retrieveMode", CacheRetrieveMode.BYPASS);
+        query.setParameter(1, idCliente);
+        Cliente cliente = query.getSingleResult();
+        assertNotNull(cliente);
+
+        long idCartao = cliente.getCartaoCredito().getIdCartaoCredito();
+        
+        em.remove(cliente);
+        em.flush();
+
+        Query cartaoNativeQuery = em.createNamedQuery("CartaoCredito.PorIdSQL");
+        cartaoNativeQuery.setParameter(1, idCartao);
+       
+        assertEquals(0, cartaoNativeQuery.getResultList().size());
+        assertEquals(0, query.getResultList().size());
+
+    }
 }

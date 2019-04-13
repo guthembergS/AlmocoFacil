@@ -126,14 +126,46 @@ public class CartaoCreditoCrudTest extends GenericTest {
 
     }
 
-    /*
+    @Test
+    public void criarCartaoCreditoNative() {
+        logger.info("Executando criarCartaoCreditoNative()");
+
+        String bandeira = "American Express";
+        String numeroCartao = "341385790782893";
+        long idCliente = 15;
+
+        CartaoCredito cartaocredito = new CartaoCredito();
+        cartaocredito.setBandeira(bandeira);
+        cartaocredito.setDataExpiracao(getData(13, 02, 2020));
+        cartaocredito.setNumero(numeroCartao);
+
+        //Busca o nome do dono do cartão
+        TypedQuery<Cliente> query = em.createNamedQuery("Cliente.PorIdSQL", Cliente.class);
+        query.setHint("javax.persistence.cache.retrieveMode", CacheRetrieveMode.BYPASS);
+        query.setParameter(1, idCliente);
+        Cliente cliente = query.getSingleResult();
+
+        //Verifica de retornou algo
+        assertNotNull(cliente);
+        cartaocredito.setDono(cliente);
+
+        em.persist(cartaocredito);
+        em.flush();
+
+        TypedQuery<CartaoCredito> queryCartao = em.createNamedQuery("CartaoCredito.PorNumeroSQL", CartaoCredito.class);
+        queryCartao.setParameter(1, numeroCartao);
+
+        assertNotNull(queryCartao.getSingleResult());
+
+    }
+    
     @Test
     public void atualizarCartaoCreditoNativeQueryID() {
         logger.info("Executando atualizarCartaoCreditoNativeQueryID()");
 
         long idCartao = 7;
         String novaBandeira = "AmericanExpress";
-        String novoNumero = "0987890065488763";
+        String novoNumero = "377081601204287";
                 
         Query cartaoNativeQuery = em.createNamedQuery("CartaoCredito.PorIdSQL");
         cartaoNativeQuery.setHint("javax.persistence.cache.retrieveMode", CacheRetrieveMode.BYPASS);
@@ -155,13 +187,13 @@ public class CartaoCreditoCrudTest extends GenericTest {
     }
     
     @Test
-    public void atualizarCartaoCreditoNativeQueryNumero() {
+    public void atualizarCartaoCreditoNativeQueryNumeroMerge() {
         logger.info("Executando atualizarCartaoCreditoNativeQueryNumero()");
 
         long idCartao = 7;
         String novaBandeira = "Hiper";
-        String numeroAntigo = "02020200200200";
-        String novoNumero = "0987890065488666";
+        String numeroAntigo = "5143534259382518";
+        String novoNumero = "5183622687235456";
                 
         Query cartaoNativeQuery = em.createNamedQuery("CartaoCredito.PorNumeroSQL");
         cartaoNativeQuery.setParameter(1, numeroAntigo);
@@ -172,6 +204,8 @@ public class CartaoCreditoCrudTest extends GenericTest {
         cartaoCreditoNative.setBandeira(novaBandeira);
         cartaoCreditoNative.setNumero(novoNumero);
 
+        em.clear();
+        em.merge(cartaoCreditoNative);
         em.flush();
         
         cartaoNativeQuery.setParameter(1, novoNumero);
@@ -186,11 +220,11 @@ public class CartaoCreditoCrudTest extends GenericTest {
     public void removerCartaoCreditoNativeQueryID() {
         logger.info("Executando removerCartaoCredito()");
 
-        long idCartao = 9;
+        long idCartao = 11;
 
-        TypedQuery<CartaoCredito> query = em.createNamedQuery("CartaoCredito.PorId", CartaoCredito.class);
+        TypedQuery<CartaoCredito> query = em.createNamedQuery("CartaoCredito.PorIdSQL", CartaoCredito.class);
         query.setHint("javax.persistence.cache.retrieveMode", CacheRetrieveMode.BYPASS);
-        query.setParameter("id", idCartao);
+        query.setParameter(1, idCartao);
         CartaoCredito cartaocredito = query.getSingleResult();
 
         assertNotNull(cartaocredito);
@@ -201,5 +235,5 @@ public class CartaoCreditoCrudTest extends GenericTest {
         assertEquals(0, query.getResultList().size());
 
     }
-     */
+     
 }

@@ -36,6 +36,10 @@
     <CARTAO_CREDITO BANDEIRA="MASTER" NUMERO="5429780862052478" DT_EXPIRACAO="2020-06-11"/>
      <!-- ID_CARTAO_CREDITO = 9 teste de criacao de cliente  -->
     <CARTAO_CREDITO BANDEIRA="MASTER" NUMERO="102984930309" DT_EXPIRACAO="2024-02-11"/>
+    <!-- ID_CARTAO_CREDITO = 10 teste de criacao de cliente com native query  -->
+    <CARTAO_CREDITO BANDEIRA="ELO" NUMERO="6363696530377418" DT_EXPIRACAO="2020-10-12"/>
+    <!-- ID_CARTAO_CREDITO = 11 -->
+    <CARTAO_CREDITO BANDEIRA="MASTER" NUMERO="5066993672384159" DT_EXPIRACAO="2021-01-11"/>
     <!-- ID_USUARIO 1 -->
     <TB_USUARIO DISC_USUARIO="C" NOME="guthemberg souza" EMAIL="guthemberg@mail.com" SENHA="jkj898js" ID_EMPRESA="1" ID_CARTAO_CREDITO="1"/>    
     <!-- ID_USUARIO 2 -->
@@ -64,6 +68,8 @@
     <TB_USUARIO DISC_USUARIO="V" NOME="Paladar Nordestino" EMAIL="palador.nordestino@mail.com" SENHA="paladar123" />
     <!-- ID_USUARIO 14 -->
     <TB_USUARIO DISC_USUARIO="V" NOME="MV" EMAIL="gerson.brandao@mv.com.br" SENHA="mvmv@@2019" />
+    <!-- ID_USUARIO 15 -->
+    <TB_USUARIO DISC_USUARIO="C" NOME="Osvaldo" EMAIL="osvaldo@mail.com" SENHA="123321" />
     <!-- ID_PRATO 1 -->
     <PRATO NM_PRATO="Lasanha" VALOR="13.00" ID_VENDEDOR="11" />
     <!-- ID_PRATO 2 -->

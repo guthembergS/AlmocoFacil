@@ -50,7 +50,7 @@ import org.hibernate.validator.constraints.CreditCardNumber;
             @NamedNativeQuery(
                     name = "Cliente.PorNomeSQL",
                     query = " SELECT c.ID_USUARIO, c.email, c.nome, c.senha, c.ID_EMPRESA, c.ID_CARTAO_CREDITO"
-                    + " FROM TB_USUARIO c,  "
+                    + " FROM TB_USUARIO c  "
                     + " WHERE c.nome = ? ",
                     resultClass = Cliente.class
             )
