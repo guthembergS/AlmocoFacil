@@ -165,7 +165,9 @@ public class EnderecoEntregaCrudTeste extends GenericTest {
         assertEquals(cep, enderecoatualizado.getCep());
         assertEquals(logradouro, enderecoatualizado.getLogadouro());
     }
-
+                */
+/*
+                
     @Test
     public void buscaEnderecoEntregaBairroNativeQuery() {
         logger.info("Executando buscaEnderecoEntregaBairroNativeQuery()");
@@ -179,5 +181,5 @@ public class EnderecoEntregaCrudTeste extends GenericTest {
         List<EnderecoEntrega> enderecoEntrega = (List<EnderecoEntrega>) query.getResultList();
         assertEquals(2, enderecoEntrega.size());
     }
-     */
+  */   
 }

@@ -1,4 +1,4 @@
-package br.com.almocofacil.test;
+ package br.com.almocofacil.test;
 
 import br.com.almocofacil.model.CartaoCredito;
 import br.com.almocofacil.model.Cliente;
@@ -298,8 +298,8 @@ public class ClienteCrudTest extends GenericTest {
 
         assertEquals(novoEmail, clienteAtualizado.getEmail());
         assertEquals(novaSenha, clienteAtualizado.getSenha());
-        assertEquals(2, clienteAtualizado.getEmpresa().getIdEmpresa().longValue());
-        assertEquals(3, clienteAtualizado.getCartaoCredito().getIdCartaoCredito().longValue());
+        assertEquals(idEmpresa, clienteAtualizado.getEmpresa().getIdEmpresa().longValue());
+        assertEquals(idCartaoCredito, clienteAtualizado.getCartaoCredito().getIdCartaoCredito().longValue());
 
     }
      
@@ -307,7 +307,7 @@ public class ClienteCrudTest extends GenericTest {
     public void removerClienteNative() {
         logger.info("Executando removerClienteNative()");
 
-        long idCliente = 7;
+        long idCliente = 15;
 
         TypedQuery<Cliente> query = em.createNamedQuery("Cliente.PorIdSQL", Cliente.class);
         query.setHint("javax.persistence.cache.retrieveMode", CacheRetrieveMode.BYPASS);
@@ -315,15 +315,9 @@ public class ClienteCrudTest extends GenericTest {
         Cliente cliente = query.getSingleResult();
         assertNotNull(cliente);
 
-        long idCartao = cliente.getCartaoCredito().getIdCartaoCredito();
-        
         em.remove(cliente);
         em.flush();
 
-        Query cartaoNativeQuery = em.createNamedQuery("CartaoCredito.PorIdSQL");
-        cartaoNativeQuery.setParameter(1, idCartao);
-       
-        assertEquals(0, cartaoNativeQuery.getResultList().size());
         assertEquals(0, query.getResultList().size());
 
     }

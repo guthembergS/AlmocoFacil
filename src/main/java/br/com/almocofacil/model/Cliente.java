@@ -65,7 +65,7 @@ public class Cliente extends Usuario implements Serializable {
     @JoinColumn(name = "ID_EMPRESA", referencedColumnName = "ID_EMPRESA")
     protected Empresa empresa;
     
-    @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL, optional = true)
+    @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.REMOVE, optional = true)
     @JoinColumn(name = "ID_CARTAO_CREDITO", referencedColumnName = "ID_CARTAO_CREDITO")
     protected CartaoCredito cartaoCredito;
 
