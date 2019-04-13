@@ -129,6 +129,36 @@ public class EmpresaCrudTest extends GenericTest {
     }
 
     @Test
+    public void criarEmpresaNative() {
+        logger.info("Executando criarEmpresaNative()");
+
+        String cnpj = "57112219000108";
+        String empresa = "Pitang";
+        String telefone = "8131438870";
+
+        long idEndereco = 2;
+
+        Empresa novaEmpresa = new Empresa();
+        EnderecoEntrega enderecoEntrega = new EnderecoEntrega();
+
+        novaEmpresa.setCnpj(cnpj);
+        novaEmpresa.setNmEmpresa(empresa);
+        novaEmpresa.setTelefone(telefone);
+
+        TypedQuery<EnderecoEntrega> query = em.createNamedQuery("EnderecoEntrega.PorIdSQL", EnderecoEntrega.class);
+        query.setHint("javax.persistence.cache.retrieveMode", CacheRetrieveMode.BYPASS);
+        query.setParameter(1, idEndereco);
+        enderecoEntrega = query.getSingleResult();
+
+        novaEmpresa.setEnderecoEntrega(enderecoEntrega);
+
+        em.persist(novaEmpresa);
+        em.flush();
+
+        assertNotNull(novaEmpresa.getIdEmpresa());
+    }
+    
+    @Test
     public void atualizarEmpresaNativeQueryId() {
         logger.info("Executando atualizarEmpresaNativeQueryId()");
 
@@ -158,4 +188,37 @@ public class EmpresaCrudTest extends GenericTest {
 
     }
 
+    @Test
+    public void atualizarEmpresaMergeNative() {
+        logger.info("Executando atualizarEmpresaMergeNative()");
+
+        String telefone = "8132231323";
+        String cnpj = "85336739000121";
+        long idEmpresa = 2;
+
+        Empresa empresa = new Empresa();
+
+        TypedQuery<Empresa> query = em.createNamedQuery("Empresa.PorIdSQL", Empresa.class);
+        query.setHint("javax.persistence.cache.retrieveMode", CacheRetrieveMode.BYPASS);
+        query.setParameter(1, idEmpresa);
+        empresa = query.getSingleResult();
+
+        assertNotNull(empresa);
+
+        empresa.setCnpj(cnpj);
+        empresa.setTelefone(telefone);
+        //limpa o entity manager (deixa de gerenciar o objeto)
+        em.clear();
+        //força o gerencimento do objeto
+        em.merge(empresa);
+        //sincroniza com o banco de dados
+        em.flush();
+
+        //Executa a query para confirmar a atualização
+        empresa = query.getSingleResult();
+
+        assertEquals(cnpj, empresa.getCnpj());
+        assertEquals(telefone, empresa.getTelefone());
+
+    }
 }
